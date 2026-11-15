@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>BA Christmas 2026 Check-In</title>
+<style>
+:root {
+  --brand:    #4f46e5;
+  --green:    #16a34a;
+  --green-bg: #dcfce7;
+  --red:      #dc2626;
+  --red-bg:   #fee2e2;
+  --yellow:   #b45309;
+  --yel-bg:   #fef3c7;
+  --orange:   #ea580c;
+  --border:   #e5e7eb;
+  --gray:     #6b7280;
+  --shadow:   0 1px 6px rgba(0,0,0,.08);
+  --radius:   10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f1f5f9; color: #0f172a; min-height: 100vh; }
+
+header { background: var(--brand); color: #fff; height: 52px; padding: 0 20px; display: flex; align-items: center; gap: 12px; box-shadow: 0 2px 8px rgba(79,70,229,.3); }
+header h1 { font-size: 16px; font-weight: 700; flex: 1; }
+header .clock { font-size: 13px; opacity: .75; font-variant-numeric: tabular-nums; }
+header .pin-tag { font-size: 11px; background: rgba(255,255,255,.2); border-radius: 20px; padding: 2px 10px; }
+
+/* PIN screen */
+#pin-screen { display: flex; align-items: center; justify-content: center; min-height: calc(100vh - 52px); padding: 20px; }
+.pin-card { background: #fff; border-radius: 14px; padding: 32px 28px; max-width: 340px; width: 100%; box-shadow: 0 4px 24px rgba(0,0,0,.1); text-align: center; }
+.pin-card h2 { font-size: 20px; margin-bottom: 8px; }
+.pin-card p  { font-size: 14px; color: var(--gray); margin-bottom: 24px; }
+.pin-card input { width: 100%; padding: 14px; font-size: 24px; text-align: center; letter-spacing: 8px; border: 2px solid var(--border); border-radius: 8px; margin-bottom: 12px; font-family: monospace; }
+.pin-card input:focus { outline: none; border-color: var(--brand); }
+.pin-card button { width: 100%; padding: 13px; background: var(--brand); color: #fff; border: none; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; }
+.pin-card button:hover { background: #3730a3; }
+.pin-error { color: var(--red); font-size: 13px; margin-top: 10px; display: none; }
+
+/* Main scanner */
+#scanner-screen { display: none; padding: 16px; max-width: 500px; margin: 0 auto; }
+
+/* Stats bar */
+.stats-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+.stat { background: #fff; border-radius: var(--radius); padding: 12px; box-shadow: var(--shadow); text-align: center; }
+.stat .n { font-size: 24px; font-weight: 800; }
+.stat .l { font-size: 10px; color: var(--gray); text-transform: uppercase; letter-spacing: .4px; margin-top: 2px; }
+.stat.ci .n  { color: var(--green); }
+.stat.rem .n { color: var(--orange); }
+.stat.tot .n { color: var(--brand); }
+
+/* Camera card */
+.card { background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; margin-bottom: 14px; }
+.card-head { padding: 12px 16px; background: #eef2ff; border-bottom: 1px solid var(--border); font-weight: 700; font-size: 14px; color: var(--brand); }
+.card-body { padding: 16px; }
+
+#reader-wrap { background: #000; border-radius: 8px; overflow: hidden; width: 100%; aspect-ratio: 1; max-width: 320px; margin: 0 auto 14px; border: 3px solid var(--brand); }
+#reader { width: 100%; height: 100%; }
+
+.cam-btns { display: flex; gap: 8px; margin-bottom: 12px; }
+.cam-btns button { flex: 1; padding: 11px; border: none; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; }
+#btn-start { background: var(--brand); color: #fff; }
+#btn-stop  { background: #e5e7eb; color: #374151; display: none; }
+
+.manual-row { display: flex; gap: 8px; }
+.manual-row input { flex: 1; padding: 11px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 15px; font-family: monospace; letter-spacing: 2px; text-transform: uppercase; }
+.manual-row button { background: var(--brand); color: #fff; border: none; padding: 11px 18px; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; }
+
+#scan-result { margin-top: 14px; border-radius: 8px; padding: 16px; display: none; }
+#scan-result.ok   { background: var(--green-bg); border: 1px solid #86efac; }
+#scan-result.err  { background: var(--red-bg);   border: 1px solid #fca5a5; }
+#scan-result.warn { background: var(--yel-bg);   border: 1px solid #fde68a; }
+.r-icon { font-size: 28px; margin-bottom: 6px; }
+.r-name { font-size: 20px; font-weight: 800; }
+.r-flat { font-size: 14px; margin-top: 3px; }
+.r-pax  { font-size: 13px; color: #374151; margin-top: 6px; }
+
+/* Check-in count modal */
+.modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 200; display: flex; align-items: center; justify-content: center; padding: 20px; }
+.modal { background: #fff; border-radius: 14px; padding: 28px; max-width: 380px; width: 100%; box-shadow: 0 8px 40px rgba(0,0,0,.2); text-align: center; }
+.modal h2 { font-size: 20px; margin-bottom: 6px; }
+.modal .sub { font-size: 14px; color: var(--gray); margin-bottom: 16px; }
+.count-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; background: #f8fafc; border-radius: 8px; padding: 14px; margin-bottom: 18px; font-size: 13px; text-align: center; }
+.count-grid .cn { font-size: 22px; font-weight: 800; }
+.count-grid .cl { color: var(--gray); font-size: 11px; text-transform: uppercase; margin-top: 2px; }
+.counter-row { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 20px; }
+.counter-row button { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border); background: #f3f4f6; font-size: 22px; cursor: pointer; line-height: 1; }
+.counter-row button:hover { background: #e5e7eb; }
+#ci-count { font-size: 32px; font-weight: 800; min-width: 48px; }
+.modal-btns { display: flex; gap: 10px; }
+.modal-btns button { flex: 1; padding: 12px; border-radius: 8px; font-size: 14px; font-weight: 700; border: none; cursor: pointer; }
+.confirm-btn { background: var(--green); color: #fff; }
+.confirm-btn:hover { background: #15803d; }
+.cancel-btn  { background: #f1f5f9; color: #374151; }
+
+/* Recent log */
+#log-list { max-height: 280px; overflow-y: auto; }
+.log-row { display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-bottom: 1px solid var(--border); font-size: 13px; }
+.log-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.log-name { font-weight: 600; flex: 1; }
+.log-flat { color: var(--gray); font-size: 12px; }
+.log-pax  { background: #eef2ff; color: var(--brand); font-size: 11px; padding: 1px 8px; border-radius: 20px; white-space: nowrap; }
+.log-time { color: var(--gray); font-size: 12px; white-space: nowrap; }
+
+/* Toast */
+#toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(60px); background: #1e293b; color: #fff; padding: 10px 22px; border-radius: 8px; font-size: 13px; font-weight: 600; opacity: 0; transition: all .25s; z-index: 999; pointer-events: none; white-space: nowrap; }
+#toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+.spin { display: inline-block; width: 14px; height: 14px; border: 2px solid rgba(255,255,255,.35); border-top-color: #fff; border-radius: 50%; animation: sp .6s linear infinite; vertical-align: middle; }
+@keyframes sp { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+
+<header>
+  <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/></svg>
+  <h1 id="hdr-title">BA Christmas 2026 · Check-In Portal</h1>
+  <span class="pin-tag" id="hdr-pin" style="display:none">🔑 Authorised</span>
+  <span class="clock" id="clk"></span>
+</header>
+
+<!-- PIN screen -->
+<div id="pin-screen">
+  <div class="pin-card">
+    <h2>🔐 Scanner Access</h2>
+    <p>Enter your 4-digit PIN to access the check-in scanner</p>
+    <input id="pin-input" type="password" inputmode="numeric" maxlength="4" placeholder="••••" autofocus/>
+    <button onclick="verifyPin()">Unlock Scanner</button>
+    <div class="pin-error" id="pin-error">Incorrect PIN. Try again.</div>
+  </div>
+</div>
+
+<!-- Scanner screen -->
+<div id="scanner-screen">
+
+  <div class="stats-bar">
+    <div class="stat ci">  <div class="n" id="s-in">–</div>  <div class="l">Checked In</div></div>
+    <div class="stat rem"> <div class="n" id="s-rem">–</div> <div class="l">Remaining</div></div>
+    <div class="stat tot"> <div class="n" id="s-tot">–</div> <div class="l">Total Reg.</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">📷 QR Scanner</div>
+    <div class="card-body">
+      <div id="reader-wrap"><div id="reader"></div></div>
+      <div class="cam-btns">
+        <button id="btn-start" onclick="startCam()">Start Camera</button>
+        <button id="btn-stop"  onclick="stopCam()">Stop</button>
+      </div>
+      <div class="manual-row">
+        <input id="manual" type="text" placeholder="AB3K" maxlength="4" autocomplete="off"/>
+        <button onclick="manualScan()">Check In</button>
+      </div>
+      <div id="scan-result"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">✅ Recent Check-ins</div>
+    <div id="log-list"><div style="text-align:center;padding:30px;color:var(--gray);font-size:14px">No check-ins yet</div></div>
+  </div>
+
+</div>
+
+<!-- Count modal -->
+<div class="modal-bg" id="ci-modal" style="display:none">
+  <div class="modal">
+    <h2>🎟 Check In</h2>
+    <p class="sub" id="ci-sub"></p>
+    <div class="count-grid">
+      <div><div class="cn" id="ci-done" style="color:var(--green)">0</div><div class="cl">Already In</div></div>
+      <div><div class="cn" id="ci-left" style="color:var(--orange)">0</div><div class="cl">Still to Arrive</div></div>
+    </div>
+    <p style="font-size:13px;color:var(--gray);margin-bottom:12px">How many arriving <strong>right now?</strong></p>
+    <div class="counter-row">
+      <button onclick="adj(-1)">−</button>
+      <div id="ci-count">1</div>
+      <button onclick="adj(1)">+</button>
+    </div>
+    <div class="modal-btns">
+      <button class="confirm-btn" onclick="confirmCheckin()">✅ Confirm</button>
+      <button class="cancel-btn"  onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+<script>
+// ── Config — paste your Apps Script URL here ──────────────
+// Stored in localStorage after first entry
+let API_URL = localStorage.getItem("scanner_api") || "";
+let PIN     = "";
+
+// ── State ─────────────────────────────────────────────────
+let scanner = null, scanning = false, cooldown = false;
+let pendingTicket = null, pendingRemaining = 0;
+let recentLogs = [];
+
+// ── Init ──────────────────────────────────────────────────
+addEventListener("DOMContentLoaded", () => {
+  tick(); setInterval(tick, 1000);
+
+  // If no API URL stored, ask on PIN screen
+  if (!API_URL) {
+    const urlRow = document.createElement("div");
+    urlRow.style = "margin-bottom:16px";
+    urlRow.innerHTML = `<input id="api-inp" type="text" placeholder="Paste Web App URL" style="width:100%;padding:10px 12px;border:1px solid #e5e7eb;border-radius:6px;font-size:12px;margin-bottom:8px;font-family:monospace"/>`;
+    document.querySelector(".pin-card").insertBefore(urlRow, document.querySelector(".pin-card input"));
+  }
+
+  document.getElementById("pin-input").addEventListener("keydown", e => { if (e.key === "Enter") verifyPin(); });
+  document.getElementById("manual").addEventListener("keydown", e => { if (e.key === "Enter") manualScan(); });
+});
+
+function tick() {
+  document.getElementById("clk").textContent =
+    new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+}
+
+// ── PIN ───────────────────────────────────────────────────
+function verifyPin() {
+  const urlInp = document.getElementById("api-inp");
+  if (urlInp) {
+    const v = urlInp.value.trim();
+    if (!v.startsWith("http")) { toast("Paste a valid Web App URL first"); return; }
+    API_URL = v;
+    localStorage.setItem("scanner_api", API_URL);
+  }
+
+  const entered = document.getElementById("pin-input").value.trim();
+  if (!entered) return;
+
+  // Verify PIN against the server
+  apiFetch({ action: "lookup", ticket: "PING", pin: entered })
+    .then(data => {
+      if (data && data.message === "Invalid PIN") {
+        document.getElementById("pin-error").style.display = "block";
+        document.getElementById("pin-input").value = "";
+        return;
+      }
+      // Any other response (even "not found") means PIN is valid
+      PIN = entered;
+      document.getElementById("pin-screen").style.display    = "none";
+      document.getElementById("scanner-screen").style.display = "block";
+      document.getElementById("hdr-pin").style.display        = "inline-block";
+      loadStats();
+      setInterval(loadStats, 20000);
+    });
+}
+
+// ── API (JSONP — bypasses CORS) ───────────────────────────
+function apiFetch(params) {
+  return new Promise((resolve) => {
+    if (!API_URL) { toast("No API URL configured"); resolve(null); return; }
+    const cbName = "_cb" + Date.now() + Math.floor(Math.random() * 1000);
+    const script = document.createElement("script");
+    const timer  = setTimeout(() => {
+      delete window[cbName]; script.remove();
+      toast("Request timed out"); resolve(null);
+    }, 15000);
+    window[cbName] = (data) => {
+      clearTimeout(timer); delete window[cbName]; script.remove();
+      resolve(data);
+    };
+    params.callback = cbName;
+    script.src = API_URL + "?" + new URLSearchParams(params);
+    script.onerror = () => {
+      clearTimeout(timer); delete window[cbName]; script.remove();
+      toast("Network error"); resolve(null);
+    };
+    document.head.appendChild(script);
+  });
+}
+
+async function loadStats() {
+  const data = await apiFetch({ action: "stats" });
+  if (!data || !data.ok) return;
+  const c = data.counts || {};
+  set("s-in",  (c.CHECKED_IN || 0) + (c.PARTIAL || 0));
+  set("s-rem",  c.APPROVED   || 0);
+  set("s-tot",  data.total   || 0);
+}
+
+// ── Scan flow ─────────────────────────────────────────────
+function startCam() {
+  scanner = new Html5Qrcode("reader");
+  scanner.start(
+    { facingMode: "environment" },
+    { fps: 10, qrbox: { width: 220, height: 220 }, aspectRatio: 1 },
+    decoded => {
+      if (cooldown) return;
+      cooldown = true;
+      doLookup(decoded.trim().toUpperCase());
+      setTimeout(() => cooldown = false, 4000);
+    },
+    () => {}
+  ).then(() => {
+    scanning = true;
+    document.getElementById("btn-start").style.display = "none";
+    document.getElementById("btn-stop").style.display  = "block";
+  }).catch(e => toast("Camera error: " + e));
+}
+
+function stopCam() {
+  if (scanner && scanning) scanner.stop().then(() => {
+    scanning = false;
+    document.getElementById("btn-start").style.display = "block";
+    document.getElementById("btn-stop").style.display  = "none";
+    scanner.clear();
+  });
+}
+
+function manualScan() {
+  const v = document.getElementById("manual").value.trim().toUpperCase();
+  if (v) doLookup(v);
+}
+
+async function doLookup(ticketId) {
+  document.getElementById("manual").value = ticketId;
+  const data = await apiFetch({ action: "lookup", ticket: ticketId, pin: PIN });
+  if (!data) return;
+
+  if (!data.ok && data.message === "Invalid PIN") { toast("PIN error — reload and re-enter PIN"); return; }
+
+  if (data.duplicate || (!data.ok && !data.lookup)) {
+    beep(false);
+    showResult(data, ticketId);
+    return;
+  }
+  if (data.remaining === 0 || data.status === "CHECKED_IN") {
+    beep(false);
+    showResult({ ok: false, duplicate: true, ...data }, ticketId);
+    return;
+  }
+
+  pendingTicket    = ticketId;
+  pendingRemaining = data.remaining;
+  document.getElementById("ci-sub").textContent  = data.name + " · Unit " + data.flat;
+  document.getElementById("ci-done").textContent = data.checkedIn;
+  document.getElementById("ci-left").textContent = data.remaining;
+  document.getElementById("ci-count").textContent = Math.min(1, data.remaining);
+  document.getElementById("ci-modal").style.display = "flex";
+}
+
+async function confirmCheckin() {
+  const countNow = parseInt(document.getElementById("ci-count").textContent, 10);
+  closeModal();
+  const data = await apiFetch({ action: "checkin", ticket: pendingTicket, count: countNow, pin: PIN });
+  if (!data) return;
+  showResult(data, pendingTicket);
+  if (data.ok) { beep(true); addLog(data); loadStats(); }
+  else beep(false);
+}
+
+function adj(delta) {
+  const el  = document.getElementById("ci-count");
+  const val = parseInt(el.textContent, 10) + delta;
+  if (val >= 1 && val <= pendingRemaining) el.textContent = val;
+}
+
+function closeModal() { document.getElementById("ci-modal").style.display = "none"; }
+
+// ── Result ────────────────────────────────────────────────
+function showResult(data, ticketId) {
+  const box = document.getElementById("scan-result");
+  box.style.display = "block";
+  if (data.ok) {
+    const allIn = data.remaining === 0;
+    box.className = "ok";
+    box.innerHTML = `<div class="r-icon">${allIn ? "✅" : "🟡"}</div>
+      <div class="r-name">${esc(data.name)}</div>
+      <div class="r-flat">Unit ${esc(data.flat)}</div>
+      <div class="r-pax">+${data.countNow} now · ${data.checkedIn}/${data.total} total</div>
+      <div class="r-pax" style="color:${allIn ? 'var(--green)' : 'var(--orange)'}">
+        ${allIn ? "All members in!" : data.remaining + " still to arrive"}
+      </div>`;
+  } else if (data.duplicate) {
+    box.className = "warn";
+    box.innerHTML = `<div class="r-icon">⚠️</div>
+      <div class="r-name">${esc(data.name||"—")}</div>
+      <div class="r-flat">Unit ${esc(data.flat||"—")}</div>
+      <div class="r-pax">All members already checked in</div>`;
+  } else {
+    box.className = "err";
+    box.innerHTML = `<div class="r-icon">❌</div>
+      <div class="r-name">${esc(data.message||"Not found")}</div>
+      <div class="r-pax" style="font-family:monospace">${esc(ticketId||"")}</div>`;
+  }
+  clearTimeout(box._t);
+  box._t = setTimeout(() => box.style.display = "none", 6000);
+}
+
+function addLog(d) {
+  recentLogs.unshift({ ...d, time: new Date() });
+  if (recentLogs.length > 40) recentLogs.pop();
+  document.getElementById("log-list").innerHTML = recentLogs.map(e =>
+    `<div class="log-row">
+      <div class="log-dot" style="background:${e.remaining > 0 ? 'var(--orange)' : 'var(--green)'}"></div>
+      <div class="log-name">${esc(e.name)}</div>
+      <div class="log-flat">Unit ${esc(e.flat)}</div>
+      <span class="log-pax">+${e.countNow} · ${e.checkedIn}/${e.total}</span>
+      <div class="log-time">${e.time.toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})}</div>
+    </div>`
+  ).join("");
+}
+
+// ── Utils ─────────────────────────────────────────────────
+function set(id, v) { const el = document.getElementById(id); if (el) el.textContent = v; }
+function esc(s) { return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function toast(msg) { const el = document.getElementById("toast"); el.textContent = msg; el.classList.add("show"); setTimeout(() => el.classList.remove("show"), 3000); }
+function beep(ok) {
+  try {
+    const ctx = new (window.AudioContext||window.webkitAudioContext)();
+    const o = ctx.createOscillator(), g = ctx.createGain();
+    o.connect(g); g.connect(ctx.destination);
+    o.frequency.value = ok ? 880 : 280; o.type = ok ? "sine" : "square";
+    g.gain.setValueAtTime(.3, ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(.001, ctx.currentTime + .35);
+    o.start(); o.stop(ctx.currentTime + .35);
+  } catch(_) {}
+}
+</script>
+</body>
+</html>

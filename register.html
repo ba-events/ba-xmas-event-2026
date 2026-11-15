@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Register — BA Christmas 2026 · Birla Alokya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red:      #c0392b;
+  --red-dk:   #7f1d1d;
+  --red-lt:   #fecaca;
+  --grn:      #1b5e20;
+  --grn2:     #2e7d32;
+  --grn3:     #43a047;
+  --gold:     #f9a825;
+  --gold-lt:  #fef9c3;
+  --snow:     #f0fdf4;
+  --dark:     #071a0e;
+  --ink:      #111827;
+  --muted:    #6b7280;
+  --border:   #e5e7eb;
+  --card-sh:  0 1px 4px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.06);
+  --r:        14px;
+}
+*  { box-sizing:border-box; margin:0; padding:0; }
+html { overflow-x:hidden; }
+body {
+  font-family:'Inter', -apple-system, sans-serif;
+  background: #f8faf8;
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+/* ── HERO ───────────────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 560px;
+  background: linear-gradient(140deg, #051209 0%, #0c2d14 55%, #154a20 100%);
+  display: flex; align-items: flex-end;
+  overflow: hidden;
+  padding-bottom: 56px;
+}
+.hero-stripe-t { position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,var(--red),var(--gold),var(--red)); }
+.hero-stripe-b { position:absolute; bottom:0; left:0; right:0; height:4px; background:linear-gradient(90deg,var(--grn2),var(--gold),var(--grn2)); }
+.snow-stage    { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
+.flk           { position:absolute; top:-20px; color:#fff; animation:fall linear infinite; user-select:none; }
+@keyframes fall { 0%{transform:translateY(0) rotate(0); opacity:.8} 100%{transform:translateY(115vh) rotate(360deg); opacity:0} }
+.hero-inner {
+  position: relative; z-index:2;
+  width: min(960px, 100%); margin: 0 auto;
+  padding: 0 28px;
+}
+.hero-eyebrow { font-size:11px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
+.hero h1 {
+  font-size: clamp(48px, 10vw, 84px);
+  font-weight: 900; line-height: .92; letter-spacing: -2px;
+  color: #fff;
+}
+.hero h1 .yr {
+  display: block;
+  background: linear-gradient(90deg, var(--red-lt), var(--gold));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  font-size: .55em; letter-spacing: 4px; margin-top: 4px;
+}
+.hero-desc { font-size:14px; color:rgba(255,255,255,.72); max-width:440px; line-height:1.65; margin:16px 0 22px; }
+.hero-pills { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:28px; }
+.hero-pill {
+  display:inline-flex; align-items:center; gap:5px;
+  background:rgba(255,255,255,.1); backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,.18); border-radius:99px;
+  padding:5px 14px; font-size:12px; font-weight:600; color:#fff;
+  text-decoration:none;
+}
+.hero-cta {
+  display:inline-flex; align-items:center; gap:8px;
+  background:linear-gradient(135deg,var(--red-dk),var(--red));
+  color:#fff; border:none; border-radius:12px;
+  padding:14px 28px; font-size:15px; font-weight:800;
+  cursor:pointer; font-family:inherit; text-decoration:none;
+  box-shadow:0 4px 20px rgba(192,57,43,.4);
+  transition:transform .15s, box-shadow .15s;
+}
+.hero-cta:hover { transform:translateY(-2px); box-shadow:0 6px 24px rgba(192,57,43,.5); }
+.hero-cta .arr { transition:transform .15s; }
+.hero-cta:hover .arr { transform:translateX(4px); }
+
+/* ── LIGHTS BAR ─────────────────────────────────────── */
+.lights-bar { background:#0b1a0d; padding:10px 0; overflow:hidden; }
+.lights-row { display:flex; gap:24px; padding:0 12px; animation:lights-run 22s linear infinite; white-space:nowrap; }
+.bulb { width:13px; height:18px; border-radius:50% 50% 45% 45%; position:relative; flex-shrink:0; }
+.bulb::before { content:''; position:absolute; top:-5px; left:50%; transform:translateX(-50%); width:3px; height:6px; background:#444; border-radius:2px; }
+.br { background:#ef5350; box-shadow:0 0 8px #ef5350, 0 0 18px rgba(239,83,80,.4); animation:gl 1.7s ease-in-out infinite alternate; }
+.bg { background:#43a047; box-shadow:0 0 8px #43a047, 0 0 18px rgba(67,160,71,.4); animation:gl 2.2s ease-in-out infinite alternate; }
+.by { background:#fdd835; box-shadow:0 0 8px #fdd835, 0 0 18px rgba(253,216,53,.4); animation:gl 1.4s ease-in-out infinite alternate; }
+.bb { background:#42a5f5; box-shadow:0 0 8px #42a5f5, 0 0 18px rgba(66,165,245,.4); animation:gl 2.6s ease-in-out infinite alternate; }
+@keyframes gl     { from{opacity:.4} to{opacity:1} }
+@keyframes lights-run { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+/* ── COUNTDOWN ───────────────────────────────────────── */
+.countdown-wrap {
+  background:linear-gradient(135deg, var(--grn), var(--grn2));
+}
+.countdown-inner {
+  width:min(960px,100%); margin:0 auto; padding:16px 28px;
+  display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
+}
+.cd-label { font-size:13px; font-weight:700; color:rgba(255,255,255,.8); white-space:nowrap; }
+.cd-units  { display:flex; align-items:center; gap:6px; }
+.cd-unit   { text-align:center; min-width:48px; }
+.cd-n      { font-size:28px; font-weight:900; color:#fff; line-height:1; font-variant-numeric:tabular-nums; }
+.cd-l      { font-size:10px; color:rgba(255,255,255,.65); font-weight:700; text-transform:uppercase; letter-spacing:.06em; }
+.cd-sep    { font-size:24px; font-weight:900; color:var(--gold); padding-bottom:12px; }
+
+/* ── PROGRAMME SECTION ───────────────────────────────── */
+.prog-section { background:#fff; padding:56px 0; border-bottom:1px solid var(--border); }
+.prog-inner   { width:min(1000px,92%); margin:0 auto; }
+.prog-head    { margin-bottom:28px; }
+.prog-head h2 { font-size:clamp(24px,4vw,32px); font-weight:900; letter-spacing:-.03em; color:var(--grn); margin:0 0 6px; }
+.prog-head p  { margin:0; color:var(--muted); font-size:14px; }
+.feat-grid    { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.feat-card {
+  background:#fff; border:1.5px solid #e7ebe7; border-radius:20px;
+  padding:24px; min-height:150px;
+  box-shadow:0 4px 18px rgba(20,60,30,.06);
+  transition:transform .18s, box-shadow .18s;
+}
+.feat-card:hover { transform:translateY(-3px); box-shadow:0 10px 28px rgba(20,60,30,.1); }
+.feat-icon { font-size:30px; display:block; margin-bottom:12px; }
+.feat-card h3 { font-size:15px; font-weight:800; margin:0 0 5px; color:var(--grn); }
+.feat-card p  { margin:0; color:var(--muted); font-size:13px; line-height:1.55; }
+@media (max-width:640px) { .feat-grid { grid-template-columns:repeat(2,1fr); } }
+@media (max-width:380px) { .feat-grid { grid-template-columns:1fr; } }
+
+/* ── REG SECTION WRAPPER ─────────────────────────────── */
+.reg-section { padding:36px 20px 64px; }
+.reg-inner   { width:min(960px,100%); margin:0 auto; display:grid; grid-template-columns:280px 1fr; gap:28px; align-items:start; }
+
+/* ── STORY ASIDE ─────────────────────────────────────── */
+.story {
+  background:linear-gradient(160deg, var(--grn), var(--grn2));
+  border-radius:20px; padding:28px 22px;
+  color:#fff; position:sticky; top:20px;
+}
+.story-icon  { font-size:40px; margin-bottom:12px; display:block; }
+.story h3    { font-size:20px; font-weight:900; line-height:1.25; margin-bottom:10px; }
+.story p     { font-size:13px; opacity:.8; line-height:1.65; }
+.story-badge {
+  margin-top:20px; background:rgba(255,255,255,.15); border-radius:10px;
+  padding:10px 14px; font-size:13px; font-weight:700;
+}
+.story-badge-count { font-size:22px; font-weight:900; display:block; }
+.story-badge-lbl   { opacity:.8; font-size:12px; }
+.story-divider     { margin:18px 0; border:none; border-top:1px solid rgba(255,255,255,.2); }
+.story-quote { font-size:12px; color:var(--gold); font-weight:700; font-style:italic; line-height:1.5; }
+
+/* ── FORM AREA ───────────────────────────────────────── */
+.form-area { min-width:0; }
+
+/* ── STEPS ───────────────────────────────────────────── */
+.steps { display:flex; gap:0; margin-bottom:20px; background:#fff; border-radius:12px; border:1px solid var(--border); overflow:hidden; box-shadow:var(--card-sh); }
+.step-tab {
+  flex:1; text-align:center; padding:10px 6px; font-size:11px; font-weight:700;
+  color:var(--muted); cursor:default; transition:all .2s;
+  letter-spacing:.02em; border-right:1px solid var(--border);
+}
+.step-tab:last-child { border-right:none; }
+.step-tab .sn { display:inline-flex; align-items:center; justify-content:center; width:18px; height:18px; border-radius:50%; border:1.5px solid currentColor; font-size:10px; margin-bottom:2px; }
+.step-tab.active { color:var(--red); background:#fff5f5; }
+.step-tab.active .sn { background:var(--red); color:#fff; border-color:var(--red); }
+.step-tab.done   { color:var(--grn2); }
+.step-tab.done .sn { background:var(--grn2); color:#fff; border-color:var(--grn2); }
+.step-name { display:block; margin-top:1px; }
+
+/* ── PANEL ───────────────────────────────────────────── */
+.panel { display:none; }
+.panel.active { display:block; }
+
+/* ── CARD ────────────────────────────────────────────── */
+.card { background:#fff; border-radius:var(--r); box-shadow:var(--card-sh); border:1px solid rgba(0,0,0,.06); margin-bottom:14px; overflow:hidden; }
+.card-head { padding:14px 20px; border-bottom:1px solid #f3f4f6; display:flex; align-items:center; gap:10px; }
+.ch-icon  { font-size:20px; flex-shrink:0; }
+.ch-title { font-size:14px; font-weight:800; color:var(--ink); }
+.ch-sub   { font-size:11px; color:var(--muted); margin-top:1px; }
+.card-body { padding:18px 20px; }
+
+/* ── FIELDS ──────────────────────────────────────────── */
+.field { margin-bottom:14px; }
+.field:last-child { margin-bottom:0; }
+.field label { display:block; font-size:11px; font-weight:800; color:#374151; margin-bottom:5px; letter-spacing:.02em; text-transform:uppercase; }
+.field input {
+  width:100%; padding:11px 14px; border:1.5px solid var(--border);
+  border-radius:10px; font-size:15px; font-family:inherit; background:#fff;
+  transition:border-color .18s, box-shadow .18s; outline:none;
+}
+.field input:focus { border-color:var(--grn2); box-shadow:0 0 0 3px rgba(46,125,50,.1); }
+.field:focus-within label { color:var(--grn2); }
+.hint { font-size:11px; color:var(--muted); margin-top:4px; }
+.err  { font-size:11px; color:var(--red);   margin-top:4px; display:none; }
+.field.bad .err      { display:block; }
+.field.bad input     { border-color:var(--red); box-shadow:0 0 0 3px rgba(192,57,43,.09); }
+.field.bad label     { color:var(--red); }
+.frow { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+
+/* ── COUNTER WIDGET ──────────────────────────────────── */
+.counters { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.counter  { background:#f9fafb; border:1.5px solid var(--border); border-radius:12px; padding:14px; text-align:center; }
+.counter-label { font-size:11px; font-weight:800; color:#374151; text-transform:uppercase; letter-spacing:.04em; margin-bottom:10px; }
+.counter-price { font-size:10px; font-weight:600; color:var(--muted); display:block; margin-top:2px; }
+.counter-ctrl  { display:flex; align-items:center; justify-content:center; gap:12px; }
+.cnt-btn {
+  width:32px; height:32px; border-radius:50%; border:1.5px solid var(--border);
+  background:#fff; font-size:18px; font-weight:700; cursor:pointer;
+  display:flex; align-items:center; justify-content:center; color:var(--grn2);
+  transition:all .15s; font-family:inherit; line-height:1;
+}
+.cnt-btn:hover { background:var(--grn2); color:#fff; border-color:var(--grn2); }
+.cnt-btn:active { transform:scale(.9); }
+.cnt-num { font-size:24px; font-weight:900; color:var(--ink); min-width:28px; }
+
+/* ── AMOUNT BOX ──────────────────────────────────────── */
+.amt-box {
+  background:linear-gradient(135deg,var(--grn),var(--grn2));
+  border-radius:12px; padding:14px 18px; margin-top:14px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.amt-left .amt-lbl        { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:rgba(255,255,255,.75); }
+.amt-left .amt-breakdown  { font-size:12px; color:rgba(255,255,255,.65); margin-top:3px; }
+.amt-total { font-size:32px; font-weight:900; color:#fff; letter-spacing:-1px; }
+
+/* ── ACTIVITY CHECKBOXES ─────────────────────────────── */
+.act-checks { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.ac { position:relative; }
+.ac input { position:absolute; opacity:0; width:0; height:0; }
+.ac-card {
+  display:flex; align-items:center; gap:8px; padding:10px 12px;
+  border:1.5px solid var(--border); border-radius:10px; cursor:pointer;
+  font-size:12px; font-weight:600; color:#374151; background:#fff; transition:all .15s;
+}
+.ac input:checked + .ac-card { background:#f0fdf4; border-color:var(--grn2); color:var(--grn); }
+.ac-icon { font-size:18px; flex-shrink:0; }
+
+/* ── UPI SECTION ─────────────────────────────────────── */
+.upi-apps { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin:12px 0; }
+.upi-btn {
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:4px; padding:10px 4px; border-radius:12px; border:none;
+  font-size:10px; font-weight:700; cursor:pointer; font-family:inherit;
+  color:#fff; transition:transform .1s;
+}
+.upi-btn:active { transform:translateY(2px); }
+.u-gpay    { background:#fff; border:1.5px solid #dadce0; color:#3c4043; box-shadow:0 3px 0 #b0b4bc; }
+.u-phonepe { background:linear-gradient(180deg,#7b35c1,#5f259f); box-shadow:0 3px 0 #3d1666; }
+.u-paytm   { background:linear-gradient(180deg,#29ceff,#00baf2); box-shadow:0 3px 0 #0090bc; }
+.u-cred    { background:linear-gradient(180deg,#333,#1a1a1a);    box-shadow:0 3px 0 #000; }
+.upi-note  { font-size:11px; color:var(--muted); text-align:center; opacity:.8; margin:-4px 0 8px; }
+.div-or { display:flex; align-items:center; gap:10px; margin:16px 0; }
+.div-or::before, .div-or::after { content:''; flex:1; height:1px; background:var(--border); }
+.div-or span { font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.1em; }
+.qr-wrap { text-align:center; margin:0 0 10px; }
+.qr-wrap img { border-radius:12px; border:3px solid var(--grn2); box-shadow:0 4px 16px rgba(46,125,50,.2); }
+.upi-id-row { display:flex; align-items:center; justify-content:center; gap:8px; margin-top:8px; }
+.upi-id-val { font-family:monospace; font-weight:700; color:var(--grn); background:#f0fdf4; padding:6px 12px; border-radius:8px; border:1px solid #a7f3d0; font-size:13px; letter-spacing:.5px; }
+.copy-btn { background:var(--grn2); color:#fff; border:none; border-radius:6px; padding:6px 12px; font-size:11px; font-weight:700; cursor:pointer; font-family:inherit; }
+.steps-list { font-size:13px; color:#374151; list-style:none; padding:0; margin:16px 0; }
+.steps-list li { display:flex; gap:10px; padding:7px 0; border-bottom:1px dashed #f3f4f6; }
+.steps-list li:last-child { border:none; }
+.snum { width:22px; height:22px; border-radius:50%; flex-shrink:0; margin-top:1px; background:linear-gradient(135deg,var(--grn),var(--grn2)); color:#fff; font-size:11px; font-weight:800; display:flex; align-items:center; justify-content:center; }
+
+/* ── BUTTONS ─────────────────────────────────────────── */
+.btn { width:100%; padding:14px; border-radius:12px; border:none; font-size:15px; font-weight:800; cursor:pointer; font-family:inherit; transition:all .18s; display:flex; align-items:center; justify-content:center; gap:8px; }
+.btn-red   { background:linear-gradient(135deg,var(--red-dk),var(--red)); color:#fff; box-shadow:0 4px 14px rgba(192,57,43,.35); }
+.btn-red:hover   { box-shadow:0 6px 20px rgba(192,57,43,.45); transform:translateY(-1px); }
+.btn-red:active  { transform:translateY(1px); box-shadow:0 2px 6px rgba(192,57,43,.3); }
+.btn-grn   { background:linear-gradient(135deg,var(--grn),var(--grn2)); color:#fff; box-shadow:0 4px 14px rgba(27,94,32,.35); }
+.btn-grn:hover   { box-shadow:0 6px 20px rgba(27,94,32,.45); transform:translateY(-1px); }
+.btn-grn:active  { transform:translateY(1px); }
+.btn-ghost { background:#fff; color:var(--muted); border:1.5px solid var(--border); margin-top:10px; font-size:14px; font-weight:600; box-shadow:none; }
+.btn-ghost:hover { background:#f9fafb; }
+.spin { width:16px; height:16px; border:2.5px solid rgba(255,255,255,.3); border-top-color:#fff; border-radius:50%; animation:spin .7s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg); } }
+
+/* ── CONFIRMATION TICKET ─────────────────────────────── */
+.conf-head { text-align:center; padding:20px 0 12px; }
+.conf-icon { font-size:52px; display:block; animation:bounce .7s ease-in-out 3; }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+.conf-title { font-size:22px; font-weight:900; color:var(--red); margin-top:6px; }
+.conf-sub   { font-size:13px; color:var(--muted); margin-top:4px; line-height:1.5; }
+.ticket {
+  margin:16px 0; background:#fff; border-radius:18px; overflow:hidden;
+  border:2px solid var(--grn2); box-shadow:0 8px 32px rgba(27,94,32,.15);
+}
+.ticket-hd {
+  background:linear-gradient(135deg,var(--red-dk),var(--red));
+  padding:18px 20px; text-align:center;
+}
+.ticket-hd .t-badge { font-size:11px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.75); margin-bottom:5px; }
+.ticket-hd .t-name  { font-size:22px; font-weight:900; color:#fff; }
+.ticket-perf { border:none; border-top:2px dashed rgba(27,94,32,.25); position:relative; }
+.ticket-perf::before, .ticket-perf::after {
+  content:''; position:absolute; top:-9px; width:16px; height:16px;
+  background:#f0fdf4; border-radius:50%; border:1px solid var(--border);
+}
+.ticket-perf::before { left:-8px; } .ticket-perf::after { right:-8px; }
+.ticket-bd { padding:14px 20px; }
+.t-row { display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid #f3f4f6; font-size:13px; }
+.t-row:last-child { border:none; }
+.t-lbl { color:var(--muted); font-weight:500; }
+.t-val { font-weight:700; }
+.t-val.gold { color:var(--gold); }
+.t-val.grn  { color:var(--grn2); }
+.ticket-ft { background:linear-gradient(135deg,var(--grn),var(--grn2)); padding:10px 18px; text-align:center; font-size:12px; font-weight:700; color:rgba(255,255,255,.85); }
+.conf-note { font-size:12px; color:var(--muted); line-height:1.7; text-align:center; padding:0 4px; }
+.cal-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:6px; }
+.cal-btn { display:flex; align-items:center; justify-content:center; gap:6px; padding:10px; border-radius:10px; font-size:12px; font-weight:700; text-decoration:none; border:1.5px solid var(--border); background:#fff; color:#374151; transition:all .15s; cursor:pointer; }
+.cal-btn:hover { background:#f9fafb; }
+.b-gcal { border-color:#4285f4; color:#4285f4; } .b-gcal:hover { background:#eff6ff; }
+.b-ical { border-color:#0369a1; color:#0369a1; } .b-ical:hover { background:#f0f9ff; }
+.b-wa   { border-color:#16a34a; color:#16a34a; background:#f0fdf4; } .b-wa:hover { background:#dcfce7; }
+.b-sms  { border-color:#9333ea; color:#9333ea; } .b-sms:hover { background:#faf5ff; }
+
+
+/* ── MY TICKET FAB ───────────────────────────────────── */
+.mt-fab {
+  position:fixed; bottom:20px; right:16px; z-index:50;
+  background:linear-gradient(135deg,var(--red-dk),var(--red));
+  color:#fff; border:none; border-radius:28px; padding:12px 20px;
+  font-size:14px; font-weight:800; cursor:pointer; font-family:inherit;
+  box-shadow:0 4px 18px rgba(192,57,43,.45); display:flex; align-items:center; gap:6px;
+  transition:transform .15s;
+}
+.mt-fab:hover { transform:translateY(-2px); }
+.mt-ov { position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:100; display:none; align-items:flex-end; justify-content:center; }
+.mt-ov.open { display:flex; }
+.mt-modal { background:#fff; border-radius:20px 20px 0 0; width:100%; max-width:480px; max-height:90vh; overflow-y:auto; }
+.mt-modal-hd { background:linear-gradient(135deg,var(--red-dk),var(--red)); padding:18px 20px; border-radius:20px 20px 0 0; display:flex; align-items:center; justify-content:space-between; color:#fff; }
+.mt-modal-hd h3 { font-size:16px; font-weight:800; }
+.mt-close { background:rgba(255,255,255,.2); border:none; color:#fff; font-size:20px; cursor:pointer; border-radius:50%; width:30px; height:30px; display:flex; align-items:center; justify-content:center; font-family:inherit; }
+.mt-body { padding:20px; }
+.mt-result { display:none; }
+.mt-result.show { display:block; }
+
+/* ── TOAST ───────────────────────────────────────────── */
+#toast {
+  position:fixed; bottom:76px; left:50%; transform:translateX(-50%) translateY(16px);
+  background:rgba(17,24,39,.9); color:#fff; padding:10px 20px; border-radius:99px;
+  font-size:13px; font-weight:600; white-space:nowrap; opacity:0;
+  transition:opacity .3s, transform .3s; z-index:200; pointer-events:none;
+}
+#toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
+/* ── CONFETTI ────────────────────────────────────────── */
+.cf { position:fixed; top:-10px; pointer-events:none; animation:cffall 2.5s ease-in forwards; z-index:300; }
+@keyframes cffall { to { transform:translateY(100vh) rotate(720deg); opacity:0; } }
+
+/* ── FOOTER ──────────────────────────────────────────── */
+.wave-wrap { display:block; line-height:0; }
+.wave-wrap svg { display:block; width:100%; height:48px; }
+.footer { background:var(--dark); color:#fff; text-align:center; padding:10px 20px 40px; }
+.footer-icon { font-size:28px; margin-bottom:6px; }
+.footer-name { font-size:24px; font-weight:900; }
+.footer-tag  { font-size:12px; color:rgba(255,255,255,.5); margin-top:4px; line-height:1.6; }
+
+/* ── RESPONSIVE ──────────────────────────────────────── */
+@media (max-width: 720px) {
+  .reg-inner { grid-template-columns:1fr; }
+  .story { position:static; padding:20px 18px; }
+  .story h3 { font-size:17px; }
+  .hero h1 { font-size:52px; }
+}
+@media (max-width: 420px) {
+  .frow { grid-template-columns:1fr; }
+  .cal-grid { grid-template-columns:1fr 1fr; }
+  .hero-pill:last-child { display:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── HERO ─────────────────────────────────────────── -->
+<header class="hero">
+  <div class="hero-stripe-t"></div>
+  <div class="snow-stage" id="snow-stage"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Birla Alokya Residents Present</div>
+    <h1>Christmas<span class="yr">2026</span></h1>
+    <p class="hero-desc">A two-day community celebration for all families of Birla Alokya — traditions, music, food, games and memories.</p>
+    <div class="hero-pills">
+      <span class="hero-pill">🎄 Sat & Sun · 19–20 Dec 2026</span>
+      <span class="hero-pill">📍 Birla Alokya · Whitefield</span>
+      <a class="hero-pill" href="https://maps.app.goo.gl/U1HyHkS6fodXsV8X9" target="_blank">🗺 Maps</a>
+    </div>
+    <a class="hero-cta" href="#reg">🎁 Register Your Family <span class="arr">→</span></a>
+  </div>
+  <div class="hero-stripe-b"></div>
+</header>
+
+<!-- ── LIGHTS BAR ────────────────────────────────────── -->
+<div class="lights-bar" aria-hidden="true"><div class="lights-row" id="lights-row"></div></div>
+
+<!-- ── COUNTDOWN ─────────────────────────────────────── -->
+<div class="countdown-wrap">
+  <div class="countdown-inner">
+    <div class="cd-label">🎅 Christmas 2026 begins in</div>
+    <div class="cd-units">
+      <div class="cd-unit"><div class="cd-n" id="cd-days">--</div><div class="cd-l">Days</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><div class="cd-n" id="cd-hours">--</div><div class="cd-l">Hrs</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><div class="cd-n" id="cd-mins">--</div><div class="cd-l">Mins</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><div class="cd-n" id="cd-secs">--</div><div class="cd-l">Secs</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PROGRAMME DETAILS ──────────────────────────────── -->
+<section class="prog-section">
+  <div class="prog-inner">
+    <div class="prog-head">
+      <h2>Programme Details</h2>
+      <p>Join us for a joyful Christmas celebration — two days packed with festive cheer for the whole family.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <span class="feat-icon">🎪</span>
+        <h3>Christmas Carnival</h3>
+        <p>A festive marketplace with stalls, games and carnival fun for the whole family.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">🎭</span>
+        <h3>Cultural Performances</h3>
+        <p>Dance, drama and musical acts by our community's talented residents.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">🎵</span>
+        <h3>Carols &amp; Live Music</h3>
+        <p>Sing along to classic Christmas carols with live music performances.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">🎅</span>
+        <h3>Meet Santa Claus</h3>
+        <p>Ho Ho Ho! Santa visits with gifts and photo moments for the kids.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">🌟</span>
+        <h3>Tree Lighting Ceremony</h3>
+        <p>A magical grand ceremony to light the community Christmas tree together.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">🎮</span>
+        <h3>Games &amp; Family Activities</h3>
+        <p>Exciting activities and games planned for kids, adults and families alike.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">🍔</span>
+        <h3>Food Trucks &amp; Flea Market</h3>
+        <p>A vibrant spread of food stalls, food trucks and shopping booths to explore.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── REGISTRATION SECTION ──────────────────────────── -->
+<section class="reg-section" id="reg">
+  <div class="reg-inner">
+
+    <!-- ── Story Aside ─── -->
+    <aside class="story">
+      <span class="story-icon">🎄</span>
+      <h3>Celebrating Christmas.<br>Celebrating Us.</h3>
+      <p>Your registration helps the organizing team plan food, activities and seating for every family that joins us.</p>
+      <div class="story-badge">
+        <span class="story-badge-count" id="wall-count">—</span>
+        <span class="story-badge-lbl">BA families registered &amp; counting!</span>
+      </div>
+      <hr class="story-divider"/>
+      <p class="story-quote">"One Community · One Christmas · One Spirit"</p>
+    </aside>
+
+    <!-- ── Form Area ─── -->
+    <div class="form-area">
+
+      <!-- Steps -->
+      <div class="steps">
+        <div class="step-tab active" id="step1"><div><div class="sn">1</div><span class="step-name">Details</span></div></div>
+        <div class="step-tab"        id="step2"><div><div class="sn">2</div><span class="step-name">Payment</span></div></div>
+        <div class="step-tab"        id="step3"><div><div class="sn">✓</div><span class="step-name">Done!</span></div></div>
+      </div>
+
+      <!-- ── Panel 1 ─── -->
+      <div class="panel active" id="panel1">
+
+        <div class="card">
+          <div class="card-head"><span class="ch-icon">👤</span><div><div class="ch-title">Your Details</div><div class="ch-sub">Tell us who you are</div></div></div>
+          <div class="card-body">
+            <div class="frow">
+              <div class="field" id="f-name">
+                <label>Full Name *</label>
+                <input id="inp-name" type="text" placeholder="e.g. Priya Sharma" autocomplete="name"/>
+                <div class="err">Please enter your full name</div>
+              </div>
+              <div class="field" id="f-flat">
+                <label>BA Villament # *</label>
+                <input id="inp-flat" type="text" placeholder="e.g. B01-01"/>
+                <div class="err">Please enter your villament #</div>
+              </div>
+            </div>
+            <div class="field" id="f-phone">
+              <label>WhatsApp Number *</label>
+              <input id="inp-phone" type="tel" inputmode="numeric" placeholder="10-digit mobile number" maxlength="10" oninput="this.value=this.value.replace(/\D/g,'')"/>
+              <div class="hint">🎁 Your entry ticket will be sent here</div>
+              <div class="err">Please enter a valid 10-digit number</div>
+            </div>
+            <div class="field" id="f-email">
+              <label>Email <span style="font-weight:400;text-transform:none;color:var(--muted)">(optional)</span></label>
+              <input id="inp-email" type="email" inputmode="email" placeholder="e.g. priya@gmail.com" autocomplete="email"/>
+              <div class="err">Enter a valid email address</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><span class="ch-icon">🎟️</span><div><div class="ch-title">Food Coupons</div><div class="ch-sub">One coupon per person — used at food stalls</div></div></div>
+          <div class="card-body">
+            <div class="counters">
+              <div class="counter">
+                <div class="counter-label">Adults<span class="counter-price">13+ yrs · ₹600</span></div>
+                <div class="counter-ctrl">
+                  <button class="cnt-btn" onclick="adjustCount('inp-adults',-1)" aria-label="Decrease adults">−</button>
+                  <span class="cnt-num" id="inp-adults-lbl">1</span>
+                  <input type="hidden" id="inp-adults" value="1"/>
+                  <button class="cnt-btn" onclick="adjustCount('inp-adults',1)"  aria-label="Increase adults">+</button>
+                </div>
+              </div>
+              <div class="counter">
+                <div class="counter-label">Kids<span class="counter-price">6–12 yrs · ₹400</span></div>
+                <div class="counter-ctrl">
+                  <button class="cnt-btn" onclick="adjustCount('inp-kids',-1)" aria-label="Decrease kids">−</button>
+                  <span class="cnt-num" id="inp-kids-lbl">0</span>
+                  <input type="hidden" id="inp-kids" value="0"/>
+                  <button class="cnt-btn" onclick="adjustCount('inp-kids',1)"  aria-label="Increase kids">+</button>
+                </div>
+              </div>
+            </div>
+            <div class="amt-box">
+              <div class="amt-left">
+                <div class="amt-lbl">Total to Pay</div>
+                <div class="amt-breakdown" id="amt-breakdown">1 adult × ₹600</div>
+              </div>
+              <div class="amt-total" id="amt-total">₹600</div>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-red" onclick="goToPayment()">Continue to Payment →</button>
+      </div>
+
+      <!-- ── Panel 2 ─── -->
+      <div class="panel" id="panel2">
+
+        <div class="card">
+          <div class="card-head"><span class="ch-icon">🙋</span><div><div class="ch-title">Volunteer Interest</div><div class="ch-sub">Optional — help make this Christmas special!</div></div></div>
+          <div class="card-body">
+            <div class="act-checks">
+              <label class="ac"><input type="checkbox" name="exp" value="decorations"/><div class="ac-card"><span class="ac-icon">🎄</span>Decorations</div></label>
+              <label class="ac"><input type="checkbox" name="exp" value="cultural"/><div class="ac-card"><span class="ac-icon">🎭</span>Cultural Program</div></label>
+              <label class="ac"><input type="checkbox" name="exp" value="games"/><div class="ac-card"><span class="ac-icon">🎮</span>Games & Fun</div></label>
+              <label class="ac"><input type="checkbox" name="exp" value="photography"/><div class="ac-card"><span class="ac-icon">📸</span>Photography</div></label>
+              <label class="ac"><input type="checkbox" name="exp" value="santa"/><div class="ac-card"><span class="ac-icon">🎅</span>Santa's Helpers</div></label>
+              <label class="ac"><input type="checkbox" name="exp" value="volunteer"/><div class="ac-card"><span class="ac-icon">🎤</span>General Volunteer</div></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><span class="ch-icon">💳</span><div><div class="ch-title">Pay via UPI</div><div class="ch-sub">Tap your app — amount pre-filled ✓</div></div></div>
+          <div class="card-body">
+            <p class="upi-note">⚠️ App buttons work on mobile only</p>
+            <div class="upi-apps">
+              <button class="upi-btn u-gpay" onclick="openUpiApp('gpay')">
+                <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                <span style="color:#3c4043">G Pay</span>
+              </button>
+              <button class="upi-btn u-phonepe" onclick="openUpiApp('phonepe')">
+                <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h8c2.76 0 5 2.24 5 5.5S17.76 14 15 14h-3v7H7V3zm5 8h3c1.38 0 2.5-1.12 2.5-2.5S16.38 6 15 6h-3v5z" fill="white"/></svg>
+                PhonePe
+              </button>
+              <button class="upi-btn u-paytm" onclick="openUpiApp('paytm')">
+                <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 6H3c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H3V8h18v10zM5 14h4v2H5zm6 0h4v2h-4z" fill="white"/></svg>
+                Paytm
+              </button>
+              <button class="upi-btn u-cred" onclick="openUpiApp('cred')">
+                <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7.24l-1.42-1.42C17.07 4.42 14.66 3.5 12 3.5c-2.66 0-5.07.92-6.58 2.32L4 4.4V9h4.6l-1.5-1.5C8.22 6.41 10.01 5.5 12 5.5c2 0 3.79.91 4.9 2l1.1 1.09V7.24zM4 16.76l1.42 1.42C6.93 19.58 9.34 20.5 12 20.5c2.66 0 5.07-.92 6.58-2.32L20 19.6V15h-4.6l1.5 1.5C15.78 17.59 13.99 18.5 12 18.5c-2 0-3.79-.91-4.9-2l-1.1-1.09v1.35z" fill="white"/></svg>
+                CRED
+              </button>
+            </div>
+            <div class="div-or"><span>or scan QR code</span></div>
+            <div class="qr-wrap"><img id="upi-qr" src="" width="180" height="180" alt="UPI QR Code"/></div>
+            <div class="upi-id-row">
+              <span style="font-size:12px;color:var(--muted)">UPI ID:</span>
+              <span class="upi-id-val" id="upi-id-text">••••••••••••</span>
+              <button class="copy-btn" onclick="copyUpi()">Copy</button>
+            </div>
+            <div class="amt-box" style="margin-top:14px">
+              <div class="amt-left"><div class="amt-lbl">Amount to Pay</div></div>
+              <div class="amt-total" id="pay-amount">₹600</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><span class="ch-icon">🧾</span><div><div class="ch-title">Confirm Payment</div><div class="ch-sub">Paste your UTR to complete registration</div></div></div>
+          <div class="card-body">
+            <ul class="steps-list">
+              <li><div class="snum">1</div><span>Open your UPI app and pay using the button above or QR code</span></li>
+              <li><div class="snum">2</div><span>Verify the amount — <strong id="pay-amount-2">₹600</strong> — and complete the payment</span></li>
+              <li><div class="snum">3</div><span>Return here and copy the 12-digit UTR / transaction reference</span></li>
+              <li><div class="snum">4</div><span>Paste it below and hit Submit</span></li>
+            </ul>
+            <div class="field" id="f-utr">
+              <label>UTR / Transaction Reference *</label>
+              <input id="inp-utr" type="text" placeholder="e.g. 426712345678" autocomplete="off" inputmode="numeric" maxlength="22"/>
+              <div class="hint">Found under transaction details in your UPI app</div>
+              <div class="err">Please enter your transaction reference number</div>
+            </div>
+            <button class="btn btn-grn" id="submit-btn" onclick="submitRegistration()">🎄 Submit Registration</button>
+            <button class="btn btn-ghost" onclick="goBack()">← Back</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── Panel 3 ─── -->
+      <div class="panel" id="panel3">
+        <div class="card">
+          <div class="card-body" style="padding-bottom:6px">
+            <div class="conf-head">
+              <span class="conf-icon">🎁</span>
+              <div class="conf-title" id="conf-name">You're in!</div>
+              <div class="conf-sub">Registration received · payment verification in progress<br>Your ticket will be sent to WhatsApp once approved</div>
+            </div>
+            <div class="ticket">
+              <div class="ticket-hd">
+                <div class="t-badge">🎄 Birla Alokya Christmas 2026</div>
+                <div class="t-name" id="conf-name-ticket">Christmas Guest</div>
+              </div>
+              <hr class="ticket-perf"/>
+              <div class="ticket-bd">
+                <div class="t-row"><span class="t-lbl">Villament</span><span class="t-val gold" id="conf-flat">—</span></div>
+                <div class="t-row"><span class="t-lbl">Adults</span><span class="t-val" id="conf-adults">—</span></div>
+                <div class="t-row"><span class="t-lbl">Kids</span><span class="t-val" id="conf-kids">—</span></div>
+                <div class="t-row"><span class="t-lbl">Amount</span><span class="t-val gold" id="conf-amount">—</span></div>
+                <div class="t-row"><span class="t-lbl">Status</span><span class="t-val grn">Pending ✓</span></div>
+                <div class="t-row"><span class="t-lbl">Dates</span><span class="t-val">19–20 Dec 2026</span></div>
+                <div class="t-row"><span class="t-lbl">Venue</span><span class="t-val">Birla Alokya, Whitefield</span></div>
+                <div class="t-row" id="conf-ticket-row" style="display:none"><span class="t-lbl">Ticket ID</span><span class="t-val gold" style="font-family:monospace;letter-spacing:2px" id="conf-ticket">—</span></div>
+                <div class="t-row" id="conf-email-row"  style="display:none"><span class="t-lbl">Email</span><span class="t-val" style="font-size:12px" id="conf-email">—</span></div>
+              </div>
+              <div class="ticket-ft">🎁 Your ticket is your Food Coupon — show QR or Ticket ID at the counter</div>
+            </div>
+            <p class="conf-note">📲 Once payment is verified, your Ticket ID &amp; QR code will be sent to WhatsApp.<br>🎄 Merry Christmas &amp; see you on 19–20 Dec!</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><span class="ch-icon">📅</span><div><div class="ch-title">Add to Calendar &amp; Share</div><div class="ch-sub">Save the date &amp; invite your neighbours!</div></div></div>
+          <div class="card-body" style="padding-top:12px;padding-bottom:14px">
+            <div class="cal-grid">
+              <a id="gcal-link" class="cal-btn b-gcal" href="#" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg>Google Cal</a>
+              <a id="ical-link" class="cal-btn b-ical" href="#" download="xmas-2026.ics"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>iCal</a>
+              <a id="share-wa"  class="cal-btn b-wa"   href="#" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>WhatsApp</a>
+              <a id="share-sms" class="cal-btn b-sms"   href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>SMS</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end .form-area -->
+  </div><!-- end .reg-inner -->
+</section>
+
+<!-- ── MY TICKET FAB ─────────────────────────────────── -->
+<button class="mt-fab" onclick="openMyTicket()">🎟️ My Ticket</button>
+
+<!-- ── MY TICKET MODAL ───────────────────────────────── -->
+<div class="mt-ov" id="mt-ov" onclick="if(event.target===this)closeMyTicket()">
+  <div class="mt-modal">
+    <div class="mt-modal-hd">
+      <h3>🎟️ Retrieve My Ticket</h3>
+      <button class="mt-close" onclick="closeMyTicket()">✕</button>
+    </div>
+    <div class="mt-body">
+      <div id="mt-form-area">
+        <div class="field" style="margin-bottom:14px">
+          <label style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.04em">WhatsApp Number *</label>
+          <input id="mt-phone" type="tel" inputmode="numeric" placeholder="10-digit number" maxlength="10" style="width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:15px;font-family:inherit;outline:none" oninput="this.value=this.value.replace(/\D/g,'')"/>
+        </div>
+        <div class="field" style="margin-bottom:18px">
+          <label style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.04em">BA Villament # *</label>
+          <div style="position:relative">
+            <input id="mt-flat" type="text" placeholder="e.g. B01-01" autocomplete="off" style="width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:15px;font-family:inherit;outline:none;text-transform:uppercase" oninput="this.value=this.value.toUpperCase();filterFlatDd(this.value)" onfocus="filterFlatDd(this.value)" onblur="setTimeout(()=>closeFlatDd(),180)"/>
+            <div id="mt-flat-dd" style="position:absolute;left:0;right:0;top:calc(100% + 4px);background:#fff;border:1.5px solid var(--border);border-radius:10px;max-height:160px;overflow-y:auto;z-index:50;display:none;box-shadow:0 4px 20px rgba(0,0,0,.1)"></div>
+          </div>
+        </div>
+        <button class="btn btn-red" id="mt-submit-btn" onclick="lookupTicket()">🔍 Find My Ticket</button>
+      </div>
+      <div class="mt-result" id="mt-result"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Hidden deco IDs (preserved for backend compatibility) -->
+<div id="deco-leaf-l" style="display:none"></div>
+<div id="deco-leaf-r" style="display:none"></div>
+<div id="deco-lamp"   style="display:none"></div>
+<div id="deco-boat"   style="display:none"></div>
+
+<div id="toast"></div>
+
+<!-- ── FOOTER ────────────────────────────────────────── -->
+<div class="wave-wrap" aria-hidden="true">
+  <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,24 C360,48 720,0 1080,24 C1260,36 1380,10 1440,24 L1440,48 L0,48 Z" fill="#071a0e"/>
+  </svg>
+</div>
+<footer class="footer">
+  <div class="footer-icon">🎄</div>
+  <div class="footer-name">Christmas 2026</div>
+  <p class="footer-tag">Birla Alokya Residents · Celebrating the season together!</p>
+</footer>
+
+<script>
+// ── CONFIG ────────────────────────────────────────────
+const API_URL  = "YOUR_XMAS_WEB_APP_URL_HERE";
+const UPI_ID   = "YOUR_UPI_ID_HERE";
+const UPI_NAME = "2026 Xmas BA Event";
+
+// ── State ─────────────────────────────────────────────
+let formData = {};
+
+// ── Init ──────────────────────────────────────────────
+addEventListener("DOMContentLoaded", () => {
+  buildLights();
+  buildSnow();
+  calcAmount();
+  setupCalendarLinks();
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+  setTimeout(loadFamilyWall, 1200);
+});
+
+// ── Christmas lights ──────────────────────────────────
+function buildLights() {
+  const row = document.getElementById("lights-row");
+  if (!row) return;
+  const types = ["br","bg","by","bb"];
+  let html = "";
+  for (let i = 0; i < 64; i++) html += `<div class="bulb ${types[i % 4]}"></div>`;
+  row.innerHTML = html + html;
+}
+
+// ── Snow ──────────────────────────────────────────────
+function buildSnow() {
+  const stage = document.getElementById("snow-stage");
+  if (!stage) return;
+  const chars = ["❄","❅","❆","·","✦","∗"];
+  for (let i = 0; i < 42; i++) {
+    const el = document.createElement("div");
+    el.className = "flk";
+    el.textContent = chars[i % chars.length];
+    el.style.left               = (Math.random() * 100) + "vw";
+    el.style.fontSize           = (8 + Math.random() * 14) + "px";
+    el.style.opacity            = (0.25 + Math.random() * 0.6);
+    el.style.animationDuration  = (5 + Math.random() * 10) + "s";
+    el.style.animationDelay     = (Math.random() * 9) + "s";
+    stage.appendChild(el);
+  }
+}
+
+// ── Counter ───────────────────────────────────────────
+function adjustCount(id, delta) {
+  const el  = document.getElementById(id);
+  const min = id === "inp-adults" ? 1 : 0;
+  const val = Math.min(20, Math.max(min, (parseInt(el.value) || min) + delta));
+  el.value  = val;
+  document.getElementById(id + "-lbl").textContent = val;
+  calcAmount();
+}
+
+// ── Amount calculator ─────────────────────────────────
+function calcAmount() {
+  const adults = Math.max(0, parseInt(document.getElementById("inp-adults").value) || 0);
+  const kids   = Math.max(0, parseInt(document.getElementById("inp-kids").value)   || 0);
+  const total  = (adults * 600) + (kids * 400);
+  let bd = "";
+  if (adults > 0) bd += adults + " adult" + (adults > 1 ? "s" : "") + " × ₹600";
+  if (kids   > 0) bd += (bd ? "  +  " : "") + kids + " kid" + (kids > 1 ? "s" : "") + " × ₹400";
+  if (!bd) bd = "—";
+  document.getElementById("amt-breakdown").textContent = bd;
+  document.getElementById("amt-total").textContent     = "₹" + total;
+  document.getElementById("pay-amount").textContent    = "₹" + total;
+  document.getElementById("pay-amount-2").textContent  = "₹" + total;
+}
+
+function generateQR() {
+  const adults = parseInt(document.getElementById("inp-adults").value) || 1;
+  const kids   = parseInt(document.getElementById("inp-kids").value)   || 0;
+  const total  = (adults * 600) + (kids * 400);
+  const upiStr = "upi://pay?pa=" + encodeURIComponent(UPI_ID) + "&pn=" + encodeURIComponent(UPI_NAME) + "&am=" + total + "&cu=INR&tn=" + encodeURIComponent("BA Christmas 2026");
+  document.getElementById("upi-qr").src = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" + encodeURIComponent(upiStr) + "&ecc=M";
+  document.getElementById("upi-id-text").textContent = UPI_ID;
+}
+
+// ── Flat normalizer ───────────────────────────────────
+function normalizeFlat(raw) {
+  if (!raw) return "";
+  let s = String(raw).replace(/[\s​﻿]/g, "").toUpperCase();
+  const prefix = (s.match(/^([A-Z]+)/) || ["","B"])[1][0];
+  let rest = s.replace(/^[A-Z]+/, "");
+  if (rest.includes("-")) {
+    const parts = rest.split("-").map(p => p.replace(/\D/g,"")).filter(Boolean);
+    if (parts.length >= 2) return prefix + parts[0] + "-" + parts[parts.length-1].padStart(2,"0");
+  }
+  const digits = rest.replace(/\D/g,"");
+  if (digits.length >= 3) return prefix + digits.slice(0,-2) + "-" + digits.slice(-2).padStart(2,"0");
+  if (digits.length === 2) return prefix + digits[0] + "-" + digits[1].padStart(2,"0");
+  return prefix + "-" + digits.padStart(2,"0");
+}
+
+// ── Navigation ────────────────────────────────────────
+function goToPayment() {
+  const name  = document.getElementById("inp-name").value.trim();
+  const flat  = document.getElementById("inp-flat").value.trim();
+  const phone = document.getElementById("inp-phone").value.trim().replace(/\D/g,"");
+  const email = document.getElementById("inp-email").value.trim();
+  const emailInvalid = email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  setErr("f-name",  !name);
+  setErr("f-flat",  !flat);
+  setErr("f-phone", phone.length !== 10);
+  setErr("f-email", !!emailInvalid);
+  if (!name || !flat || phone.length !== 10 || emailInvalid) {
+    const first = document.querySelector("#panel1 .field.bad");
+    if (first) { first.scrollIntoView({behavior:"smooth",block:"center"}); const inp = first.querySelector("input"); if (inp) setTimeout(()=>inp.focus(),350); }
+    return;
+  }
+  formData = {
+    name, flat: normalizeFlat(flat), phone, email: email || "",
+    adults: parseInt(document.getElementById("inp-adults").value) || 1,
+    kids:   parseInt(document.getElementById("inp-kids").value)   || 0
+  };
+  formData.amount = (formData.adults * 600) + (formData.kids * 400);
+  generateQR();
+  showPanel(2);
+}
+
+function goBack() { showPanel(1); }
+
+function showPanel(n) {
+  [1,2,3].forEach(i => {
+    document.getElementById("panel"  + i).classList.toggle("active", i === n);
+    const st = document.getElementById("step" + i);
+    st.classList.toggle("active", i === n);
+    st.classList.toggle("done",   i < n);
+  });
+  const top = document.getElementById("reg").offsetTop - 20;
+  window.scrollTo({top, behavior:"smooth"});
+}
+
+function setErr(fieldId, has) {
+  document.getElementById(fieldId).classList.toggle("bad", has);
+}
+
+// ── Submit ────────────────────────────────────────────
+async function submitRegistration() {
+  const utr = document.getElementById("inp-utr").value.trim();
+  setErr("f-utr", !utr);
+  if (!utr) {
+    const first = document.querySelector("#panel2 .field.bad");
+    if (first) { first.scrollIntoView({behavior:"smooth",block:"center"}); const inp = first.querySelector("input"); if (inp) setTimeout(()=>inp.focus(),350); }
+    return;
+  }
+  const experiences = [...document.querySelectorAll('input[name="exp"]:checked')].map(e=>e.value).join(",");
+  const btn = document.getElementById("submit-btn");
+  btn.innerHTML = '<span class="spin"></span> Submitting…'; btn.disabled = true;
+  await new Promise(r => setTimeout(r, Math.random() * 2000));
+  let data = await jsonp({action:"register", name:formData.name, flat:formData.flat, phone:formData.phone, email:formData.email, adults:formData.adults, kids:formData.kids, utr, experiences});
+  if (data === null) {
+    toast("Retrying…");
+    await new Promise(r => setTimeout(r, 2000 + Math.random() * 2000));
+    data = await jsonp({action:"register", name:formData.name, flat:formData.flat, phone:formData.phone, email:formData.email, adults:formData.adults, kids:formData.kids, utr, experiences});
+  }
+  btn.innerHTML = "🎄 Submit Registration"; btn.disabled = false;
+  if (!data) return;
+  if (!data.ok) { toast(data.message || "Submission failed"); return; }
+  handleSuccess(data);
+}
+
+function handleSuccess(data) {
+  const first = (data.name || formData.name || "").split(" ")[0];
+  document.getElementById("conf-name").textContent        = "Welcome, " + first + "! 🎄";
+  document.getElementById("conf-name-ticket").textContent = first + " Family";
+  document.getElementById("conf-flat").textContent        = data.flat;
+  document.getElementById("conf-adults").textContent      = data.adults;
+  document.getElementById("conf-kids").textContent        = data.kids;
+  document.getElementById("conf-amount").textContent      = "₹" + data.amount;
+  if (data.ticketId) {
+    document.getElementById("conf-ticket").textContent       = data.ticketId;
+    document.getElementById("conf-ticket-row").style.display = "flex";
+  }
+  if (data.email) {
+    document.getElementById("conf-email").textContent       = maskEmail(data.email);
+    document.getElementById("conf-email-row").style.display = "flex";
+  }
+  const shareMsg = "🎄 Just registered for BA Christmas 2026!\n\n🎁 Birla Alokya Christmas Community Celebration\n📅 Sat & Sun, 19–20 Dec 2026\n📍 Birla Alokya, Whitefield\n\n" + (data.name ? "👤 " + data.name + (data.flat ? " · Villament " + data.flat : "") + "\n\n" : "") + "Register: https://ba-events.github.io/ba-xmas-event-2026/register.html";
+  document.getElementById("share-wa").href  = "https://wa.me/?text=" + encodeURIComponent(shareMsg);
+  document.getElementById("share-sms").href = "sms:?&body=" + encodeURIComponent(shareMsg);
+  showPanel(3);
+  launchConfetti();
+  setTimeout(loadFamilyWall, 600);
+}
+
+function maskEmail(e) {
+  const [u,d] = e.split("@");
+  return u.slice(0,2) + "***@" + d;
+}
+
+// ── Calendar ──────────────────────────────────────────
+function setupCalendarLinks() {
+  const start = "20261219T090000", end = "20261220T210000";
+  const title = "BA Christmas 2026", loc = "Birla Alokya, Whitefield, Bangalore";
+  const desc  = "BA Christmas 2026 — Community celebration with cultural performances, carols, Santa Claus, tree lighting, games & food trucks.";
+  document.getElementById("gcal-link").href = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + encodeURIComponent(title) + "&dates=" + start + "/" + end + "&details=" + encodeURIComponent(desc) + "&location=" + encodeURIComponent(loc);
+  const ics = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//BA Xmas 2026//EN","BEGIN:VEVENT","DTSTART:"+start,"DTEND:"+end,"SUMMARY:"+title,"DESCRIPTION:"+desc,"LOCATION:"+loc,"END:VEVENT","END:VCALENDAR"].join("\r\n");
+  document.getElementById("ical-link").href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
+}
+
+// ── UPI ───────────────────────────────────────────────
+function copyUpi() {
+  navigator.clipboard.writeText(UPI_ID).then(()=>toast("UPI ID copied!")).catch(()=>toast("Copy: "+UPI_ID));
+}
+
+function openUpiApp(app) {
+  const amt = formData.amount || 600;
+  const pa  = encodeURIComponent(UPI_ID), pn = encodeURIComponent(UPI_NAME), tn = encodeURIComponent("BA Christmas 2026");
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent.toLowerCase());
+  const schemes = {gpay: isIOS?"gpay://upi/pay":"tez://upi/pay", phonepe:"phonepe://pay", paytm:"paytmmp://pay", cred:"credpay://upi/pay"};
+  let left = false;
+  function onVis() {
+    if (document.hidden) { left = true; return; }
+    if (!left) return;
+    document.removeEventListener("visibilitychange", onVis);
+    const el = document.getElementById("inp-utr");
+    if (el && !el.value) setTimeout(()=>{ el.scrollIntoView({behavior:"smooth",block:"center"}); el.focus(); toast("Payment done? Paste your UTR below ✅"); }, 500);
+  }
+  document.addEventListener("visibilitychange", onVis);
+  window.location.href = schemes[app] + "?pa="+pa+"&pn="+pn+"&am="+amt+"&tn="+tn+"&cu=INR";
+}
+
+// ── JSONP ─────────────────────────────────────────────
+function jsonp(params, {silent=false}={}) {
+  return new Promise(resolve => {
+    if (!API_URL || API_URL === "YOUR_XMAS_WEB_APP_URL_HERE") { if (!silent) toast("API URL not configured"); resolve(null); return; }
+    const cb = "_cb" + Date.now() + Math.floor(Math.random()*1000);
+    const s  = document.createElement("script");
+    const t  = setTimeout(()=>{ delete window[cb]; s.remove(); if (!silent) toast("Request timed out"); resolve(null); }, 30000);
+    window[cb] = d => { clearTimeout(t); delete window[cb]; s.remove(); resolve(d); };
+    params.callback = cb;
+    s.src = API_URL + "?" + new URLSearchParams(params);
+    s.onerror = ()=>{ clearTimeout(t); delete window[cb]; s.remove(); if (!silent) toast("Network error"); resolve(null); };
+    document.head.appendChild(s);
+  });
+}
+
+// ── Countdown ─────────────────────────────────────────
+function updateCountdown() {
+  const diff = new Date("2026-12-19T09:00:00+05:30") - new Date();
+  if (diff <= 0) {
+    document.querySelector(".countdown-wrap").innerHTML = '<div style="padding:14px 28px;text-align:center;font-weight:800;font-size:18px;color:#fdd835">🎄 BA Christmas 2026 is Here! 🎄</div>';
+    return;
+  }
+  const pad = n => String(n).padStart(2,"0");
+  document.getElementById("cd-days").textContent  = Math.floor(diff/86400000);
+  document.getElementById("cd-hours").textContent = pad(Math.floor((diff%86400000)/3600000));
+  document.getElementById("cd-mins").textContent  = pad(Math.floor((diff%3600000)/60000));
+  document.getElementById("cd-secs").textContent  = pad(Math.floor((diff%60000)/1000));
+}
+
+// ── Confetti ──────────────────────────────────────────
+function launchConfetti() {
+  const colors = ["#c62828","#1b5e20","#f9a825","#fff","#43a047","#ef5350","#fdd835"];
+  for (let i = 0; i < 90; i++) {
+    const el = document.createElement("div");
+    el.className = "cf";
+    el.style.left = (Math.random()*100)+"vw";
+    el.style.background = colors[Math.floor(Math.random()*colors.length)];
+    el.style.borderRadius = Math.random()>.5?"50%":"2px";
+    el.style.width = (4+Math.random()*7)+"px"; el.style.height = el.style.width;
+    el.style.animationDuration = (1.4+Math.random()*2)+"s";
+    el.style.animationDelay   = (Math.random()*.8)+"s";
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(), 4000);
+  }
+}
+
+// ── Family count (story aside badge) ─────────────────
+function loadFamilyWall() {
+  jsonp({action:"list"},{silent:true}).then(data => {
+    if (!data || !data.rows) return;
+    const count = data.rows.filter(r=>r.status!=="REJECTED").length;
+    const el = document.getElementById("wall-count");
+    if (el) el.textContent = count + " families";
+  });
+}
+
+// ── My Ticket ─────────────────────────────────────────
+function openMyTicket()  { document.getElementById("mt-ov").classList.add("open"); }
+function closeMyTicket() { document.getElementById("mt-ov").classList.remove("open"); }
+
+async function lookupTicket() {
+  const phone = document.getElementById("mt-phone").value.trim();
+  const flat  = document.getElementById("mt-flat").value.trim();
+  if (phone.length !== 10 || !flat) { toast("Enter your WhatsApp number and villament #"); return; }
+  const btn = document.getElementById("mt-submit-btn");
+  btn.innerHTML = '<span class="spin"></span> Searching…'; btn.disabled = true;
+  const data = await jsonp({action:"ticket", phone, flat:normalizeFlat(flat)});
+  btn.innerHTML = "🔍 Find My Ticket"; btn.disabled = false;
+  const res = document.getElementById("mt-result");
+  if (!data || !data.ok) {
+    res.innerHTML = '<div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:10px;padding:14px;font-size:13px;color:#b91c1c;text-align:center">' + (data&&data.message?data.message:"No registration found for these details") + "</div>";
+    res.classList.add("show"); return;
+  }
+  res.innerHTML = '<div style="background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:16px;font-size:13px;color:#14532d">'
+    + '<div style="font-size:16px;font-weight:800;margin-bottom:10px">🎄 Ticket Found!</div>'
+    + '<div style="margin-bottom:6px"><strong>Name:</strong> '+(data.name||'')+'</div>'
+    + '<div style="margin-bottom:6px"><strong>Villament:</strong> '+(data.flat||'')+'</div>'
+    + '<div style="margin-bottom:6px"><strong>Guests:</strong> '+(data.adults||0)+' adults · '+(data.kids||0)+' kids</div>'
+    + '<div style="margin-bottom:6px"><strong>Amount:</strong> ₹'+(data.amount||'')+'</div>'
+    + '<div><strong>Status:</strong> '+(data.status||'')+'</div>'
+    + (data.ticketId?'<div style="margin-top:10px;font-size:15px;font-weight:800;letter-spacing:2px;color:var(--grn)">🎟️ '+data.ticketId+'</div>':'')
+    + '</div>';
+  res.classList.add("show");
+}
+
+// ── Flat dropdown ─────────────────────────────────────
+let allFlats = [];
+function filterFlatDd(val) {
+  const dd = document.getElementById("mt-flat-dd");
+  if (!dd) return;
+  if (!allFlats.length) {
+    jsonp({action:"list"},{silent:true}).then(d => {
+      if (d && d.rows) allFlats = [...new Set(d.rows.map(r=>r.flat).filter(Boolean))].sort();
+      filterFlatDd(val);
+    });
+    return;
+  }
+  const q = val.trim().toUpperCase();
+  const matches = allFlats.filter(f=>f.includes(q)).slice(0,10);
+  if (!matches.length || !q) { dd.style.display="none"; return; }
+  dd.innerHTML = matches.map(f=>`<div style="padding:10px 14px;cursor:pointer;font-size:14px;border-bottom:1px solid #f3f4f6" onmousedown="pickFlat('${f}')">${f}</div>`).join("");
+  dd.style.display = "block";
+}
+function pickFlat(f)  { document.getElementById("mt-flat").value = f; closeFlatDd(); }
+function closeFlatDd(){ const dd = document.getElementById("mt-flat-dd"); if (dd) dd.style.display = "none"; }
+
+// ── Toast ─────────────────────────────────────────────
+function toast(msg) {
+  const el = document.getElementById("toast");
+  el.textContent = msg; el.classList.add("show");
+  setTimeout(()=>el.classList.remove("show"), 3200);
+}
+</script>
+</body>
+</html>

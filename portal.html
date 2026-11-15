@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>BA Christmas 2026 Event Portal</title>
+<style>
+:root {
+  --brand:     #4f46e5;
+  --brand-bg:  #eef2ff;
+  --green:     #16a34a;
+  --green-bg:  #dcfce7;
+  --red:       #dc2626;
+  --red-bg:    #fee2e2;
+  --yellow:    #b45309;
+  --yellow-bg: #fef3c7;
+  --orange:    #ea580c;
+  --border:    rgba(99,102,241,.12);
+  --border-hard: #e5e7eb;
+  --gray:      #6b7280;
+  --radius:    12px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.04), 0 2px 8px rgba(99,102,241,.06);
+  --shadow:    0 2px 6px rgba(0,0,0,.04), 0 8px 24px rgba(99,102,241,.08), 0 1px 2px rgba(0,0,0,.04);
+  --shadow-lg: 0 4px 12px rgba(0,0,0,.06), 0 16px 40px rgba(99,102,241,.12);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #eef2ff; background-image: radial-gradient(ellipse at 20% 0%, rgba(139,92,246,.08) 0%, transparent 60%), radial-gradient(ellipse at 80% 100%, rgba(16,185,129,.06) 0%, transparent 60%); background-attachment: fixed; color: #0f172a; min-height: 100vh; }
+
+header { background: linear-gradient(135deg, #3730a3 0%, #4f46e5 60%, #6366f1 100%); color: #fff; height: 56px; padding: 0 20px; display: flex; align-items: center; gap: 12px; box-shadow: 0 4px 20px rgba(79,70,229,.35), 0 1px 0 rgba(255,255,255,.1) inset; position: sticky; top: 0; z-index: 100; }
+header h1 { font-size: 16px; font-weight: 700; flex: 1; letter-spacing: -.01em; }
+header .clock { font-size: 13px; opacity: .75; font-variant-numeric: tabular-nums; }
+header .pin-tag { font-size: 11px; background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.25); border-radius: 20px; padding: 2px 10px; backdrop-filter: blur(4px); }
+
+/* Config banner */
+#cfg-wrap { background: linear-gradient(135deg, #fefce8, #fef9c3); border-bottom: 1px solid #fde68a; padding: 14px 20px; }
+#cfg-wrap p { font-size: 13px; color: var(--yellow); margin-bottom: 8px; font-weight: 600; }
+#cfg-wrap .row { display: flex; gap: 8px; flex-wrap: wrap; }
+#cfg-wrap input { flex: 1; min-width: 200px; padding: 9px 12px; border: 1px solid #fcd34d; border-radius: 6px; font-size: 13px; font-family: monospace; background: rgba(255,255,255,.7); backdrop-filter: blur(4px); }
+#cfg-wrap button { background: var(--brand); color: #fff; border: none; padding: 9px 18px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; box-shadow: 0 2px 8px rgba(79,70,229,.3); }
+
+/* Tab nav band */
+.tab-nav { background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e1b4b 100%); padding: 20px 20px 24px; box-shadow: 0 4px 20px rgba(0,0,0,.3); }
+.tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; max-width: 1100px; margin: 0 auto; perspective: 800px; }
+.tab {
+  padding: 20px 10px 18px;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  cursor: pointer; user-select: none;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.15);
+  background: linear-gradient(160deg, rgba(255,255,255,.18) 0%, rgba(255,255,255,.06) 100%);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 6px 20px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.25);
+  transform: translateY(0) rotateX(0deg);
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+  position: relative; overflow: hidden;
+}
+.tab::before {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; height: 40%;
+  background: linear-gradient(to bottom, rgba(255,255,255,.18), transparent);
+  border-radius: 14px 14px 0 0;
+  pointer-events: none;
+}
+.tab:hover {
+  transform: translateY(-4px) rotateX(4deg);
+  box-shadow: 0 14px 32px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.3);
+  background: linear-gradient(160deg, rgba(255,255,255,.26) 0%, rgba(255,255,255,.1) 100%);
+}
+.tab:active { transform: translateY(-1px) rotateX(1deg); }
+
+/* Per-tile accent colours */
+.tab[data-tab="review"]   { --tc: #fbbf24; --tc-glow: rgba(251,191,36,.4); }
+.tab[data-tab="liveview"] { --tc: #34d399; --tc-glow: rgba(52,211,153,.4); }
+.tab[data-tab="checkin"]  { --tc: #818cf8; --tc-glow: rgba(129,140,248,.4); }
+.tab[data-tab="all"]      { --tc: #38bdf8; --tc-glow: rgba(56,189,248,.4); }
+
+.tab.active {
+  background: linear-gradient(160deg, color-mix(in srgb, var(--tc) 35%, transparent) 0%, color-mix(in srgb, var(--tc) 12%, transparent) 100%);
+  border-color: color-mix(in srgb, var(--tc) 60%, transparent);
+  box-shadow: 0 8px 28px var(--tc-glow), 0 2px 8px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.3);
+  transform: translateY(-2px) rotateX(2deg);
+}
+
+.tab .tab-icon { font-size: 30px; line-height: 1; filter: drop-shadow(0 2px 4px rgba(0,0,0,.3)); }
+.tab .tab-label {
+  font-size: 14px; font-weight: 800; text-align: center; line-height: 1.25;
+  color: rgba(255,255,255,.75);
+  letter-spacing: .3px;
+  text-shadow: 0 1px 3px rgba(0,0,0,.4);
+}
+.tab:hover .tab-label,
+.tab.active .tab-label { color: var(--tc); text-shadow: 0 0 12px var(--tc-glow), 0 1px 3px rgba(0,0,0,.4); }
+
+.tab .badge { display: inline-block; background: var(--red); color: #fff; font-size: 10px; font-weight: 700; border-radius: 20px; padding: 1px 7px; box-shadow: 0 2px 6px rgba(220,38,38,.5); }
+.tab .badge.zero { background: rgba(255,255,255,.2); color: rgba(255,255,255,.6); box-shadow: none; }
+@media (max-width: 500px) { .tabs { grid-template-columns: repeat(2, 1fr); } .tab { padding: 16px 8px 14px; } .tab .tab-label { font-size: 13px; } }
+
+.panel { display: none; padding: 20px; max-width: 1100px; margin: 0 auto; }
+.panel.active { display: block; }
+
+/* Stats */
+.stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px,1fr)); gap: 12px; margin-bottom: 12px; }
+.stat { background: #fff; border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); text-align: center; border: 1px solid var(--border); position: relative; overflow: hidden; }
+.stat::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: var(--radius) var(--radius) 0 0; }
+.stat.pending::before  { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+.stat.approved::before { background: linear-gradient(90deg, #4f46e5, #818cf8); }
+.stat.checkin::before  { background: linear-gradient(90deg, #16a34a, #4ade80); }
+.stat.people::before   { background: linear-gradient(90deg, #ea580c, #fb923c); }
+.stat .n { font-size: 28px; font-weight: 800; }
+.stat .l { font-size: 11px; color: var(--gray); text-transform: uppercase; letter-spacing: .4px; margin-top: 2px; }
+.stat-sub { font-size: 11px; color: var(--gray); margin-top: 5px; font-weight: 600; }
+.stat.pending  .n { color: var(--yellow); }
+.stat.approved .n { color: var(--brand); }
+.stat.checkin  .n { color: var(--green); }
+.stat.people   .n { color: var(--orange); }
+
+/* Unit-level stats row */
+.unit-stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+.unit-stat { background: #fff; border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--shadow); border: 1px solid var(--border); position: relative; overflow: hidden; }
+.unit-stat::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: var(--radius) var(--radius) 0 0; background: linear-gradient(90deg, var(--brand), #818cf8); }
+.us-label { font-size: 11px; font-weight: 700; color: var(--gray); text-transform: uppercase; letter-spacing: .4px; margin-bottom: 8px; }
+.us-numbers { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+.us-a { font-size: 24px; font-weight: 800; color: var(--brand); }
+.us-a.us-green { color: var(--green); }
+.us-a.us-orange { color: var(--orange); }
+.us-b { font-size: 20px; font-weight: 700; color: #94a3b8; }
+.us-sep { font-size: 11px; color: var(--gray); }
+.us-bar { background: #e5e7eb; border-radius: 20px; height: 6px; overflow: hidden; }
+.us-fill { height: 100%; border-radius: 20px; transition: width .5s; }
+.us-fill-appr { background: var(--brand); }
+.us-fill-cin  { background: var(--green); }
+
+/* Filter bar */
+.filter-bar { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+.filter-bar input  { flex: 1; min-width: 160px; padding: 9px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; background: #fff; box-shadow: var(--shadow-sm); transition: border-color .15s, box-shadow .15s; }
+.filter-bar input:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px rgba(99,102,241,.12); }
+.filter-bar select { padding: 9px 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; background: #fff; box-shadow: var(--shadow-sm); }
+.filter-bar button { padding: 9px 16px; background: linear-gradient(135deg, #4f46e5, #6366f1); color: #fff; border: none; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 600; box-shadow: 0 2px 8px rgba(99,102,241,.3); transition: box-shadow .15s, transform .1s; }
+.filter-bar button:hover { box-shadow: 0 4px 14px rgba(99,102,241,.4); transform: translateY(-1px); }
+
+/* Review grid — square tiles */
+.review-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; }
+.reg-tile {
+  background: #fff; border-radius: var(--radius); box-shadow: var(--shadow-sm);
+  border: 1.5px solid transparent; cursor: pointer; user-select: none;
+  aspect-ratio: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 5px;
+  padding: 10px 8px; text-align: center;
+  transition: border-color .15s, box-shadow .2s, transform .15s;
+  position: relative; overflow: hidden;
+}
+.reg-tile:hover { border-color: var(--brand); box-shadow: var(--shadow); transform: translateY(-2px); }
+.reg-tile.open  { border-color: var(--brand); background: var(--brand-bg); box-shadow: var(--shadow-lg); }
+.reg-tile .t-status { position: absolute; top: 7px; right: 7px; width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+.reg-tile .t-flat { font-size: 11px; font-weight: 700; color: var(--brand); background: var(--brand-bg); padding: 2px 8px; border-radius: 20px; }
+.reg-tile .t-name { font-size: 12px; font-weight: 700; color: #0f172a; line-height: 1.3; word-break: break-word; }
+.t-PENDING    .t-status { background: var(--yellow); }
+.t-APPROVED   .t-status { background: var(--brand); }
+.t-PARTIAL    .t-status { background: var(--orange); }
+.t-REJECTED   .t-status { background: var(--gray); }
+.t-CHECKED_IN .t-status { background: var(--green); }
+
+/* Detail drawer — shown below selected tile row */
+.tile-drawer {
+  grid-column: 1 / -1; background: #fff; border-radius: var(--radius);
+  box-shadow: 0 4px 16px rgba(0,0,0,.1); border: 2px solid var(--brand);
+  overflow: hidden; display: none;
+}
+.tile-drawer.open { display: block; }
+
+/* Group header row */
+.group-header {
+  grid-column: 1 / -1; padding: 6px 4px 4px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .6px; color: var(--gray);
+  border-bottom: 1px solid var(--border); margin-top: 6px;
+  display: flex; align-items: center; gap: 8px;
+}
+.group-header:first-child { margin-top: 0; }
+.group-toggle { margin-left: auto; background: none; border: 1px solid var(--border); border-radius: 4px; cursor: pointer; font-size: 11px; color: var(--gray); padding: 1px 7px; line-height: 1.6; }
+.group-toggle:hover { background: var(--brand-bg); border-color: var(--brand); color: var(--brand); }
+.group-count {
+  background: var(--brand-bg); color: var(--brand);
+  font-size: 11px; font-weight: 700; padding: 1px 8px;
+  border-radius: 20px;
+}
+
+/* Pagination */
+.pagination-bar { display: flex; align-items: center; gap: 5px; padding: 10px 16px; border-top: 1px solid var(--border); flex-wrap: wrap; background: #fff; border-radius: 0 0 var(--radius) var(--radius); }
+.pg-btn { padding: 5px 10px; border: 1px solid var(--border); border-radius: 5px; background: #fff; cursor: pointer; font-size: 13px; color: #374151; }
+.pg-btn:hover:not(:disabled) { background: var(--brand-bg); border-color: var(--brand); color: var(--brand); }
+.pg-btn.active { background: var(--brand); color: #fff; border-color: var(--brand); font-weight: 700; }
+.pg-btn:disabled { opacity: .35; cursor: not-allowed; }
+.pg-info { font-size: 12px; color: var(--gray); margin-left: auto; white-space: nowrap; }
+.pg-size { padding: 5px 8px; border: 1px solid var(--border); border-radius: 5px; font-size: 13px; background: #fff; margin-left: 8px; }
+.drawer-header { padding: 12px 16px; background: var(--brand-bg); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+.drawer-header .dh-name { font-size: 15px; font-weight: 700; }
+.drawer-header .dh-close { background: none; border: none; font-size: 18px; cursor: pointer; color: var(--gray); line-height: 1; padding: 0 4px; }
+.drawer-meta { padding: 12px 16px 4px; font-size: 13px; color: var(--gray); display: flex; flex-direction: column; gap: 5px; }
+.drawer-pay { margin: 8px 16px; padding: 8px 12px; background: #f8fafc; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; color: var(--gray); }
+.drawer-actions { padding: 10px 16px 14px; display: flex; gap: 8px; }
+.btn-approve { flex: 1; background: var(--green); color: #fff; border: none; padding: 10px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; }
+.btn-approve:hover { background: #15803d; }
+.btn-approve:disabled { opacity: .6; cursor: not-allowed; }
+.btn-reject { background: #f3f4f6; color: var(--red); border: 1px solid #fca5a5; padding: 10px 14px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; }
+.btn-reject:hover { background: var(--red-bg); }
+.wa-resend-btn { display: flex; align-items: center; justify-content: center; gap: 8px; background: #25d366; color: #fff; border: none; padding: 10px; border-radius: 6px; font-size: 13px; font-weight: 700; cursor: pointer; margin: 0 16px 14px; }
+.wa-resend-btn:hover { background: #1ebe5d; }
+.status-tag { display: inline-block; padding: 2px 9px; border-radius: 20px; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+.s-PENDING    { background: var(--yellow-bg); color: var(--yellow); }
+.s-APPROVED   { background: var(--brand-bg);  color: var(--brand); }
+.s-PARTIAL    { background: #ffedd5;           color: var(--orange); }
+.s-REJECTED   { background: #f3f4f6;           color: var(--gray); }
+.s-CHECKED_IN { background: var(--green-bg);   color: var(--green); }
+@media (max-width: 640px) { .review-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 8px; } }
+
+/* Live view */
+.flat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px,1fr)); gap: 1px; background: var(--border); }
+.flat-cell { padding: 12px 14px; display: flex; flex-direction: column; gap: 3px; background: #fff; }
+
+/* Table */
+.table-wrap { background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; border: 1px solid var(--border); }
+.tbl-controls { padding: 12px 16px; display: flex; gap: 8px; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+.tbl-controls input  { flex: 1; min-width: 160px; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px; }
+.tbl-controls select { padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px; background: #fff; }
+.tbl-controls button { padding: 8px 16px; background: var(--brand); color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; }
+.tbl-scroll { overflow-x: auto; max-height: 520px; overflow-y: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { position: sticky; top: 0; background: #f8fafc; padding: 10px 14px; text-align: left; font-weight: 600; color: var(--gray); border-bottom: 1px solid var(--border); white-space: nowrap; cursor: pointer; user-select: none; }
+th:hover { color: var(--brand); }
+td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+tr:hover td { background: var(--brand-bg); }
+
+/* Scanner (Check-in tab) */
+#pin-screen { display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
+.pin-card { background: #fff; border-radius: 14px; padding: 32px 28px; max-width: 340px; width: 100%; box-shadow: 0 4px 24px rgba(0,0,0,.1); text-align: center; }
+.pin-card h2 { font-size: 20px; margin-bottom: 8px; }
+.pin-card p  { font-size: 14px; color: var(--gray); margin-bottom: 24px; }
+.pin-card input { width: 100%; padding: 14px; font-size: 24px; text-align: center; letter-spacing: 8px; border: 2px solid var(--border); border-radius: 8px; margin-bottom: 12px; font-family: monospace; }
+.pin-card input:focus { outline: none; border-color: var(--brand); }
+.pin-card button { width: 100%; padding: 13px; background: var(--brand); color: #fff; border: none; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; }
+.pin-error { color: var(--red); font-size: 13px; margin-top: 10px; display: none; }
+#scanner-wrap { max-width: 500px; margin: 0 auto; }
+.stats-bar { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 16px; }
+.stat.ci  .n { color: var(--green); }
+.stat.rem .n { color: var(--orange); }
+.stat.tot .n { color: var(--brand); }
+.card-s { background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; margin-bottom: 14px; }
+.card-s-head { padding: 12px 16px; background: #eef2ff; border-bottom: 1px solid var(--border); font-weight: 700; font-size: 14px; color: var(--brand); }
+.card-s-body { padding: 16px; }
+#reader-wrap { background: #000; border-radius: 8px; overflow: hidden; width: 100%; aspect-ratio: 1; max-width: 100%; margin: 0 auto 14px; border: 3px solid var(--brand); }
+#reader { width: 100%; height: 100%; }
+.cam-btns { display: flex; gap: 8px; margin-bottom: 12px; }
+.cam-btns button { flex: 1; padding: 11px; border: none; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; }
+#btn-start { background: var(--brand); color: #fff; }
+#btn-stop  { background: #e5e7eb; color: #374151; display: none; }
+.manual-row { display: flex; gap: 8px; }
+.manual-row input { flex: 1; padding: 11px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 15px; font-family: monospace; letter-spacing: 2px; text-transform: uppercase; }
+.manual-row button { background: var(--brand); color: #fff; border: none; padding: 11px 18px; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; }
+#scan-result { margin-top: 14px; border-radius: 8px; padding: 16px; display: none; }
+#scan-result.ok   { background: var(--green-bg); border: 1px solid #86efac; }
+#scan-result.err  { background: var(--red-bg);   border: 1px solid #fca5a5; }
+#scan-result.warn { background: var(--yellow-bg); border: 1px solid #fde68a; }
+.r-icon { font-size: 28px; margin-bottom: 6px; }
+.r-name { font-size: 20px; font-weight: 800; }
+.r-flat { font-size: 14px; margin-top: 3px; }
+.r-pax  { font-size: 13px; color: #374151; margin-top: 6px; }
+#log-list { max-height: 260px; overflow-y: auto; }
+.log-row { display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-bottom: 1px solid var(--border); font-size: 13px; }
+.log-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.log-name { font-weight: 600; flex: 1; }
+.log-flat { color: var(--gray); font-size: 12px; }
+.log-pax  { background: #eef2ff; color: var(--brand); font-size: 11px; padding: 1px 8px; border-radius: 20px; white-space: nowrap; }
+.log-time { color: var(--gray); font-size: 12px; white-space: nowrap; }
+
+/* Modals */
+.modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 200; display: flex; align-items: center; justify-content: center; padding: 20px; }
+.modal { background: #fff; border-radius: 14px; padding: 28px; max-width: 420px; width: 100%; box-shadow: 0 8px 40px rgba(0,0,0,.2); text-align: center; }
+.modal h2 { font-size: 20px; margin-bottom: 8px; }
+.modal .sub { font-size: 14px; color: var(--gray); margin-bottom: 16px; }
+.modal img { border-radius: 8px; border: 4px solid var(--brand); margin-bottom: 10px; }
+.modal .tid { font-family: monospace; font-size: 16px; letter-spacing: 2px; color: var(--brand); font-weight: 700; margin-bottom: 20px; }
+.modal-btns { display: flex; gap: 10px; }
+.modal-btns a, .modal-btns button { flex: 1; padding: 12px; border-radius: 8px; font-size: 14px; font-weight: 700; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; }
+.wa-btn  { background: #25d366; color: #fff; }
+.wa-btn:hover { background: #1ebe5d; }
+.dim-btn { background: #f1f5f9; color: #374151; }
+.count-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; background: #f8fafc; border-radius: 8px; padding: 14px; margin-bottom: 18px; font-size: 13px; text-align: center; }
+.count-grid .cn { font-size: 22px; font-weight: 800; }
+.count-grid .cl { color: var(--gray); font-size: 11px; text-transform: uppercase; margin-top: 2px; }
+.counter-row { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 20px; }
+.counter-row button { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border); background: #f3f4f6; font-size: 22px; cursor: pointer; }
+#ci-count { font-size: 32px; font-weight: 800; min-width: 48px; }
+.confirm-btn { background: var(--green); color: #fff; }
+.confirm-btn:hover { background: #15803d; }
+.cancel-btn { background: #f1f5f9; color: #374151; }
+
+/* Toast */
+#toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(60px); background: #1e293b; color: #fff; padding: 10px 22px; border-radius: 8px; font-size: 13px; font-weight: 600; opacity: 0; transition: all .25s; z-index: 999; pointer-events: none; white-space: nowrap; }
+#toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+.empty { text-align: center; padding: 48px 20px; color: var(--gray); font-size: 14px; }
+.spin { display: inline-block; width: 14px; height: 14px; border: 2px solid rgba(255,255,255,.35); border-top-color: #fff; border-radius: 50%; animation: sp .6s linear infinite; vertical-align: middle; }
+@keyframes sp { to { transform: rotate(360deg); } }
+
+/* ── Mobile ─────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  /* iOS Safari: background-attachment:fixed causes blank screens on scroll */
+  body { background-attachment: scroll; }
+
+  /* Header */
+  header { padding: 0 12px; gap: 8px; }
+  header h1 { font-size: 13px; }
+  header .clock { display: none; }
+
+  /* Config */
+  #cfg-wrap { padding: 12px 14px; }
+  #cfg-wrap input { min-width: 0; font-size: 12px; }
+  #cfg-wrap button { padding: 9px 14px; }
+
+  /* Tab tiles */
+  .tab-nav { padding: 14px 12px 16px; }
+  .tabs { gap: 10px; grid-template-columns: repeat(2, 1fr); }
+  .tab { padding: 14px 8px 12px; gap: 6px; }
+  .tab .tab-icon { font-size: 24px; }
+  .tab .tab-label { font-size: 12px; }
+
+  /* Panels */
+  .panel { padding: 12px 12px 20px; }
+
+  /* Stats */
+  .stats-row { grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 8px; }
+  .stat { padding: 12px 8px; }
+  .stat .n { font-size: 22px; }
+  .stat .l { font-size: 10px; }
+  .unit-stats-row { grid-template-columns: 1fr; gap: 8px; margin-bottom: 12px; }
+  .unit-stat { padding: 12px 14px; }
+  .us-a { font-size: 20px; }
+  .us-b { font-size: 17px; }
+  .stats-bar { gap: 8px; }
+
+  /* Filter bar */
+  .filter-bar { gap: 6px; }
+  .filter-bar input, .filter-bar select { font-size: 13px; padding: 8px 10px; }
+  .filter-bar button { padding: 8px 12px; font-size: 13px; }
+
+  /* Review tiles */
+  .review-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 7px; }
+  .reg-tile { padding: 8px 6px 10px; gap: 5px; }
+  .reg-tile .t-flat { font-size: 10px; padding: 2px 6px; }
+  .reg-tile .t-name { font-size: 11px; }
+  .reg-tile .t-status { width: 8px; height: 8px; top: 5px; right: 5px; }
+
+  /* Tile drawer */
+  .tile-drawer { margin: 0; border-radius: 8px; }
+  .drawer-header { padding: 10px 12px; flex-wrap: wrap; gap: 6px; }
+  .drawer-header .dh-name { font-size: 13px; }
+  .drawer-meta { padding: 10px 12px 4px; font-size: 12px; }
+  .drawer-pay { margin: 6px 12px; font-size: 11px; }
+  .drawer-actions { padding: 8px 12px 12px; flex-wrap: wrap; }
+  .btn-approve { font-size: 12px; padding: 9px 6px; }
+  .wa-resend-btn { margin: 6px 12px 12px; font-size: 12px; padding: 9px; }
+
+  /* Table — keep Name, Unit, Status, Ticket ID; hide rest */
+  .tbl-controls { padding: 10px 12px; gap: 6px; }
+  .tbl-controls input, .tbl-controls select { font-size: 13px; }
+  .tbl-scroll { -webkit-overflow-scrolling: touch; }
+  .tbl-scroll th:nth-child(3), .tbl-scroll td:nth-child(3),
+  .tbl-scroll th:nth-child(4), .tbl-scroll td:nth-child(4),
+  .tbl-scroll th:nth-child(5), .tbl-scroll td:nth-child(5),
+  .tbl-scroll th:nth-child(7), .tbl-scroll td:nth-child(7),
+  .tbl-scroll th:nth-child(8), .tbl-scroll td:nth-child(8),
+  .tbl-scroll th:nth-child(9), .tbl-scroll td:nth-child(9) { display: none; }
+  th, td { padding: 9px 10px; font-size: 12px; }
+
+  /* Live view */
+  .flat-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+  .flat-cell { padding: 10px 10px; }
+
+  /* Scanner */
+  #pin-screen { padding: 24px 12px; }
+  .pin-card { padding: 24px 18px; }
+  #reader-wrap { max-width: 100%; }
+  .card-s-body { padding: 12px; }
+  .manual-row input { font-size: 16px; }
+
+  /* Log rows */
+  .log-row { padding: 9px 12px; gap: 8px; }
+  .log-flat { display: none; }
+
+  /* Modals */
+  .modal { padding: 20px 16px; border-radius: 12px; }
+  .modal h2 { font-size: 17px; }
+  .modal img { width: 150px; height: 150px; }
+  .modal-btns a, .modal-btns button { font-size: 13px; padding: 11px 8px; }
+  .count-grid { padding: 10px; }
+  .count-grid .cn { font-size: 18px; }
+
+  /* Toast */
+  #toast { white-space: normal; text-align: center; max-width: 85vw; font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"/></svg>
+  <h1>🎄 BA Christmas 2026 Event Portal</h1>
+  <span class="pin-tag" id="hdr-pin" style="display:none">🔑 Scanner Active</span>
+  <span class="clock" id="clk"></span>
+</header>
+
+<!-- Config banner — URL only, no PIN needed to browse -->
+<div id="cfg-wrap">
+  <p>⚙️ Paste your Apps Script Web App URL to connect</p>
+  <div class="row">
+    <input id="cfg-url" type="text" placeholder="https://script.google.com/macros/s/…/exec"/>
+    <button onclick="saveConfig()">Connect</button>
+  </div>
+</div>
+
+<div class="tab-nav">
+<div class="tabs">
+  <div class="tab active" data-tab="review"   onclick="switchTab('review')">
+    <span class="tab-icon">💳</span>
+    <span class="tab-label">Review Payments</span>
+    <span class="badge zero" id="badge-pending">0</span>
+  </div>
+  <div class="tab" data-tab="liveview" onclick="switchTab('liveview')">
+    <span class="tab-icon">📊</span>
+    <span class="tab-label">Live View</span>
+  </div>
+  <div class="tab" data-tab="checkin" onclick="switchTab('checkin')">
+    <span class="tab-icon">📷</span>
+    <span class="tab-label">Check-In Scanner</span>
+  </div>
+  <div class="tab" data-tab="all" onclick="switchTab('all')">
+    <span class="tab-icon">📋</span>
+    <span class="tab-label">All Registrations</span>
+  </div>
+</div>
+</div>
+
+<!-- REVIEW PAYMENTS -->
+<div class="panel active" id="panel-review">
+  <div class="stats-row">
+    <div class="stat pending">  <div class="n" id="s-pending">–</div>  <div class="l">Units yet to approve</div></div>
+    <div class="stat approved"> <div class="n" id="s-approved">–</div> <div class="l">Units approved</div></div>
+    <div class="stat pending">  <div class="n" id="s-pend-guests">–</div> <div class="l">Guests yet to approve</div><div class="stat-sub" id="s-pend-split">– adults · – kids</div></div>
+    <div class="stat people">   <div class="n" id="s-people">–</div>   <div class="l">Guests approved</div><div class="stat-sub" id="s-appr-split">– adults · – kids</div></div>
+    <div class="stat approved">  <div class="n" id="sa-amount" style="font-size:20px">–</div><div class="l">Amount collected</div><div class="stat-sub" style="color:var(--brand)">approved only</div></div>
+  </div>
+  <div class="unit-stats-row" style="grid-template-columns:1fr">
+    <div class="unit-stat">
+      <div class="us-label">🏠 Unique BA Units — Submitted vs Approved</div>
+      <div class="us-numbers">
+        <span class="us-a" id="us-reg">–</span>
+        <span class="us-sep">units submitted</span>
+        <span style="color:#cbd5e1;font-size:18px">/</span>
+        <span class="us-a" style="color:var(--brand)" id="us-appr">–</span>
+        <span class="us-sep">units approved</span>
+      </div>
+      <div class="us-sub" id="us-reg-note" style="font-size:11px;color:var(--gray);margin-bottom:6px"></div>
+      <div class="us-bar"><div class="us-fill us-fill-appr" id="us-appr-bar" style="width:0%"></div></div>
+    </div>
+  </div>
+  <div class="filter-bar">
+    <input id="rev-q" type="text" placeholder="Search name or unit…" oninput="renderReview()"/>
+    <select id="rev-f" onchange="renderReview()">
+      <option value="PENDING">Pending</option>
+      <option value="">All</option>
+      <option value="APPROVED">Approved</option>
+      <option value="REJECTED">Rejected</option>
+    </select>
+    <select id="rev-g" onchange="renderReview()">
+      <option value="">No grouping</option>
+      <option value="unit">By Unit range</option>
+      <option value="name">By Name (A–Z)</option>
+      <option value="date">By Date registered</option>
+    </select>
+    <button onclick="loadAll()">↻ Refresh</button>
+  </div>
+  <div id="review-grid" class="review-grid"><div class="empty">Connect to load registrations</div></div>
+</div>
+
+<!-- LIVE VIEW -->
+<div class="panel" id="panel-liveview">
+  <div class="stats-row" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr))">
+    <div class="stat checkin"> <div class="n" id="sc-in">–</div>     <div class="l">Units checked in</div></div>
+    <div class="stat approved"><div class="n" id="sc-rem">–</div>    <div class="l">Units not yet in</div></div>
+    <div class="stat people">  <div class="n" id="sc-people">–</div> <div class="l">Guests checked in</div></div>
+    <div class="stat people">  <div class="n" id="sc-adki">–</div>   <div class="l">Adults / Kids</div></div>
+  </div>
+  <div class="unit-stats-row" style="grid-template-columns:1fr;margin-bottom:16px">
+    <div class="unit-stat">
+      <div class="us-label">✅ Unique BA Units — Checked-In vs Pending</div>
+      <div class="us-numbers">
+        <span class="us-a us-green" id="us-cin">–</span>
+        <span class="us-sep">units checked-in</span>
+        <span style="color:#cbd5e1;font-size:18px">/</span>
+        <span class="us-a us-orange" id="us-pend">–</span>
+        <span class="us-sep">units pending arrival</span>
+      </div>
+      <div class="us-sub" id="us-cin-note" style="font-size:11px;color:var(--gray);margin-bottom:6px"></div>
+      <div class="us-bar"><div class="us-fill us-fill-cin" id="us-cin-bar" style="width:0%"></div></div>
+    </div>
+  </div>
+  <div style="background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;margin-bottom:16px">
+    <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:600;margin-bottom:8px">
+      <span>Attendance Progress</span><span id="lv-pct" style="color:var(--brand)">0%</span>
+    </div>
+    <div style="background:#e5e7eb;border-radius:20px;height:12px;overflow:hidden">
+      <div id="lv-bar" style="height:100%;background:var(--brand);border-radius:20px;width:0%;transition:width .6s"></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--gray);margin-top:6px">
+      <span id="lv-in-lbl">0 in</span><span id="lv-tot-lbl">0 registered</span>
+    </div>
+  </div>
+  <div style="background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden">
+    <div style="padding:12px 16px;border-bottom:1px solid var(--border);font-weight:700;font-size:14px;color:var(--brand);display:flex;justify-content:space-between">
+      <span>Unit Status</span>
+      <span style="font-size:12px;font-weight:400;color:var(--gray)">Auto-refreshes every 15s</span>
+    </div>
+    <div id="flat-grid" class="flat-grid"><div class="empty" style="grid-column:1/-1">Connect to load</div></div>
+  </div>
+</div>
+
+<!-- CHECK-IN SCANNER -->
+<div class="panel" id="panel-checkin">
+  <!-- PIN gate -->
+  <div id="pin-screen">
+    <div class="pin-card">
+      <h2>🔐 Scanner Access</h2>
+      <p>Enter your 4-digit PIN to unlock the check-in scanner</p>
+      <input id="pin-input" type="password" inputmode="numeric" maxlength="4" placeholder="••••"/>
+      <button onclick="verifyPin()">Unlock Scanner</button>
+      <div class="pin-error" id="pin-error">Incorrect PIN. Try again.</div>
+    </div>
+  </div>
+  <!-- Scanner UI (shown after PIN) -->
+  <div id="scanner-wrap" style="display:none">
+    <div class="stats-bar">
+      <div class="stat ci">  <div class="n" id="sc2-in">–</div>  <div class="l">Checked In</div></div>
+      <div class="stat rem"> <div class="n" id="sc2-rem">–</div> <div class="l">Remaining</div></div>
+      <div class="stat tot"> <div class="n" id="sc2-tot">–</div> <div class="l">Total Reg.</div></div>
+    </div>
+    <div class="card-s">
+      <div class="card-s-head">📷 QR Scanner</div>
+      <div class="card-s-body">
+        <div id="reader-wrap"><div id="reader"></div></div>
+        <div class="cam-btns">
+          <button id="btn-start" onclick="startCam()">Start Camera</button>
+          <button id="btn-stop"  onclick="stopCam()">Stop</button>
+        </div>
+        <div class="manual-row">
+          <input id="manual" type="text" placeholder="AB3K" maxlength="4" autocomplete="off"/>
+          <button onclick="manualScan()">Check In</button>
+        </div>
+        <div id="scan-result"></div>
+      </div>
+    </div>
+    <div class="card-s">
+      <div class="card-s-head">✅ Recent Check-ins</div>
+      <div id="log-list"><div style="text-align:center;padding:30px;color:var(--gray);font-size:14px">No check-ins yet</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ALL REGISTRATIONS -->
+<div class="panel" id="panel-all">
+  <div class="table-wrap">
+    <div class="tbl-controls">
+      <input id="all-q" type="text" placeholder="Search name, unit, phone…" oninput="renderAll()"/>
+      <select id="all-f" onchange="renderAll()">
+        <option value="">All Status</option>
+        <option value="PENDING">Pending</option>
+        <option value="APPROVED">Approved</option>
+        <option value="PARTIAL">Partial</option>
+        <option value="CHECKED_IN">Checked In</option>
+        <option value="REJECTED">Rejected</option>
+      </select>
+      <select id="all-ps" onchange="allPageSize=+this.value;allPage=1;renderAll()">
+        <option value="20">20 / page</option>
+        <option value="40">40 / page</option>
+        <option value="50">50 / page</option>
+        <option value="100">100 / page</option>
+      </select>
+      <div id="all-pagination" style="display:flex;align-items:center;gap:4px;flex-wrap:wrap"></div>
+      <button onclick="loadAll()" style="margin-left:auto">↻ Refresh</button>
+    </div>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr>
+          <th onclick="sort('name')">Name</th>
+          <th onclick="sort('flat')">Unit</th>
+          <th>Phone</th>
+          <th>Adults</th>
+          <th>Kids</th>
+          <th onclick="sort('status')">Status</th>
+          <th>Checked In</th>
+          <th>Remaining</th>
+          <th>Amount Paid</th>
+          <th>Ticket ID</th>
+        </tr></thead>
+        <tbody id="all-tbody"><tr><td colspan="10" class="empty">Connect to load</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+</div>
+
+<!-- Approve modal -->
+<div class="modal-bg" id="modal" style="display:none">
+  <div class="modal">
+    <h2>🎟 Ticket Generated!</h2>
+    <p class="sub" id="m-sub"></p>
+    <img id="m-qr" src="" width="180" height="180" alt="QR"/>
+    <div class="tid" id="m-tid"></div>
+    <div class="modal-btns">
+      <a id="m-wa" class="wa-btn" href="#" target="_blank" rel="noopener" onclick="return openWa(this)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.558 4.122 1.535 5.852L.057 23.68a.75.75 0 00.912.944l5.932-1.553A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.95 9.95 0 01-5.073-1.38l-.363-.217-3.753.983.999-3.657-.236-.374A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Send via WhatsApp
+      </a>
+      <button class="dim-btn" onclick="closeApproveModal()">Done</button>
+    </div>
+  </div>
+</div>
+
+<!-- Check-in count modal -->
+<div class="modal-bg" id="ci-modal" style="display:none">
+  <div class="modal">
+    <h2>🎟 Check In</h2>
+    <p class="sub" id="ci-sub"></p>
+    <div class="count-grid">
+      <div><div class="cn" id="ci-done" style="color:var(--green)">0</div><div class="cl">Already In</div></div>
+      <div><div class="cn" id="ci-left" style="color:var(--orange)">0</div><div class="cl">Still to Arrive</div></div>
+    </div>
+    <p style="font-size:13px;color:var(--gray);margin-bottom:12px">How many arriving <strong>right now?</strong></p>
+    <div class="counter-row">
+      <button onclick="adj(-1)">−</button>
+      <div id="ci-count">1</div>
+      <button onclick="adj(1)">+</button>
+    </div>
+    <div class="modal-btns">
+      <button class="confirm-btn" onclick="confirmCheckin()">✅ Confirm</button>
+      <button class="cancel-btn"  onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+<script>
+// ── Config ────────────────────────────────────────────────
+let API = localStorage.getItem("evt_api") || "YOUR_XMAS_WEB_APP_URL_HERE";
+let PIN = localStorage.getItem("evt_pin") || "";  // admin PIN, prompted on first approve/reject
+let SCANNER_PIN = localStorage.getItem("scanner_pin") || "";
+
+// ── State ─────────────────────────────────────────────────
+let allRows = [], sortField = "name", sortAsc = true;
+let allPage = 1, allPageSize = 20;
+let collapsedGroups = new Set();
+let scanner = null, scanning = false, cooldown = false;
+let pendingTicket = null, pendingRemaining = 0;
+let recentLogs = [];
+
+// ── Init ──────────────────────────────────────────────────
+addEventListener("DOMContentLoaded", () => {
+  tick(); setInterval(tick, 1000);
+  if (API) {
+    document.getElementById("cfg-url").value = API;
+    document.getElementById("cfg-wrap").style.display = "none";
+    loadAll();
+    setInterval(loadAll, 15000);
+  }  document.getElementById("pin-input").addEventListener("keydown", e => { if (e.key === "Enter") verifyPin(); });
+  document.getElementById("manual").addEventListener("keydown",    e => { if (e.key === "Enter") manualScan(); });
+});
+
+function tick() {
+  document.getElementById("clk").textContent =
+    new Date().toLocaleTimeString([], { hour:"2-digit", minute:"2-digit", second:"2-digit" });
+}
+
+function saveConfig() {
+  const url = document.getElementById("cfg-url").value.trim();
+  if (!url.startsWith("http")) { toast("Paste a valid URL"); return; }
+  API = url;
+  localStorage.setItem("evt_api", API);
+  document.getElementById("cfg-wrap").style.display = "none";
+  toast("Connected!");
+  loadAll();
+  setInterval(loadAll, 15000);
+}
+
+function requirePin() {
+  if (PIN) return PIN;
+  const p = prompt("Enter admin PIN to continue:");
+  if (!p) return null;
+  PIN = p.trim();
+  localStorage.setItem("evt_pin", PIN);
+  return PIN;
+}
+
+// ── Tabs ──────────────────────────────────────────────────
+function switchTab(id) {
+  document.querySelectorAll(".tab").forEach(t => t.classList.toggle("active", t.dataset.tab === id));
+  document.querySelectorAll(".panel").forEach(p => p.classList.toggle("active", p.id === "panel-" + id));
+  if (id === "checkin" && SCANNER_PIN) {
+    document.getElementById("pin-screen").style.display   = "none";
+    document.getElementById("scanner-wrap").style.display = "block";
+    document.getElementById("hdr-pin").style.display      = "inline-block";
+  }
+}
+
+// ── JSONP API ─────────────────────────────────────────────
+function api(params) {
+  return new Promise((resolve) => {
+    if (!API) { toast("Not connected"); resolve(null); return; }
+    const cbName = "_cb" + Date.now() + Math.floor(Math.random() * 1000);
+    const script = document.createElement("script");
+    const timer  = setTimeout(() => {
+      delete window[cbName]; script.remove(); toast("Request timed out"); resolve(null);
+    }, 30000);
+    window[cbName] = (data) => { clearTimeout(timer); delete window[cbName]; script.remove(); resolve(data); };
+    params.callback = cbName;
+    script.src = API + "?" + new URLSearchParams(params);
+    script.onerror = () => { clearTimeout(timer); delete window[cbName]; script.remove(); toast("Network error"); resolve(null); };
+    document.head.appendChild(script);
+  });
+}
+
+async function loadAll() {
+  const [list, stats] = await Promise.all([api({ action:"list" }), api({ action:"stats" })]);
+  if (list && list.ok) {
+    allRows = list.rows || [];
+    renderReview(); renderAll(); renderFlatGrid(allRows);
+    updateUnitStats();
+  }
+  if (stats && stats.ok) updateStats(stats);
+}
+
+// ── Stats ─────────────────────────────────────────────────
+function updateStats(s) {
+  const c = s.counts || {};
+  set("s-pending",  c.PENDING    || 0);
+  set("s-approved", c.APPROVED   || 0);
+  const pendingRows   = allRows.filter(r => r.status === "PENDING");
+  const pendingAdults = pendingRows.reduce((sum,r) => sum+(Number(r.adults)||0), 0);
+  const pendingKids   = pendingRows.reduce((sum,r) => sum+(Number(r.kids)||0), 0);
+  set("s-pend-guests", pendingAdults + pendingKids);
+  set("s-pend-split",  pendingAdults + " adults · " + pendingKids + " kids");
+
+  const approvedRows   = allRows.filter(r => r.status === "APPROVED");
+  const approvedAdults = approvedRows.reduce((sum,r) => sum+(Number(r.adults)||0), 0);
+  const approvedKids   = approvedRows.reduce((sum,r) => sum+(Number(r.kids)||0), 0);
+  set("s-people",     approvedAdults + approvedKids);
+  set("s-appr-split", approvedAdults + " adults · " + approvedKids + " kids");
+  const approvedAmount = approvedRows.reduce((sum,r) => sum + (Number(r.adults)||0)*600 + (Number(r.kids)||0)*400, 0);
+  set("sa-amount", "₹" + approvedAmount.toLocaleString("en-IN"));
+  set("sc-in",     (c.CHECKED_IN||0) + (c.PARTIAL||0));
+  set("sc-rem",    c.APPROVED   || 0);
+  set("sc-people", (s.checkedAdults||0) + (s.checkedKids||0));
+  set("sc-adki",   (s.checkedAdults||0) + " / " + (s.checkedKids||0));
+  set("sc2-in",  (c.CHECKED_IN||0) + (c.PARTIAL||0));
+  set("sc2-rem", c.APPROVED   || 0);
+  set("sc2-tot", s.total       || 0);
+  const p = c.PENDING || 0;
+  const b = document.getElementById("badge-pending");
+  b.textContent = p; b.className = "badge" + (p > 0 ? "" : " zero");
+  const totalIn = (c.CHECKED_IN||0) + (c.PARTIAL||0);
+  const pct = s.total ? Math.round((totalIn / s.total) * 100) : 0;
+  set("lv-pct", pct + "%");
+  set("lv-in-lbl", totalIn + " in");
+  set("lv-tot-lbl", s.total + " registered");
+  const bar = document.getElementById("lv-bar");
+  if (bar) bar.style.width = pct + "%";
+}
+
+function updateUnitStats() {
+  const active     = allRows.filter(r => r.status !== "REJECTED");
+  const totalRegs  = active.length;
+  const unitsReg   = new Set(active.map(r => r.flat)).size;
+  const unitsAppr  = new Set(active.filter(r => ["APPROVED","PARTIAL","CHECKED_IN"].includes(r.status)).map(r => r.flat)).size;
+  const unitsCin   = new Set(active.filter(r => ["PARTIAL","CHECKED_IN"].includes(r.status)).map(r => r.flat)).size;
+  const unitsPend  = new Set(active.filter(r => r.status === "APPROVED").map(r => r.flat)).size;
+
+  set("us-reg",  unitsReg);
+  set("us-appr", unitsAppr);
+  set("us-cin",  unitsCin);
+  set("us-pend", unitsPend);
+
+  // Clarifying notes: unique units vs total registrations
+  const regNote  = document.getElementById("us-reg-note");
+  const cinNote  = document.getElementById("us-cin-note");
+  if (regNote) regNote.textContent = totalRegs + " total registrations across " + unitsReg + " unique units";
+  if (cinNote) cinNote.textContent = unitsAppr + " units approved — " + unitsCin + " fully/partially in, " + unitsPend + " awaiting";
+
+  const apprPct = unitsReg  > 0 ? Math.round(unitsAppr / unitsReg  * 100) : 0;
+  const cinPct  = unitsAppr > 0 ? Math.round(unitsCin  / unitsAppr * 100) : 0;
+  const apprBar = document.getElementById("us-appr-bar");
+  const cinBar  = document.getElementById("us-cin-bar");
+  if (apprBar) apprBar.style.width = apprPct + "%";
+  if (cinBar)  cinBar.style.width  = cinPct  + "%";
+}
+
+// ── Review tiles ──────────────────────────────────────────
+let openTileRow = null;
+
+function groupKey(r, mode) {
+  if (mode === "unit") {
+    // Extract numeric part from flat like "B0102-01" → 102; fallback to raw
+    const m = (r.flat || "").match(/(\d+)/);
+    const n = m ? parseInt(m[1], 10) % 1000 : NaN; // last 3 digits = apt number
+    if (isNaN(n)) return r.flat[0] || "Other";
+    if (n <= 100) return "001–100";
+    if (n <= 200) return "101–200";
+    if (n <= 300) return "201–300";
+    if (n <= 400) return "301–400";
+    if (n <= 500) return "401–500";
+    return "501+";
+  }
+  if (mode === "name") {
+    const c = (r.name || "?")[0].toUpperCase();
+    if (c <= "D") return "A – D";
+    if (c <= "H") return "E – H";
+    if (c <= "L") return "I – L";
+    if (c <= "P") return "M – P";
+    if (c <= "T") return "Q – T";
+    return "U – Z";
+  }
+  if (mode === "date") {
+    if (!r.timestamp) return "Unknown date";
+    const d = new Date(r.timestamp);
+    if (isNaN(d)) return r.timestamp.slice(0, 10) || "Unknown";
+    return d.toLocaleDateString([], { day: "2-digit", month: "short", year: "numeric" });
+  }
+  return "";
+}
+
+function renderReview() {
+  const q    = (document.getElementById("rev-q").value || "").toLowerCase();
+  const f    = document.getElementById("rev-f").value;
+  const mode = document.getElementById("rev-g").value;
+  const rows = allRows.filter(r => {
+    const mQ = !q || (r.name||"").toLowerCase().includes(q) || (r.flat||"").toLowerCase().includes(q);
+    return mQ && (!f || r.status === f);
+  });
+  const grid = document.getElementById("review-grid");
+  if (!rows.length) { grid.innerHTML = `<div class="empty" style="grid-column:1/-1">No registrations found</div>`; return; }
+
+  if (!mode) {
+    grid.innerHTML = rows.map(tileHtml).join("") + `<div class="tile-drawer" id="tile-drawer"></div>`;
+    return;
+  }
+
+  // Sort rows for each mode
+  if (mode === "name") rows.sort((a, b) => (a.name||"").localeCompare(b.name||""));
+  else if (mode === "unit") rows.sort((a, b) => (a.flat||"").localeCompare(b.flat||""));
+  else if (mode === "date") rows.sort((a, b) => new Date(a.timestamp||0) - new Date(b.timestamp||0));
+
+  // Group
+  const groups = {};
+  const order  = [];
+  rows.forEach(r => {
+    const k = groupKey(r, mode);
+    if (!groups[k]) { groups[k] = []; order.push(k); }
+    groups[k].push(r);
+  });
+
+  let html = "";
+  order.forEach(k => {
+    const collapsed = collapsedGroups.has(k);
+    const safeK = k.replace(/[^a-zA-Z0-9]/g, "_");
+    html += `<div class="group-header" style="grid-column:1/-1">
+      ${esc(k)} <span class="group-count">${groups[k].length}</span>
+      <button class="group-toggle" onclick="toggleGroup('${safeK}','${esc(k)}')">${collapsed ? "▶ Show" : "▼ Hide"}</button>
+    </div>`;
+    if (!collapsed) {
+      html += groups[k].map(tileHtml).join("");
+      html += `<div class="tile-drawer group-drawer" id="tile-drawer-${safeK}"></div>`;
+    }
+  });
+  grid.innerHTML = html;
+}
+
+function toggleGroup(safeK, origKey) {
+  if (collapsedGroups.has(origKey)) collapsedGroups.delete(origKey);
+  else { collapsedGroups.add(origKey); closeDrawer(); }
+  renderReview();
+}
+
+function tileHtml(r) {
+  return `<div class="reg-tile t-${esc(r.status)}" id="tile-${r.rowNum}" onclick="openDrawer(${r.rowNum})">
+    <div class="t-status" title="${statusLabel(r.status)}"></div>
+    <div class="t-flat">${esc(r.flat)}</div>
+    <div class="t-name">${esc(r.name)}</div>
+  </div>`;
+}
+
+function openDrawer(rowNum) {
+  const r = allRows.find(x => x.rowNum === rowNum);
+  if (!r) return;
+
+  if (openTileRow === rowNum) { closeDrawer(); return; }
+  openTileRow = rowNum;
+
+  document.querySelectorAll(".reg-tile").forEach(t => t.classList.remove("open"));
+  document.getElementById("tile-" + rowNum).classList.add("open");
+
+  const payInfo = r.payUrl
+    ? `<div class="drawer-pay">💰 ${esc(r.payUrl)}</div>`
+    : `<div class="drawer-pay" style="color:var(--gray)">No payment info</div>`;
+
+  let actions = "";
+  if (r.status === "PENDING") {
+    actions = `<div class="drawer-actions">
+      <button class="btn-approve" id="appr-${r.rowNum}" onclick="approve(${r.rowNum})">✅ Approve & Send Ticket</button>
+      <button class="btn-reject" onclick="reject(${r.rowNum})">✗</button>
+    </div>`;
+  } else if (["APPROVED","PARTIAL","CHECKED_IN"].includes(r.status)) {
+    actions = `<a class="wa-resend-btn" id="resend-wa-${r.rowNum}" href="#" target="_blank" rel="noopener" onclick="return prepResend(this,${r.rowNum})">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.558 4.122 1.535 5.852L.057 23.68a.75.75 0 00.912.944l5.932-1.553A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.95 9.95 0 01-5.073-1.38l-.363-.217-3.753.983.999-3.657-.236-.374A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Resend WhatsApp Ticket
+    </a>`;
+  }
+
+  const content = `
+    <div class="drawer-header">
+      <div>
+        <span class="status-tag s-${esc(r.status)}" style="margin-right:8px">${statusLabel(r.status)}</span>
+        <span class="dh-name">${esc(r.name)} · ${esc(r.flat)}</span>
+      </div>
+      <button class="dh-close" onclick="closeDrawer()">✕</button>
+    </div>
+    <div class="drawer-meta">
+      <span>📞 ${esc(r.phone||"—")}</span>
+      <span>👥 ${r.adults} adult${r.adults!=1?"s":""} · ${r.kids} kid${r.kids!=1?"s":""}</span>
+      ${r.ticketId ? `<span>🎟 <code style="font-size:12px;letter-spacing:1px">${esc(r.ticketId)}</code></span>` : ""}
+      ${r.timestamp ? `<span>📅 ${esc(r.timestamp)}</span>` : ""}
+    </div>
+    ${payInfo}${actions}`;
+
+  // In grouped mode there are per-group drawers; find the one after this tile
+  const mode = document.getElementById("rev-g").value;
+  let drawer;
+  if (mode) {
+    // Walk siblings after tile to find the nearest .tile-drawer in the same group
+    let el = document.getElementById("tile-" + rowNum).nextElementSibling;
+    while (el && !el.classList.contains("tile-drawer")) el = el.nextElementSibling;
+    drawer = el;
+  }
+  if (!drawer) drawer = document.getElementById("tile-drawer");
+  if (!drawer) return;
+
+  // Close any other open drawer
+  document.querySelectorAll(".tile-drawer.open").forEach(d => { if (d !== drawer) d.classList.remove("open"); });
+
+  drawer.innerHTML = content;
+  drawer.classList.add("open");
+  drawer.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+function closeDrawer() {
+  openTileRow = null;
+  document.querySelectorAll(".reg-tile").forEach(t => t.classList.remove("open"));
+  document.querySelectorAll(".tile-drawer.open").forEach(d => d.classList.remove("open"));
+}
+
+function toggleCard(rowNum) { openDrawer(rowNum); }
+
+// ── Approve / Reject ──────────────────────────────────────
+async function approve(rowNum) {
+  const pin = requirePin(); if (!pin) return;
+  const btn = document.getElementById("appr-" + rowNum);
+  if (btn) { btn.innerHTML = '<span class="spin"></span> Processing…'; btn.disabled = true; }
+  const data = await api({ action:"approve", row:rowNum, pin });
+  if (!data) { loadAll(); return; }
+  if (!data.ok) {
+    if (data.message === "Invalid PIN") { PIN = ""; localStorage.removeItem("evt_pin"); toast("Wrong PIN — try again"); }
+    else toast("Error: " + (data.message||"unknown"));
+    loadAll(); return;
+  }
+  document.getElementById("m-sub").textContent  = data.name + " · Unit " + data.flat;
+  document.getElementById("m-qr").src           = data.qrUrl;
+  document.getElementById("m-tid").textContent  = data.ticketId;
+  document.getElementById("m-wa").href          = data.waUrl;
+  document.getElementById("modal").style.display = "flex";
+  loadAll();
+}
+
+async function reject(rowNum) {
+  if (!confirm("Reject this registration?")) return;
+  const pin = requirePin(); if (!pin) return;
+  const data = await api({ action:"reject", row:rowNum, pin });
+  if (data && data.ok) { toast("Rejected"); loadAll(); }
+  else if (data && data.message === "Invalid PIN") { PIN = ""; localStorage.removeItem("evt_pin"); toast("Wrong PIN"); }
+  else toast("Error rejecting");
+}
+
+function buildWaUrl(r) {
+  const phone = String(r.phone || "").replace(/\D/g, "");
+  const intl  = phone.length === 10 ? "91" + phone : phone;
+  const msg   = `Hi ${r.name} 👋\n\nYour ticket for *BA Christmas 2026* is confirmed! 🎉\n\n📍 Birla Alokya, Whitefield\n📅 Sat & Sun, 19-20 Dec 2026\n\n👥 Adults: ${r.adults}  |  Kids: ${r.kids}\n🏠 Villament: ${r.flat}\n🎟 Ticket ID: *${r.ticketId}*\n\n📲 Your QR code (screenshot & show at entry):\n${r.qrUrl}\n\nSee you there! 🎊`;
+  return "https://wa.me/" + intl + "?text=" + encodeURIComponent(msg);
+}
+
+function openWhatsApp(url) {
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  if (isMobile) { location.href = url; }
+  else { window.open(url, "whatsapp_web"); }
+}
+
+function prepResend(el, rowNum) {
+  const r = allRows.find(x => x.rowNum === rowNum);
+  if (!r || !r.ticketId) { toast("No ticket found — approve first"); return false; }
+  openWhatsApp(buildWaUrl(r));
+  return false;
+}
+
+function openWa(el) {
+  openWhatsApp(el.href);
+  return false;
+}
+function closeApproveModal() { document.getElementById("modal").style.display = "none"; }
+
+// ── Live view ─────────────────────────────────────────────
+function renderFlatGrid(rows) {
+  const grid = document.getElementById("flat-grid");
+  if (!grid) return;
+  const approved = rows.filter(r => ["APPROVED","PARTIAL","CHECKED_IN"].includes(r.status));
+  if (!approved.length) { grid.innerHTML = `<div class="empty" style="grid-column:1/-1">No approved registrations yet</div>`; return; }
+  grid.innerHTML = approved.map(r => {
+    const allIn = r.status === "CHECKED_IN", partial = r.status === "PARTIAL";
+    const total = (Number(r.adults)||0) + (Number(r.kids)||0);
+    const inCount = Number(r.checkedIn)||0, rem = Number(r.remaining)||0;
+    const bg  = allIn ? "var(--green-bg)" : partial ? "#ffedd5" : "#fff";
+    const dot = allIn ? "var(--green)"    : partial ? "var(--orange)" : "var(--border)";
+    return `<div class="flat-cell" style="background:${bg}">
+      <div style="display:flex;align-items:center;gap:6px">
+        <div style="width:8px;height:8px;border-radius:50%;background:${dot};flex-shrink:0"></div>
+        <span style="font-weight:700;font-size:13px">${esc(r.flat)}</span>
+      </div>
+      <div style="font-size:12px;color:#374151">${esc(r.name)}</div>
+      <div style="font-size:11px;color:var(--gray)">${allIn ? "✅ All in" : partial ? `🟡 ${inCount}/${total} · ${rem} left` : `⏳ ${total} expected`}</div>
+    </div>`;
+  }).join("");
+}
+
+// ── All table ─────────────────────────────────────────────
+function renderAll() {
+  const q = (document.getElementById("all-q").value||"").toLowerCase();
+  const f = document.getElementById("all-f").value;
+  let rows = allRows.filter(r => {
+    const mQ = !q || (r.name||"").toLowerCase().includes(q) || (r.flat||"").toLowerCase().includes(q) || (r.phone||"").includes(q);
+    return mQ && (!f || r.status === f);
+  });
+  rows.sort((a,b) => { const av=String(a[sortField]||"").toLowerCase(), bv=String(b[sortField]||"").toLowerCase(); return sortAsc?av.localeCompare(bv):bv.localeCompare(av); });
+
+  const total      = rows.length;
+  const totalPages = Math.max(1, Math.ceil(total / allPageSize));
+  if (allPage > totalPages) allPage = totalPages;
+  const start    = (allPage - 1) * allPageSize;
+  const pageRows = rows.slice(start, start + allPageSize);
+
+  const tbody = document.getElementById("all-tbody");
+  tbody.innerHTML = pageRows.length ? pageRows.map(r => `<tr>
+    <td><strong>${esc(r.name)}</strong></td>
+    <td>${esc(r.flat)}</td>
+    <td style="color:var(--gray)">${esc(r.phone||"—")}</td>
+    <td style="text-align:center">${r.adults}</td>
+    <td style="text-align:center">${r.kids}</td>
+    <td><span class="status-tag s-${esc(r.status)}">${statusLabel(r.status)}</span></td>
+    <td style="text-align:center;font-weight:700;color:var(--green)">${r.checkedIn||0}</td>
+    <td style="text-align:center;font-weight:700;color:${(r.remaining||0)>0?'var(--orange)':'var(--gray)'}">${r.remaining||0}</td>
+    <td style="color:var(--gray)">${esc(r.payUrl||"—")}</td>
+    <td style="font-family:monospace;font-size:12px;letter-spacing:.5px">${esc(r.ticketId||"—")}</td>
+  </tr>`).join("") : `<tr><td colspan="10" class="empty">No results</td></tr>`;
+
+  // Pagination bar
+  const bar = document.getElementById("all-pagination");
+  if (total <= allPageSize) { bar.innerHTML = ""; return; }
+  let btns = `<button class="pg-btn" onclick="allPage=1;renderAll()" ${allPage===1?"disabled":""}>«</button>`;
+  btns    += `<button class="pg-btn" onclick="allPage--;renderAll()" ${allPage===1?"disabled":""}>‹</button>`;
+  const lo = Math.max(1, allPage-2), hi = Math.min(totalPages, allPage+2);
+  if (lo > 1) btns += `<span style="padding:0 4px;color:var(--gray)">…</span>`;
+  for (let p = lo; p <= hi; p++)
+    btns += `<button class="pg-btn${p===allPage?" active":""}" onclick="allPage=${p};renderAll()">${p}</button>`;
+  if (hi < totalPages) btns += `<span style="padding:0 4px;color:var(--gray)">…</span>`;
+  btns += `<button class="pg-btn" onclick="allPage++;renderAll()" ${allPage===totalPages?"disabled":""}>›</button>`;
+  btns += `<button class="pg-btn" onclick="allPage=${totalPages};renderAll()" ${allPage===totalPages?"disabled":""}>»</button>`;
+  btns += `<span class="pg-info">${start+1}–${Math.min(start+allPageSize,total)} of ${total}</span>`;
+  bar.innerHTML = btns;
+}
+
+function sort(f) { sortAsc = sortField===f ? !sortAsc : true; sortField=f; renderAll(); }
+
+// ── Scanner PIN ───────────────────────────────────────────
+function verifyPin() {
+  const entered = document.getElementById("pin-input").value.trim();
+  if (!entered) return;
+  api({ action:"lookup", ticket:"PING", pin:entered }).then(data => {
+    if (data && data.message === "Invalid PIN") {
+      document.getElementById("pin-error").style.display = "block";
+      document.getElementById("pin-input").value = "";
+      return;
+    }
+    SCANNER_PIN = entered;
+    localStorage.setItem("scanner_pin", SCANNER_PIN);
+    document.getElementById("pin-screen").style.display    = "none";
+    document.getElementById("scanner-wrap").style.display  = "block";
+    document.getElementById("hdr-pin").style.display       = "inline-block";
+  });
+}
+
+// ── Camera ────────────────────────────────────────────────
+function startCam() {
+  scanner = new Html5Qrcode("reader", {
+    formatsToSupport: [ Html5QrcodeSupportedFormats.QR_CODE ],
+    experimentalFeatures: { useBarCodeDetectorIfSupported: true }
+  });
+  scanner.start(
+    { facingMode:"environment" },
+    { fps:25, qrbox: (w, h) => { const s = Math.floor(Math.min(w, h) * 0.82); return { width: s, height: s }; }, aspectRatio:1 },
+    decoded => {
+      if (cooldown) return;
+      cooldown = true;
+      doLookup(decoded.trim().toUpperCase());
+      setTimeout(() => cooldown=false, 4000);
+    },
+    () => {}
+  ).then(() => {
+    scanning = true;
+    document.getElementById("btn-start").style.display = "none";
+    document.getElementById("btn-stop").style.display  = "block";
+  }).catch(e => toast("Camera error: " + e));
+}
+
+function stopCam() {
+  if (scanner && scanning) scanner.stop().then(() => {
+    scanning = false;
+    document.getElementById("btn-start").style.display = "block";
+    document.getElementById("btn-stop").style.display  = "none";
+    scanner.clear();
+  });
+}
+
+function manualScan() {
+  const v = document.getElementById("manual").value.trim().toUpperCase();
+  if (v) doLookup(v);
+}
+
+async function doLookup(ticketId) {
+  document.getElementById("manual").value = ticketId;
+  const data = await api({ action:"lookup", ticket:ticketId, pin:SCANNER_PIN });
+  if (!data) return;
+  if (!data.ok && data.message === "Invalid PIN") { toast("PIN error — re-enter PIN"); return; }
+  if (data.duplicate || (!data.ok && !data.lookup)) { beep(false); showResult(data, ticketId); return; }
+  if (data.remaining === 0 || data.status === "CHECKED_IN") { beep(false); showResult({ok:false,duplicate:true,...data}, ticketId); return; }
+  pendingTicket    = ticketId;
+  pendingRemaining = data.remaining;
+  document.getElementById("ci-sub").textContent  = data.name + " · Unit " + data.flat;
+  document.getElementById("ci-done").textContent = data.checkedIn;
+  document.getElementById("ci-left").textContent = data.remaining;
+  document.getElementById("ci-count").textContent = Math.min(1, data.remaining);
+  document.getElementById("ci-modal").style.display = "flex";
+}
+
+async function confirmCheckin() {
+  const countNow = parseInt(document.getElementById("ci-count").textContent, 10);
+  closeModal();
+  const data = await api({ action:"checkin", ticket:pendingTicket, count:countNow, pin:SCANNER_PIN });
+  if (!data) return;
+  showResult(data, pendingTicket);
+  if (data.ok) { beep(true); addLog(data); loadAll(); }
+  else beep(false);
+}
+
+function adj(delta) {
+  const el = document.getElementById("ci-count");
+  const val = parseInt(el.textContent,10) + delta;
+  if (val >= 1 && val <= pendingRemaining) el.textContent = val;
+}
+
+function closeModal() { document.getElementById("ci-modal").style.display = "none"; }
+
+function showResult(data, ticketId) {
+  const box = document.getElementById("scan-result");
+  box.style.display = "block";
+  if (data.ok) {
+    const allIn = data.remaining === 0;
+    box.className = "ok";
+    box.innerHTML = `<div class="r-icon">${allIn ? "✅" : "🟡"}</div>
+      <div class="r-name">${esc(data.name)}</div>
+      <div class="r-flat">Unit ${esc(data.flat)}</div>
+      <div class="r-pax">+${data.countNow} now · ${data.checkedIn}/${data.total} total</div>
+      <div class="r-pax" style="color:${allIn?'var(--green)':'var(--orange)'}">
+        ${allIn ? "All members in!" : data.remaining + " still to arrive"}
+      </div>`;
+  } else if (data.duplicate) {
+    box.className = "warn";
+    box.innerHTML = `<div class="r-icon">⚠️</div>
+      <div class="r-name">${esc(data.name||"—")}</div>
+      <div class="r-flat">Unit ${esc(data.flat||"—")}</div>
+      <div class="r-pax">All members already checked in</div>`;
+  } else {
+    box.className = "err";
+    box.innerHTML = `<div class="r-icon">❌</div>
+      <div class="r-name">${esc(data.message||"Not found")}</div>
+      <div class="r-pax" style="font-family:monospace">${esc(ticketId||"")}</div>`;
+  }
+  clearTimeout(box._t);
+  box._t = setTimeout(() => box.style.display="none", 6000);
+}
+
+function addLog(d) {
+  recentLogs.unshift({...d, time:new Date()});
+  if (recentLogs.length > 40) recentLogs.pop();
+  document.getElementById("log-list").innerHTML = recentLogs.map(e =>
+    `<div class="log-row">
+      <div class="log-dot" style="background:${e.remaining>0?'var(--orange)':'var(--green)'}"></div>
+      <div class="log-name">${esc(e.name)}</div>
+      <div class="log-flat">Unit ${esc(e.flat)}</div>
+      <span class="log-pax">+${e.countNow} · ${e.checkedIn}/${e.total}</span>
+      <div class="log-time">${e.time.toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})}</div>
+    </div>`
+  ).join("");
+}
+
+// ── Utils ─────────────────────────────────────────────────
+function statusLabel(s) { return {PENDING:"Pending",APPROVED:"Approved",PARTIAL:"Partial",REJECTED:"Rejected",CHECKED_IN:"✓ All In"}[s]||s; }
+function set(id,v) { const el=document.getElementById(id); if(el) el.textContent=v; }
+function esc(s) { return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function toast(msg) { const el=document.getElementById("toast"); el.textContent=msg; el.classList.add("show"); setTimeout(()=>el.classList.remove("show"),3000); }
+function beep(ok) {
+  try {
+    const ctx=new(window.AudioContext||window.webkitAudioContext)();
+    const o=ctx.createOscillator(), g=ctx.createGain();
+    o.connect(g); g.connect(ctx.destination);
+    o.frequency.value=ok?880:280; o.type=ok?"sine":"square";
+    g.gain.setValueAtTime(.3,ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.35);
+    o.start(); o.stop(ctx.currentTime+.35);
+  } catch(_) {}
+}
+</script>
+</body>
+</html>
