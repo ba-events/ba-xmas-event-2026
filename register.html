@@ -86,6 +86,8 @@ body {
 .hero-cta:hover { transform:translateY(-2px); box-shadow:0 6px 24px rgba(192,57,43,.5); }
 .hero-cta .arr { transition:transform .15s; }
 .hero-cta:hover .arr { transform:translateX(4px); }
+.hero-star { font-size:44px; display:block; margin-bottom:10px; filter:drop-shadow(0 0 14px #f9a82566); animation:star-pulse 2.5s ease-in-out infinite; }
+@keyframes star-pulse { 0%,100%{transform:scale(1);filter:drop-shadow(0 0 14px #f9a82566)} 50%{transform:scale(1.14);filter:drop-shadow(0 0 28px #ffd54fcc)} }
 
 /* ── LIGHTS BAR ─────────────────────────────────────── */
 .lights-bar { background:#0b1a0d; padding:10px 0; overflow:hidden; }
@@ -384,6 +386,7 @@ body {
   <div class="hero-stripe-t"></div>
   <div class="snow-stage" id="snow-stage"></div>
   <div class="hero-inner">
+    <span class="hero-star">⭐</span>
     <div class="hero-eyebrow">Birla Alokya Residents Present</div>
     <h1>Christmas<span class="yr">2026</span></h1>
     <p class="hero-desc">A two-day community celebration for all families of Birla Alokya — traditions, music, food, games and memories.</p>
