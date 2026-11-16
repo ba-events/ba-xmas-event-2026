@@ -408,11 +408,33 @@ body {
 }
 
 /* ── HOME DECOR CONTEST CARD ────────────────────────── */
-.feat-card.contest { border-color:var(--gold); background:linear-gradient(135deg,#fffef7 0%,#fffce8 100%); cursor:pointer; }
-.feat-card.contest:hover { border-color:#f59e0b; background:linear-gradient(135deg,#fffce8,#fff8d0); transform:translateY(-4px); box-shadow:0 12px 32px rgba(245,158,11,.18); }
+.feat-card.contest {
+  border:none; border-radius:18px; padding:20px 22px; min-height:unset; cursor:pointer;
+  background:linear-gradient(135deg,#fff8dc 0%,#ffeaa0 55%,#ffd54f 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.78),
+    inset 0 -3px 0 rgba(140,80,0,.18),
+    0 4px 0 #b8740a,
+    0 8px 26px rgba(184,116,10,.34),
+    0 2px 8px rgba(0,0,0,.07);
+  transition:transform .2s,box-shadow .2s; }
+.feat-card.contest:hover {
+  transform:translateY(-3px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.78),
+    inset 0 -3px 0 rgba(140,80,0,.18),
+    0 4px 0 #b8740a,
+    0 14px 34px rgba(184,116,10,.44),
+    0 4px 12px rgba(0,0,0,.1); }
+.hdc-tile-inner { display:flex; align-items:center; gap:18px; }
+.hdc-tile-ico   { font-size:46px; flex-shrink:0; filter:drop-shadow(0 3px 8px rgba(0,0,0,.2)); line-height:1; }
+.feat-card.contest .contest-badge { background:rgba(0,0,0,.12); color:#5c3000; margin-bottom:5px; }
+.feat-card.contest h3 { font-size:16px; font-weight:900; color:#4a2800; margin:0 0 4px; }
+.feat-card.contest p  { font-size:12px; color:#6b4000; line-height:1.5; margin:0 0 6px; }
 .contest-badge { display:inline-block; background:var(--gold); color:#6b3a00; font-size:10px; font-weight:800; padding:3px 9px; border-radius:99px; letter-spacing:.05em; margin-bottom:8px; }
 .contest-enter { display:flex; align-items:center; gap:4px; margin-top:12px; font-size:12px; font-weight:800; color:var(--grn); }
 .contest-enter-arr { transition:transform .15s; }
+.feat-card.contest .contest-enter { color:#4a2800; margin-top:0; }
 .feat-card.contest:hover .contest-enter-arr { transform:translateX(3px); }
 
 /* ── HDC OVERLAY & MODAL ─────────────────────────────── */
@@ -524,12 +546,16 @@ body {
             <div class="act-tile"><span class="act-tile-ico">🍽️</span>Grand Dinner</div>
           </div>
         </div>
-        <div class="feat-card contest" onclick="openHDC()" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openHDC()">
-          <span class="contest-badge">🏆 Enter &amp; Win</span>
-          <span class="feat-icon">🏠</span>
-          <h3>Home Decor Contest</h3>
-          <p>Deck your Villament in Christmas spirit! Submit a short video of your festive home decor to enter.</p>
-          <span class="contest-enter">Submit your entry <span class="contest-enter-arr">→</span></span>
+        <div class="feat-card contest" onclick="openHDC()" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openHDC()" style="grid-column:1/-1">
+          <div class="hdc-tile-inner">
+            <div class="hdc-tile-ico">🏠</div>
+            <div>
+              <span class="contest-badge">🏆 Enter &amp; Win</span>
+              <h3>Home Decor Contest</h3>
+              <p>Deck your Villament in Christmas spirit! Submit a short video of your festive decor to enter.</p>
+              <span class="contest-enter">Submit your entry <span class="contest-enter-arr">→</span></span>
+            </div>
+          </div>
         </div>
     </div>
   </div>
