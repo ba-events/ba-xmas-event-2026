@@ -89,6 +89,13 @@ body {
 .hero-star { font-size:44px; display:block; width:fit-content; margin-bottom:10px; filter:drop-shadow(0 0 14px #f9a82566); animation:star-pulse 2.5s ease-in-out infinite; }
 @keyframes star-pulse { 0%,100%{transform:scale(1);filter:drop-shadow(0 0 14px #f9a82566)} 50%{transform:scale(1.14);filter:drop-shadow(0 0 28px #ffd54fcc)} }
 
+/* ── SLEIGH ──────────────────────────────────────────── */
+.sleigh-track { position:absolute; top:22px; left:0; right:0; pointer-events:none; z-index:3; height:52px; }
+.sleigh-h { display:inline-block; animation:sleigh-h 24s linear infinite; animation-delay:2s; animation-fill-mode:both; }
+.sleigh-v { display:inline-block; font-size:24px; white-space:nowrap; line-height:1; animation:sleigh-v 1.8s ease-in-out infinite; filter:drop-shadow(0 0 10px rgba(255,215,0,.45)); }
+@keyframes sleigh-h { 0%{transform:translateX(-24vw);opacity:0} 5%{opacity:1} 95%{opacity:1} 100%{transform:translateX(112vw);opacity:0} }
+@keyframes sleigh-v { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-10px) rotate(-2deg)} }
+
 /* ── LIGHTS BAR ─────────────────────────────────────── */
 .lights-bar { background:#0b1a0d; padding:10px 0; overflow:hidden; }
 .lights-row { display:flex; gap:24px; padding:0 12px; animation:lights-run 22s linear infinite; white-space:nowrap; }
@@ -385,6 +392,11 @@ body {
 <header class="hero">
   <div class="hero-stripe-t"></div>
   <div class="snow-stage" id="snow-stage"></div>
+  <div class="sleigh-track" aria-hidden="true">
+    <div class="sleigh-h">
+      <div class="sleigh-v">🦌🦌🦌🦌🦌🦌🦌🎅🛷</div>
+    </div>
+  </div>
   <div class="hero-inner">
     <span class="hero-star">⭐</span>
     <div class="hero-eyebrow">Birla Alokya Residents Present</div>
