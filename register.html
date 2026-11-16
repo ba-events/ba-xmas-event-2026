@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Register — BA Christmas 2026 · Birla Alokya</title>
+<title>Register — Jingle Bells 2026 · Birla Alokya</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -128,6 +128,24 @@ body {
 .prog-head h2 { font-size:clamp(24px,4vw,32px); font-weight:900; letter-spacing:-.03em; color:var(--grn); margin:0 0 6px; }
 .prog-head p  { margin:0; color:var(--muted); font-size:14px; }
 .feat-grid    { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.day-cards    { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:18px; }
+.day-card     { border:1.5px solid var(--border); border-radius:18px; padding:22px 20px;
+                background:linear-gradient(145deg,#fff,#f7fbf7); box-shadow:0 3px 14px rgba(20,60,30,.07); }
+.day-tag      { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.1em;
+                color:var(--gold); margin-bottom:4px; display:block; }
+.day-title    { font-size:17px; font-weight:900; color:var(--grn); margin:0 0 2px; letter-spacing:-.01em; }
+.day-date     { font-size:12px; color:var(--muted); margin:0 0 14px; }
+.day-card ul  { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px; }
+.day-card li  { font-size:13px; color:#374151; display:flex; align-items:center; gap:8px; line-height:1.4; }
+.day-card li::before { content:'✦'; color:var(--grn2); font-size:9px; flex-shrink:0; }
+.act-tiles    { display:flex; flex-wrap:wrap; gap:8px; }
+.act-tile     { display:flex; flex-direction:column; align-items:center; justify-content:center;
+                width:76px; min-height:72px; padding:10px 6px 8px;
+                background:#f0f7f0; border:1.5px solid #c8e6c9; border-radius:12px;
+                font-size:10px; font-weight:800; color:var(--grn); text-align:center;
+                line-height:1.3; gap:5px; }
+.act-tile-ico { font-size:22px; line-height:1; }
+@media (max-width:560px) { .day-cards { grid-template-columns:1fr; } }
 .feat-card {
   background:#fff; border:1.5px solid #e7ebe7; border-radius:20px;
   padding:24px; min-height:150px;
@@ -443,7 +461,7 @@ body {
   <div class="hero-inner">
     <span class="hero-star">⭐</span>
     <div class="hero-eyebrow">Birla Alokya Residents Present</div>
-    <h1>Christmas<span class="yr">2026</span></h1>
+    <h1>Jingle Bells<span class="yr">2026</span></h1>
     <p class="hero-desc">A two-day community celebration for all families of Birla Alokya — traditions, music, food, games and memories.</p>
     <div class="hero-pills">
       <span class="hero-pill">🎄 Sat & Sun · 19–20 Dec 2026</span>
@@ -461,7 +479,7 @@ body {
 <!-- ── COUNTDOWN ─────────────────────────────────────── -->
 <div class="countdown-wrap">
   <div class="countdown-inner">
-    <div class="cd-label">🎅 Christmas 2026 begins in</div>
+    <div class="cd-label">🎅 Jingle Bells 2026 begins in</div>
     <div class="cd-units">
       <div class="cd-unit"><div class="cd-n" id="cd-days">--</div><div class="cd-l">Days</div></div>
       <div class="cd-sep">:</div>
@@ -481,49 +499,38 @@ body {
       <h2>Programme Details</h2>
       <p>Join us for a joyful Christmas celebration — two days packed with festive cheer for the whole family.</p>
     </div>
-    <div class="feat-grid">
-      <div class="feat-card">
-        <span class="feat-icon">🎪</span>
-        <h3>Christmas Carnival</h3>
-        <p>A festive marketplace with stalls, games and carnival fun for the whole family.</p>
-      </div>
-      <div class="feat-card">
-        <span class="feat-icon">🎭</span>
-        <h3>Cultural Performances</h3>
-        <p>Dance, drama and musical acts by our community's talented residents.</p>
-      </div>
-      <div class="feat-card">
-        <span class="feat-icon">🎵</span>
-        <h3>Carols &amp; Live Music</h3>
-        <p>Sing along to classic Christmas carols with live music performances.</p>
-      </div>
-      <div class="feat-card">
-        <span class="feat-icon">🎅</span>
-        <h3>Meet Santa Claus</h3>
-        <p>Ho Ho Ho! Santa visits with gifts and photo moments for the kids.</p>
-      </div>
-      <div class="feat-card">
-        <span class="feat-icon">🌟</span>
-        <h3>Tree Lighting Ceremony</h3>
-        <p>A magical grand ceremony to light the community Christmas tree together.</p>
-      </div>
-      <div class="feat-card">
-        <span class="feat-icon">🎮</span>
-        <h3>Games &amp; Family Activities</h3>
-        <p>Exciting activities and games planned for kids, adults and families alike.</p>
-      </div>
-      <div class="feat-card">
-        <span class="feat-icon">🍔</span>
-        <h3>Food Trucks &amp; Flea Market</h3>
-        <p>A vibrant spread of food stalls, food trucks and shopping booths to explore.</p>
-      </div>
-      <div class="feat-card contest" onclick="openHDC()" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openHDC()">
-        <span class="contest-badge">🏆 Enter &amp; Win</span>
-        <span class="feat-icon">🏠</span>
-        <h3>Home Decor Contest</h3>
-        <p>Deck your Villament in Christmas spirit! Submit a short video of your festive home decor to enter.</p>
-        <span class="contest-enter">Submit your entry <span class="contest-enter-arr">→</span></span>
-      </div>
+    <div class="day-cards">
+        <div class="day-card">
+          <span class="day-tag">Day 1</span>
+          <h3 class="day-title">🎪 Christmas Carnival</h3>
+          <p class="day-date">Saturday, December 19, 2026</p>
+          <div class="act-tiles">
+            <div class="act-tile"><span class="act-tile-ico">🍔</span>Food Trucks</div>
+            <div class="act-tile"><span class="act-tile-ico">🛍️</span>Flea Markets</div>
+            <div class="act-tile"><span class="act-tile-ico">💡</span>Lighting &amp; Illumination</div>
+            <div class="act-tile"><span class="act-tile-ico">🤝</span>Residents Engagement</div>
+            <div class="act-tile"><span class="act-tile-ico">🏪</span>Stalls &amp; More</div>
+          </div>
+        </div>
+        <div class="day-card">
+          <span class="day-tag">Day 2</span>
+          <h3 class="day-title">🎉 Christmas Fiesta</h3>
+          <p class="day-date">Sunday, December 20, 2026</p>
+          <div class="act-tiles">
+            <div class="act-tile"><span class="act-tile-ico">🎭</span>Cultural Programs</div>
+            <div class="act-tile"><span class="act-tile-ico">🎵</span>Christmas Carols</div>
+            <div class="act-tile"><span class="act-tile-ico">🎅</span>Santa Claus</div>
+            <div class="act-tile"><span class="act-tile-ico">🎮</span>Games &amp; Fun</div>
+            <div class="act-tile"><span class="act-tile-ico">🍽️</span>Grand Dinner</div>
+          </div>
+        </div>
+        <div class="feat-card contest" onclick="openHDC()" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openHDC()">
+          <span class="contest-badge">🏆 Enter &amp; Win</span>
+          <span class="feat-icon">🏠</span>
+          <h3>Home Decor Contest</h3>
+          <p>Deck your Villament in Christmas spirit! Submit a short video of your festive home decor to enter.</p>
+          <span class="contest-enter">Submit your entry <span class="contest-enter-arr">→</span></span>
+        </div>
     </div>
   </div>
 </section>
@@ -718,7 +725,7 @@ body {
             </div>
             <div class="ticket">
               <div class="ticket-hd">
-                <div class="t-badge">🎄 Birla Alokya Christmas 2026</div>
+                <div class="t-badge">🎄 Birla Alokya · Jingle Bells 2026</div>
                 <div class="t-name" id="conf-name-ticket">Christmas Guest</div>
               </div>
               <hr class="ticket-perf"/>
@@ -867,7 +874,7 @@ body {
 </div>
 <footer class="footer">
   <div class="footer-icon">🎄</div>
-  <div class="footer-name">Christmas 2026</div>
+  <div class="footer-name">Jingle Bells 2026</div>
   <p class="footer-tag">Birla Alokya Residents · Celebrating the season together!</p>
 </footer>
 
@@ -948,7 +955,7 @@ function generateQR() {
   const adults = parseInt(document.getElementById("inp-adults").value) || 1;
   const kids   = parseInt(document.getElementById("inp-kids").value)   || 0;
   const total  = (adults * 600) + (kids * 400);
-  const upiStr = "upi://pay?pa=" + encodeURIComponent(UPI_ID) + "&pn=" + encodeURIComponent(UPI_NAME) + "&am=" + total + "&cu=INR&tn=" + encodeURIComponent("BA Christmas 2026");
+  const upiStr = "upi://pay?pa=" + encodeURIComponent(UPI_ID) + "&pn=" + encodeURIComponent(UPI_NAME) + "&am=" + total + "&cu=INR&tn=" + encodeURIComponent("Jingle Bells 2026");
   document.getElementById("upi-qr").src = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" + encodeURIComponent(upiStr) + "&ecc=M";
   document.getElementById("upi-id-text").textContent = UPI_ID;
 }
@@ -1053,7 +1060,7 @@ function handleSuccess(data) {
     document.getElementById("conf-email").textContent       = maskEmail(data.email);
     document.getElementById("conf-email-row").style.display = "flex";
   }
-  const shareMsg = "🎄 Just registered for BA Christmas 2026!\n\n🎁 Birla Alokya Christmas Community Celebration\n📅 Sat & Sun, 19–20 Dec 2026\n📍 Birla Alokya, Whitefield\n\n" + (data.name ? "👤 " + data.name + (data.flat ? " · Villament " + data.flat : "") + "\n\n" : "") + "Register: https://ba-events.github.io/ba-xmas-event-2026/register.html";
+  const shareMsg = "🎄 Just registered for Jingle Bells 2026!\n\n🎁 Birla Alokya Christmas Community Celebration\n📅 Sat & Sun, 19–20 Dec 2026\n📍 Birla Alokya, Whitefield\n\n" + (data.name ? "👤 " + data.name + (data.flat ? " · Villament " + data.flat : "") + "\n\n" : "") + "Register: https://ba-events.github.io/ba-xmas-event-2026/register.html";
   document.getElementById("share-wa").href  = "https://wa.me/?text=" + encodeURIComponent(shareMsg);
   document.getElementById("share-sms").href = "sms:?&body=" + encodeURIComponent(shareMsg);
   showPanel(3);
@@ -1069,8 +1076,8 @@ function maskEmail(e) {
 // ── Calendar ──────────────────────────────────────────
 function setupCalendarLinks() {
   const start = "20261219T090000", end = "20261220T210000";
-  const title = "BA Christmas 2026", loc = "Birla Alokya, Whitefield, Bangalore";
-  const desc  = "BA Christmas 2026 — Community celebration with cultural performances, carols, Santa Claus, tree lighting, games & food trucks.";
+  const title = "Jingle Bells 2026", loc = "Birla Alokya, Whitefield, Bangalore";
+  const desc  = "Jingle Bells 2026 — Community celebration with Christmas Carnival (Dec 19) and Christmas Fiesta (Dec 20). Cultural programs, carols, Santa Claus, games & food trucks.";
   document.getElementById("gcal-link").href = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + encodeURIComponent(title) + "&dates=" + start + "/" + end + "&details=" + encodeURIComponent(desc) + "&location=" + encodeURIComponent(loc);
   const ics = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//BA Xmas 2026//EN","BEGIN:VEVENT","DTSTART:"+start,"DTEND:"+end,"SUMMARY:"+title,"DESCRIPTION:"+desc,"LOCATION:"+loc,"END:VEVENT","END:VCALENDAR"].join("\r\n");
   document.getElementById("ical-link").href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
@@ -1083,7 +1090,7 @@ function copyUpi() {
 
 function openUpiApp(app) {
   const amt = formData.amount || 600;
-  const pa  = encodeURIComponent(UPI_ID), pn = encodeURIComponent(UPI_NAME), tn = encodeURIComponent("BA Christmas 2026");
+  const pa  = encodeURIComponent(UPI_ID), pn = encodeURIComponent(UPI_NAME), tn = encodeURIComponent("Jingle Bells 2026");
   const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent.toLowerCase());
   const schemes = {gpay: isIOS?"gpay://upi/pay":"tez://upi/pay", phonepe:"phonepe://pay", paytm:"paytmmp://pay", cred:"credpay://upi/pay"};
   let left = false;
@@ -1117,7 +1124,7 @@ function jsonp(params, {silent=false}={}) {
 function updateCountdown() {
   const diff = new Date("2026-12-19T09:00:00+05:30") - new Date();
   if (diff <= 0) {
-    document.querySelector(".countdown-wrap").innerHTML = '<div style="padding:14px 28px;text-align:center;font-weight:800;font-size:18px;color:#fdd835">🎄 BA Christmas 2026 is Here! 🎄</div>';
+    document.querySelector(".countdown-wrap").innerHTML = '<div style="padding:14px 28px;text-align:center;font-weight:800;font-size:18px;color:#fdd835">🎄 Jingle Bells 2026 is Here! 🎄</div>';
     return;
   }
   const pad = n => String(n).padStart(2,"0");
