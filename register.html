@@ -140,10 +140,10 @@ body {
 .reg-section { padding:36px 20px 64px; }
 
 /* ── SECTION BRIDGE ──────────────────────────────────── */
-.reg-bridge { background:linear-gradient(135deg,var(--grn),var(--grn2)); text-align:center; padding:36px 20px; }
-.reg-bridge-icon { font-size:36px; display:block; margin-bottom:10px; }
-.reg-bridge-title { font-size:22px; font-weight:900; color:#fff; margin:0 0 8px; letter-spacing:-.01em; }
-.reg-bridge-sub { font-size:14px; color:rgba(255,255,255,.8); margin:0; line-height:1.6; }
+.reg-bridge { background:linear-gradient(135deg,var(--grn),var(--grn2)); padding:12px 24px; display:flex; align-items:center; justify-content:center; gap:12px; position:relative; z-index:1; box-shadow:inset 0 1px 0 rgba(255,255,255,.18),inset 0 -3px 0 rgba(0,0,0,.22),0 4px 0 #0a2e0e,0 8px 22px rgba(0,0,0,.28); }
+.reg-bridge-icon { font-size:26px; flex-shrink:0; filter:drop-shadow(0 2px 4px rgba(0,0,0,.3)); }
+.reg-bridge-title { font-size:15px; font-weight:900; color:#fff; margin:0; text-shadow:0 1px 3px rgba(0,0,0,.3); }
+.reg-bridge-sub { font-size:12px; color:rgba(255,255,255,.78); margin:2px 0 0; line-height:1.4; }
 .reg-inner   { width:min(960px,100%); margin:0 auto; display:grid; grid-template-columns:280px 1fr; gap:28px; align-items:start; }
 
 /* ── STORY ASIDE ─────────────────────────────────────── */
@@ -526,8 +526,10 @@ body {
 <!-- ── SECTION BRIDGE ────────────────────────────────── -->
 <div class="reg-bridge">
   <span class="reg-bridge-icon">🎟️</span>
-  <h2 class="reg-bridge-title">Register Your Xmas Food Coupon</h2>
-  <p class="reg-bridge-sub">Secure your family's spot — every registered family gets a food coupon for the feast!</p>
+  <div>
+    <h2 class="reg-bridge-title">Register Your Xmas Food Coupon</h2>
+    <p class="reg-bridge-sub">Secure your family's spot — every registered family gets a food coupon for the feast!</p>
+  </div>
 </div>
 
 <!-- ── REGISTRATION SECTION ──────────────────────────── -->
