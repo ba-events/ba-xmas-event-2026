@@ -54,7 +54,7 @@ function doGet(e) {
   else if (action === "getlikes") result = getLikeCounts();
   else if (action === "experiences") result = getExperienceList();
   else if (action === "getticket")      result = getTicket(e.parameter.phone, e.parameter.flat);
-  else if (action === "getapprovedflats") result = getApprovedFlats();
+  else if (action === "hdcsubmit")      result = submitHomeDecorEntry(e.parameter);
   else if (pin !== CFG.SCANNER_PIN) result = { ok: false, message: "Invalid PIN" };
   else if (action === "lookup")  result = checkinTicket(e.parameter.ticket, null);
   else if (action === "checkin") result = checkinTicket(e.parameter.ticket, e.parameter.count);
@@ -557,6 +557,34 @@ function getLikeCounts() {
   });
   return { ok: true, counts };
 }
+
+function submitHomeDecorEntry(p) {
+  const name  = clean(p.name  || "");
+  const unit  = normalizeFlat(p.unit || "");
+  const phone = clean(p.phone || "").replace(/\D/g, "");
+  const link  = clean(p.link  || "");
+
+  if (!name)               return { ok: false, message: "Name is required" };
+  if (!unit)               return { ok: false, message: "Villament unit is required" };
+  if (phone.length !== 10) return { ok: false, message: "Valid 10-digit phone required" };
+  if (!link)               return { ok: false, message: "Video link is required" };
+
+  try {
+    const ss    = SpreadsheetApp.getActiveSpreadsheet();
+    const sheet = getOrCreateSheet(ss, "HomeDecorEntries");
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow(["Timestamp", "Name", "Unit #", "Phone", "Video Link"]);
+      sheet.setFrozenRows(1);
+    }
+    sheet.appendRow([new Date(), name, unit, phone, link]);
+  } catch(e) {
+    Logger.log("submitHomeDecorEntry error: " + e.message);
+    return { ok: false, message: "Server error — please try again" };
+  }
+
+  return { ok: true };
+}
+
 
 // ── ONE-TIME SETUP ────────────────────────────────────────
 function setup() {

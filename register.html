@@ -799,17 +799,15 @@ body {
         </div>
       </div>
 
-      <!-- Pane 2: Video upload -->
+      <!-- Pane 2: Video link -->
       <div class="hdc-pane" id="hdc-pane-2">
-        <p style="font-size:13px;color:var(--muted);margin:0 0 18px;line-height:1.6">Upload a short video (up to 2 min) showcasing your Villament's Christmas decor. 🎄</p>
-        <div class="hdc-upload-zone" id="hdc-zone" onclick="document.getElementById('hdc-file').click()">
-          <span class="hdc-upload-icon">🎬</span>
-          <div class="hdc-upload-hint"><strong>Tap to choose video</strong><br>MP4 · MOV · AVI &nbsp;·&nbsp; max 200 MB</div>
-          <input type="file" id="hdc-file" accept="video/*" style="display:none" onchange="hdcFileChosen(this)"/>
+        <p style="font-size:13px;color:var(--muted);margin:0 0 14px;line-height:1.6">Upload your video to Google Drive, YouTube, or Instagram Reels, then paste the share link below. 🎬</p>
+        <div style="background:#f0faf0;border:1.5px solid #a7d7a8;border-radius:12px;padding:14px 16px;margin-bottom:18px;font-size:12px;color:#1b5e20;line-height:1.8">
+          <strong>Google Drive tip:</strong> Open Drive → upload video → right-click → <em>Share</em> → set to "Anyone with link" → <em>Copy link</em> → paste below.
         </div>
-        <div class="hdc-chosen-row" id="hdc-chosen-row">
-          <span class="hdc-chosen-name" id="hdc-chosen-name"></span>
-          <button class="hdc-chosen-clear" onclick="hdcClearFile(event)" title="Remove">✕</button>
+        <div class="hdc-field">
+          <label class="hdc-field-label" for="hdc-link">Video Share Link *</label>
+          <input class="hdc-input" id="hdc-link" type="url" placeholder="https://drive.google.com/file/d/…"/>
         </div>
         <div class="hdc-nav">
           <button class="hdc-btn-back" onclick="hdcBack()">← Back</button>
@@ -1193,8 +1191,6 @@ function toast(msg) {
   setTimeout(()=>el.classList.remove("show"), 3200);
 }
 // ── HOME DECOR CONTEST ────────────────────────────────
-const HDC_API_URL = "YOUR_HDC_UPLOAD_URL_HERE";
-
 function openHDC() {
   hdcGoTo(1);
   document.getElementById("hdc-ov").classList.add("open");
@@ -1215,42 +1211,28 @@ function hdcNext() {
   const name  = document.getElementById("hdc-name").value.trim();
   const unit  = document.getElementById("hdc-unit").value.trim();
   const phone = document.getElementById("hdc-phone").value.trim();
-  if (!name)            { hdcShake("hdc-name");  return; }
-  if (!unit)            { hdcShake("hdc-unit");  return; }
+  if (!name)               { hdcShake("hdc-name");  return; }
+  if (!unit)               { hdcShake("hdc-unit");  return; }
   if (phone.length !== 10) { hdcShake("hdc-phone"); return; }
   hdcGoTo(2);
 }
 function hdcBack() { hdcGoTo(1); }
-function hdcFileChosen(input) {
-  const file = input.files[0];
-  if (!file) return;
-  if (file.size > 200 * 1024 * 1024) {
-    toast("Video too large — max 200 MB"); input.value = ""; return;
-  }
-  document.getElementById("hdc-chosen-name").textContent = file.name;
-  document.getElementById("hdc-chosen-row").classList.add("show");
-}
-function hdcClearFile(e) {
-  e.stopPropagation();
-  document.getElementById("hdc-file").value = "";
-  document.getElementById("hdc-chosen-row").classList.remove("show");
-}
 async function hdcSubmit() {
-  const file = document.getElementById("hdc-file").files[0];
-  if (!file) { toast("Please select a video first"); return; }
+  const link = document.getElementById("hdc-link").value.trim();
+  if (!link || !link.startsWith("http")) { hdcShake("hdc-link"); return; }
   const btn = document.getElementById("hdc-submit-btn");
-  btn.disabled = true; btn.textContent = "Uploading…";
-  try {
-    const fd = new FormData();
-    fd.append("name",  document.getElementById("hdc-name").value.trim());
-    fd.append("unit",  document.getElementById("hdc-unit").value.trim());
-    fd.append("phone", document.getElementById("hdc-phone").value.trim());
-    fd.append("video", file);
-    const resp = await fetch(HDC_API_URL, { method: "POST", body: fd });
-    if (!resp.ok) throw new Error("Upload failed");
+  btn.disabled = true; btn.textContent = "Submitting…";
+  const data = await jsonp({
+    action: "hdcsubmit",
+    name:   document.getElementById("hdc-name").value.trim(),
+    unit:   document.getElementById("hdc-unit").value.trim(),
+    phone:  document.getElementById("hdc-phone").value.trim(),
+    link
+  });
+  if (data && data.ok) {
     hdcGoTo(3);
-  } catch {
-    toast("Upload failed — please try again");
+  } else {
+    toast((data && data.message) || "Submission failed — please try again");
     btn.disabled = false; btn.textContent = "🏆 Submit Entry";
   }
 }
@@ -1259,19 +1241,6 @@ function hdcShake(id) {
   el.style.borderColor = "var(--red)"; el.focus();
   setTimeout(() => { el.style.borderColor = ""; }, 1500);
 }
-addEventListener("DOMContentLoaded", () => {
-  const zone = document.getElementById("hdc-zone");
-  if (!zone) return;
-  zone.addEventListener("dragover",  e => { e.preventDefault(); zone.classList.add("drag"); });
-  zone.addEventListener("dragleave", ()=> zone.classList.remove("drag"));
-  zone.addEventListener("drop", e => {
-    e.preventDefault(); zone.classList.remove("drag");
-    const file = e.dataTransfer.files[0]; if (!file) return;
-    const inp = document.getElementById("hdc-file");
-    const dt = new DataTransfer(); dt.items.add(file); inp.files = dt.files;
-    hdcFileChosen(inp);
-  });
-});
 </script>
 </body>
 </html>
