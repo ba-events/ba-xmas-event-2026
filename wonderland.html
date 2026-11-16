@@ -71,7 +71,7 @@ body{font-family:'Inter',sans-serif;background:#051209;overflow-x:hidden}
 @keyframes flicker{from{opacity:.3}to{opacity:1}}
 
 /* HINT */
-.hint-pill{position:absolute;bottom:calc(18% - 34px);left:50%;transform:translateX(-50%);
+.hint-pill{position:absolute;bottom:-46px;left:50%;transform:translateX(-50%);
   white-space:nowrap;background:rgba(255,255,255,.11);backdrop-filter:blur(8px);
   border:1px solid rgba(255,255,255,.22);border-radius:99px;padding:8px 18px;
   font-size:clamp(10px,1.5vw,13px);font-weight:700;color:#fff;pointer-events:none;z-index:16;
@@ -123,7 +123,7 @@ body{font-family:'Inter',sans-serif;background:#051209;overflow-x:hidden}
 }
 
 /* HERO TEXT */
-.hero-text{position:absolute;top:44%;left:50%;transform:translate(-50%,-50%);
+.hero-text{position:absolute;top:11%;left:50%;transform:translateX(-50%);
   text-align:center;pointer-events:none;z-index:10;width:92%}
 .hero-title{font-family:'Mountains of Christmas',cursive;
   font-size:clamp(30px,7vw,78px);color:#fff;line-height:1.1;
@@ -134,7 +134,7 @@ body{font-family:'Inter',sans-serif;background:#051209;overflow-x:hidden}
   text-transform:uppercase;letter-spacing:.1em;font-weight:700}
 
 /* COUNTDOWN */
-.cd-bar{position:absolute;bottom:10%;left:50%;transform:translateX(-50%);
+.cd-bar{position:absolute;bottom:2%;left:50%;transform:translateX(-50%);
   display:flex;align-items:flex-end;gap:6px;z-index:16;pointer-events:none}
 .cdu{background:rgba(255,255,255,.11);backdrop-filter:blur(10px);
   border:1px solid rgba(255,255,255,.2);border-radius:12px;
@@ -199,6 +199,23 @@ body{font-family:'Inter',sans-serif;background:#051209;overflow-x:hidden}
 .day-card li::before{content:'✦';color:var(--gold);font-size:9px;flex-shrink:0}
 .ev-loc{font-size:13px;color:rgba(255,255,255,.5);text-align:center}
 
+/* 3D DEPTH + ATMOSPHERE */
+.scene::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:7;
+  background:
+    radial-gradient(ellipse 140% 28% at 50% 76%,rgba(4,16,6,.7) 0%,transparent 55%),
+    radial-gradient(ellipse 90% 16% at 50% 93%,rgba(0,4,2,.6) 0%,transparent 65%)}
+.ground{background:linear-gradient(180deg,#d4eef8 0%,#eaf5fd 50%,#fff 100%);
+  box-shadow:0 -16px 44px 4px rgba(196,232,245,.45)}
+.tree-wrap{filter:drop-shadow(0 28px 22px rgba(0,0,0,.68))}
+.tree-wrap:hover{filter:drop-shadow(0 28px 22px rgba(0,0,0,.58)) brightness(1.1)}
+.tree-wrap.glow{filter:drop-shadow(0 0 28px rgba(253,216,53,.8)) drop-shadow(0 28px 22px rgba(0,0,0,.5)) brightness(1.3)}
+.char{filter:drop-shadow(0 10px 14px rgba(0,0,0,.52))}
+.cdu{background:rgba(8,6,46,.8);backdrop-filter:blur(18px) saturate(180%);
+  border:1px solid rgba(255,255,255,.26);border-radius:14px;
+  box-shadow:0 6px 28px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.2),inset 0 -1px 0 rgba(0,0,0,.35)}
+.cdn{text-shadow:0 0 18px rgba(255,255,255,.35)}
+.cds{text-shadow:0 0 14px rgba(253,216,53,.7)}
+
 /* REDUCED MOTION */
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}}
 </style>
@@ -212,8 +229,8 @@ body{font-family:'Inter',sans-serif;background:#051209;overflow-x:hidden}
     <a href="#">Home</a>
     <a href="#event">About</a>
     <a href="#event">Schedule</a>
-    <a href="#carnival" class="nav-cta red">🎪 Xmas Carnival</a>
-    <a href="#fiesta" class="nav-cta grn">🎉 Xmas Fiesta</a>
+    <a href="#carnival" class="nav-cta red">🎪 Christmas Carnival</a>
+    <a href="#fiesta" class="nav-cta grn">🎉 Christmas Fiesta</a>
   </div>
 </nav>
 
@@ -356,10 +373,8 @@ body{font-family:'Inter',sans-serif;background:#051209;overflow-x:hidden}
       <polygon id="tree-star" points="150,6 153,17 164,17 155,23 159,34 150,27 141,34 145,23 136,17 147,17" fill="#fdd835" stroke="#f9a825" stroke-width=".8"/>
       <polygon points="150,6 153,17 164,17 155,23 159,34 150,27 141,34 145,23 136,17 147,17" fill="#fff9c4" opacity=".45"/>
     </svg>
+    <div class="hint-pill" id="hint-pill">✨ Click the Christmas Tree to Discover the Magic!</div>
   </div>
-
-  <!-- HINT PILL -->
-  <div class="hint-pill" id="hint-pill">✨ Click the Christmas Tree to Discover the Magic!</div>
 
   <!-- SLEIGH (starts off-screen right) -->
   <div id="sleigh-wrap">
@@ -427,7 +442,7 @@ body{font-family:'Inter',sans-serif;background:#051209;overflow-x:hidden}
   <div class="ev-grid">
     <div class="day-card" id="carnival">
       <div class="day-tag">Day 1</div>
-      <div class="day-title">🎪 Xmas Carnival</div>
+      <div class="day-title">🎪 Christmas Carnival</div>
       <div class="day-date">Saturday, December 19, 2026</div>
       <ul>
         <li>Food Trucks</li><li>Flea Markets</li>
@@ -437,7 +452,7 @@ body{font-family:'Inter',sans-serif;background:#051209;overflow-x:hidden}
     </div>
     <div class="day-card" id="fiesta">
       <div class="day-tag">Day 2</div>
-      <div class="day-title">🎉 Xmas Fiesta</div>
+      <div class="day-title">🎉 Christmas Fiesta</div>
       <div class="day-date">Sunday, December 20, 2026</div>
       <ul>
         <li>Residents' Cultural Programs</li><li>Christmas Carols</li>

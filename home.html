@@ -86,6 +86,17 @@ body {
 .hero-cta:hover { transform:translateY(-2px); box-shadow:0 6px 24px rgba(192,57,43,.5); }
 .hero-cta .arr { transition:transform .15s; }
 .hero-cta:hover .arr { transform:translateX(4px); }
+.hero-magic {
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(255,255,255,.12); backdrop-filter:blur(8px);
+  color:#fff; border:1.5px solid rgba(255,255,255,.35); border-radius:12px;
+  padding:14px 28px; font-size:15px; font-weight:800;
+  cursor:pointer; font-family:inherit; text-decoration:none;
+  transition:background .2s, transform .15s, box-shadow .15s;
+}
+.hero-magic:hover { background:rgba(255,255,255,.22); transform:translateY(-2px); box-shadow:0 6px 22px rgba(0,0,0,.25); }
+.hero-ctas { display:flex; align-items:center; gap:14px; flex-wrap:wrap; justify-content:center; }
+.hero-cta:hover .arr { transform:translateX(4px); }
 .hero-star { font-size:44px; display:block; width:fit-content; margin-bottom:10px; filter:drop-shadow(0 0 14px #f9a82566); animation:star-pulse 2.5s ease-in-out infinite; }
 @keyframes star-pulse { 0%,100%{transform:scale(1);filter:drop-shadow(0 0 14px #f9a82566)} 50%{transform:scale(1.14);filter:drop-shadow(0 0 28px #ffd54fcc)} }
 
@@ -490,7 +501,10 @@ body {
       <span class="hero-pill">📍 Birla Alokya · Whitefield</span>
       <a class="hero-pill" href="https://maps.app.goo.gl/U1HyHkS6fodXsV8X9" target="_blank">🗺 Maps</a>
     </div>
-    <a class="hero-cta" href="#reg">🎁 Register Your Family <span class="arr">→</span></a>
+    <div class="hero-ctas">
+      <a class="hero-cta" href="#reg">🎁 Register Your Family <span class="arr">→</span></a>
+      <a class="hero-magic" href="wonderland.html">✨ Discover the Magic</a>
+    </div>
   </div>
   <div class="hero-stripe-b"></div>
 </header>
