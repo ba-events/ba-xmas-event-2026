@@ -475,6 +475,20 @@ a.hero-pill:hover {
 .hdc-step-seg.done { background:var(--grn2); }
 .hdc-step-seg.cur  { background:var(--gold); }
 .hdc-pane { display:none; }
+/* T&C pane */
+.hdc-tnc-box { max-height:310px; overflow-y:auto; background:#f8faf8; border:1.5px solid #c8e6c9;
+               border-radius:12px; padding:16px 18px; font-size:12px; color:#374151; line-height:1.75;
+               margin-bottom:16px; scroll-behavior:smooth; }
+.hdc-tnc-box h2 { font-size:13px; font-weight:900; color:var(--grn); text-align:center; margin:0 0 10px; line-height:1.4; }
+.hdc-tnc-box h4 { font-size:12px; font-weight:800; color:var(--grn); margin:14px 0 5px; }
+.hdc-tnc-box h4:first-of-type { margin-top:6px; }
+.hdc-tnc-box ul { padding-left:16px; margin:4px 0 8px; }
+.hdc-tnc-box li { margin-bottom:4px; }
+.hdc-tnc-box p  { margin:4px 0 8px; }
+.hdc-tnc-accept { display:flex; align-items:flex-start; gap:10px; font-size:13px; font-weight:600;
+                  color:#1f2937; margin:0 0 4px; cursor:pointer; user-select:none; }
+.hdc-tnc-accept input[type=checkbox] { width:18px; height:18px; flex-shrink:0; margin-top:1px;
+                                        accent-color:var(--grn); cursor:pointer; }
 .hdc-pane.active { display:block; }
 .hdc-field { margin-bottom:16px; }
 .hdc-field-label { font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); display:block; margin-bottom:5px; }
@@ -858,6 +872,57 @@ a.hero-pill:hover {
       <div class="hdc-steps-bar">
         <div class="hdc-step-seg cur" id="hdc-seg-1"></div>
         <div class="hdc-step-seg"     id="hdc-seg-2"></div>
+      </div>
+
+      <!-- Pane 0: Terms & Conditions -->
+      <div class="hdc-pane active" id="hdc-pane-0">
+        <div class="hdc-tnc-box" id="hdc-tnc-scroll">
+          <h2>🎄 JINGLE BELLS 2026<br>HOME DECOR CONTEST 🎄</h2>
+          <p>✨ Let your home sparkle with the magic of Christmas! Get creative, decorate your spaces and showcase your Christmas spirit!</p>
+
+          <h4>🏡 How to Participate?</h4>
+          <p><strong>Round 1 – Video Submission</strong></p>
+          <ul>
+            <li>Record a video (maximum 2 minutes) showcasing your Christmas decorations.</li>
+            <li>Highlight your decorated entrance, balcony, windows, living spaces or other festive corners.</li>
+            <li>Keep the video simple, clear and focused on your decorations.</li>
+            <li>Submit your video before the announced deadline.</li>
+            <li>One entry per household.</li>
+          </ul>
+
+          <h4>🏆 Round 2 – Final Judging</h4>
+          <ul>
+            <li>The top 5 entries will be shortlisted.</li>
+            <li>Our judging panel will visit the 5 shortlisted homes.</li>
+            <li>The final winner will be selected based on the judges' evaluation during the home visits.</li>
+          </ul>
+
+          <h4>✨ What Will Be Judged?</h4>
+          <ul>
+            <li>Creativity &amp; Originality</li>
+            <li>Christmas Theme &amp; Festive Spirit</li>
+            <li>Overall Presentation</li>
+            <li>Lighting &amp; Decoration</li>
+            <li>DIY &amp; Sustainable Ideas</li>
+            <li>Attention to Detail</li>
+          </ul>
+
+          <h4>📌 A Few Things to Remember</h4>
+          <ul>
+            <li>Creativity matters more than the budget!</li>
+            <li>Keep decorations safe and avoid obstructing common areas.</li>
+            <li>Judges' decisions will be final.</li>
+          </ul>
+
+          <p style="text-align:center;font-weight:800;color:var(--grn);margin-top:10px">🎅 Decorate. Capture. Submit. Celebrate!<br>Let's make Birla Alokya shine bright this Christmas! 🌟</p>
+        </div>
+        <label class="hdc-tnc-accept">
+          <input type="checkbox" id="hdc-tnc-check" onchange="document.getElementById('hdc-tnc-btn').disabled=!this.checked"/>
+          I have read and accept the contest terms &amp; conditions
+        </label>
+        <div class="hdc-nav">
+          <button class="hdc-btn-next" id="hdc-tnc-btn" onclick="hdcGoTo(1)" disabled>I Accept &amp; Continue →</button>
+        </div>
       </div>
 
       <!-- Pane 1: Personal details -->
@@ -1273,7 +1338,9 @@ function toast(msg) {
 }
 // ── HOME DECOR CONTEST ────────────────────────────────
 function openHDC() {
-  hdcGoTo(1);
+  hdcGoTo(0);
+  document.getElementById("hdc-tnc-check").checked = false;
+  document.getElementById("hdc-tnc-btn").disabled = true;
   document.getElementById("hdc-ov").classList.add("open");
   document.body.style.overflow = "hidden";
 }
@@ -1282,10 +1349,12 @@ function closeHDC() {
   document.body.style.overflow = "";
 }
 function hdcGoTo(step) {
-  [1,2,3].forEach(n => {
+  [0,1,2,3].forEach(n => {
     document.getElementById(`hdc-pane-${n}`).classList.toggle("active", n === step);
   });
-  document.getElementById("hdc-seg-1").className = "hdc-step-seg" + (step > 1 ? " done" : " cur");
+  const bar = document.querySelector(".hdc-steps-bar");
+  bar.style.display = step === 0 ? "none" : "";
+  document.getElementById("hdc-seg-1").className = "hdc-step-seg" + (step > 1 ? " done" : step === 1 ? " cur" : "");
   document.getElementById("hdc-seg-2").className = "hdc-step-seg" + (step > 2 ? " done" : step === 2 ? " cur" : "");
 }
 function hdcNext() {
