@@ -412,12 +412,13 @@ a.hero-pill:hover {
 @keyframes cffall { to { transform:translateY(100vh) rotate(720deg); opacity:0; } }
 
 /* ── FOOTER ──────────────────────────────────────────── */
+.footer-zone { position:relative; }
 .wave-wrap { display:block; line-height:0; }
 .wave-wrap svg { display:block; width:100%; height:180px; }
-.footer { background:linear-gradient(160deg,#051209 0%,#0a2210 55%,#163d1a 100%); color:#fff; text-align:center; padding:10px 20px 40px; }
+.footer { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(to top,rgba(5,18,9,.98) 0%,rgba(5,18,9,.9) 38%,rgba(5,18,9,.5) 68%,transparent 100%); color:#fff; text-align:center; padding:38px 20px 22px; z-index:2; }
 .footer-icon { font-size:28px; margin-bottom:6px; }
-.footer-name { font-size:24px; font-weight:900; }
-.footer-tag  { font-size:12px; color:rgba(255,255,255,.5); margin-top:4px; line-height:1.6; }
+.footer-name { font-size:24px; font-weight:900; text-shadow:0 2px 8px rgba(0,0,0,.65); }
+.footer-tag  { font-size:12px; color:rgba(255,255,255,.75); margin-top:4px; line-height:1.6; text-shadow:0 1px 4px rgba(0,0,0,.55); }
 
 /* ── RESPONSIVE ──────────────────────────────────────── */
 @media (max-width: 720px) {
@@ -986,6 +987,7 @@ a.hero-pill:hover {
 <div id="toast"></div>
 
 <!-- ── FOOTER ────────────────────────────────────────── -->
+<div class="footer-zone">
 <div class="wave-wrap" aria-hidden="true">
   <svg viewBox="0 0 1440 180" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <defs>
@@ -999,20 +1001,20 @@ a.hero-pill:hover {
     <!-- Sky background -->
     <rect width="1440" height="180" fill="url(#ftsky)"/>
 
-    <!-- Stars -->
-    <circle cx="52" cy="8" r="1.2" fill="#fff" opacity=".7"/>
-    <circle cx="145" cy="22" r="1" fill="#fdd835" opacity=".8"/>
-    <circle cx="290" cy="6" r="1.3" fill="#fff" opacity=".65"/>
-    <circle cx="450" cy="18" r="1" fill="#fff" opacity=".7"/>
-    <circle cx="640" cy="4" r="1.4" fill="#fdd835" opacity=".75"/>
-    <circle cx="720" cy="28" r="1" fill="#fff" opacity=".55"/>
-    <circle cx="1000" cy="12" r="1.2" fill="#fff" opacity=".7"/>
-    <circle cx="1150" cy="5" r="1.4" fill="#fdd835" opacity=".7"/>
-    <circle cx="1280" cy="20" r="1" fill="#fff" opacity=".6"/>
+    <!-- Stars (y≥55 to clear the wave-seam zone) -->
+    <circle cx="52" cy="62" r="1.2" fill="#fff" opacity=".7"/>
+    <circle cx="145" cy="56" r="1" fill="#fdd835" opacity=".8"/>
+    <circle cx="290" cy="72" r="1.3" fill="#fff" opacity=".65"/>
+    <circle cx="450" cy="60" r="1" fill="#fff" opacity=".7"/>
+    <circle cx="640" cy="64" r="1.4" fill="#fdd835" opacity=".75"/>
+    <circle cx="750" cy="76" r="1" fill="#fff" opacity=".55"/>
+    <circle cx="1000" cy="60" r="1.2" fill="#fff" opacity=".7"/>
+    <circle cx="1150" cy="55" r="1.4" fill="#fdd835" opacity=".7"/>
+    <circle cx="1280" cy="68" r="1" fill="#fff" opacity=".6"/>
 
     <!-- Moon (crescent) -->
-    <circle cx="1370" cy="20" r="16" fill="#fffde7"/>
-    <circle cx="1377" cy="14" r="13" fill="#071a0e"/>
+    <circle cx="1370" cy="52" r="16" fill="#fffde7"/>
+    <circle cx="1377" cy="46" r="13" fill="#071a0e"/>
 
     <!-- Far hills -->
     <path d="M0,100 C180,72 360,84 540,72 C720,60 900,78 1080,66 C1260,54 1380,70 1440,62 L1440,180 L0,180Z" fill="#0a2210"/>
@@ -1041,11 +1043,8 @@ a.hero-pill:hover {
       <polygon points="0,-22 -22,5 22,5" fill="#2e7d32"/>
       <polygon points="0,-38 -16,-8 16,-8" fill="#33691e"/>
       <polygon points="0,-54 -9,-24 9,-24" fill="#1b5e20"/>
-      <!-- Star top -->
       <polygon points="0,-60 2,-54 8,-54 3,-50 5,-44 0,-48 -5,-44 -3,-50 -8,-54 -2,-54" fill="#fdd835"/>
-      <!-- Snow cap -->
       <polygon points="0,-54 -3,-45 3,-45" fill="#e3f2fd" opacity=".8"/>
-      <!-- Lights -->
       <circle cx="-9" cy="-11" r="2.5" fill="#ef5350"/>
       <circle cx="8" cy="-26" r="2.5" fill="#fdd835"/>
       <circle cx="-5" cy="-43" r="2" fill="#42a5f5"/>
@@ -1095,8 +1094,8 @@ a.hero-pill:hover {
       <circle cx="-4" cy="-43" r="2" fill="#42a5f5"/>
     </g>
 
-    <!-- SANTA ON SLEIGH (flying) -->
-    <g transform="translate(820,52)">
+    <!-- SANTA ON SLEIGH (flying lower, below wave seam) -->
+    <g transform="translate(820,78)">
       <!-- Reindeer A (lead) -->
       <g transform="translate(-95,0)">
         <ellipse cx="0" cy="0" rx="12" ry="6" fill="#8d6e63"/>
@@ -1154,7 +1153,7 @@ a.hero-pill:hover {
       <circle cx="54" cy="-28" r="7" fill="#ffcc80"/>
     </g>
 
-    <!-- REINDEER on ground (right of sleigh) -->
+    <!-- REINDEER on ground -->
     <g transform="translate(952,112)">
       <ellipse cx="0" cy="-10" rx="24" ry="11" fill="#8d6e63"/>
       <circle cx="22" cy="-20" r="11" fill="#a1887f"/>
@@ -1224,6 +1223,9 @@ a.hero-pill:hover {
     <circle cx="750" cy="118" r="1.5" fill="#fff" opacity=".6"/>
     <circle cx="980" cy="124" r="1" fill="#fff" opacity=".55"/>
     <circle cx="1280" cy="120" r="1.5" fill="#fff" opacity=".5"/>
+
+    <!-- Wave seam: fills body-background (#f8faf8) above the wave curve — renders last / on top -->
+    <path d="M0,0 L1440,0 L1440,24 C1380,10 1260,36 1080,24 C720,0 360,48 0,24 Z" fill="#f8faf8"/>
   </svg>
 </div>
 <footer class="footer">
@@ -1231,6 +1233,7 @@ a.hero-pill:hover {
   <div class="footer-name">Jingle Bells 2026</div>
   <p class="footer-tag">Birla Alokya Residents · Celebrating the season together!</p>
 </footer>
+</div>
 
 <script>
 // ── CONFIG ────────────────────────────────────────────
