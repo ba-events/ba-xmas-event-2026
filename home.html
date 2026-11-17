@@ -416,9 +416,15 @@ a.hero-pill:hover {
 .wave-wrap svg { display:block; width:100%; height:48px; }
 .footer {
   background:
-    linear-gradient(to bottom, #071a0e 0%, rgba(7,26,14,.75) 28%, rgba(0,0,0,.48) 100%),
-    url('jinglebells-banner.png') center/cover no-repeat;
-  color:#fff; text-align:center; padding:32px 20px 52px;
+    linear-gradient(to bottom, #071a0e 0%, rgba(7,26,14,.72) 28%, rgba(0,0,0,.45) 100%),
+    url('jinglebells-banner.png') center 42%/100% auto no-repeat;
+  color:#fff; text-align:center; padding:48px 20px 60px;
+}
+@media(max-width:640px){
+  .footer{background:
+    linear-gradient(to bottom, #071a0e 0%, rgba(7,26,14,.72) 28%, rgba(0,0,0,.45) 100%),
+    url('jinglebells-banner.png') center 42%/cover no-repeat;
+    padding:32px 20px 52px;}
 }
 .footer-icon { font-size:28px; margin-bottom:6px; }
 .footer-name { font-size:24px; font-weight:900; text-shadow:0 2px 10px rgba(0,0,0,.6); }
