@@ -413,22 +413,11 @@ a.hero-pill:hover {
 
 /* ── FOOTER ──────────────────────────────────────────── */
 .wave-wrap { display:block; line-height:0; }
-.wave-wrap svg { display:block; width:100%; height:48px; }
-.footer {
-  background:
-    linear-gradient(to bottom, #071a0e 0%, rgba(7,26,14,.72) 28%, rgba(0,0,0,.45) 100%),
-    url('jinglebells-banner.png') center 42%/100% auto no-repeat;
-  color:#fff; text-align:center; padding:48px 20px 60px;
-}
-@media(max-width:640px){
-  .footer{background:
-    linear-gradient(to bottom, #071a0e 0%, rgba(7,26,14,.72) 28%, rgba(0,0,0,.45) 100%),
-    url('jinglebells-banner.png') center 42%/cover no-repeat;
-    padding:32px 20px 52px;}
-}
+.wave-wrap svg { display:block; width:100%; height:180px; }
+.footer { background:linear-gradient(160deg,#051209 0%,#0a2210 55%,#163d1a 100%); color:#fff; text-align:center; padding:10px 20px 40px; }
 .footer-icon { font-size:28px; margin-bottom:6px; }
-.footer-name { font-size:24px; font-weight:900; text-shadow:0 2px 10px rgba(0,0,0,.6); }
-.footer-tag  { font-size:12px; color:rgba(255,255,255,.82); margin-top:4px; line-height:1.6; text-shadow:0 1px 5px rgba(0,0,0,.55); }
+.footer-name { font-size:24px; font-weight:900; }
+.footer-tag  { font-size:12px; color:rgba(255,255,255,.5); margin-top:4px; line-height:1.6; }
 
 /* ── RESPONSIVE ──────────────────────────────────────── */
 @media (max-width: 720px) {
@@ -998,8 +987,243 @@ a.hero-pill:hover {
 
 <!-- ── FOOTER ────────────────────────────────────────── -->
 <div class="wave-wrap" aria-hidden="true">
-  <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0,24 C360,48 720,0 1080,24 C1260,36 1380,10 1440,24 L1440,48 L0,48 Z" fill="#071a0e"/>
+  <svg viewBox="0 0 1440 180" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="ftsky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#050c06"/>
+        <stop offset="60%" stop-color="#071a0e"/>
+        <stop offset="100%" stop-color="#051209"/>
+      </linearGradient>
+    </defs>
+
+    <!-- Sky background -->
+    <rect width="1440" height="180" fill="url(#ftsky)"/>
+
+    <!-- Stars -->
+    <circle cx="52" cy="8" r="1.2" fill="#fff" opacity=".7"/>
+    <circle cx="145" cy="22" r="1" fill="#fdd835" opacity=".8"/>
+    <circle cx="290" cy="6" r="1.3" fill="#fff" opacity=".65"/>
+    <circle cx="450" cy="18" r="1" fill="#fff" opacity=".7"/>
+    <circle cx="640" cy="4" r="1.4" fill="#fdd835" opacity=".75"/>
+    <circle cx="720" cy="28" r="1" fill="#fff" opacity=".55"/>
+    <circle cx="1000" cy="12" r="1.2" fill="#fff" opacity=".7"/>
+    <circle cx="1150" cy="5" r="1.4" fill="#fdd835" opacity=".7"/>
+    <circle cx="1280" cy="20" r="1" fill="#fff" opacity=".6"/>
+
+    <!-- Moon (crescent) -->
+    <circle cx="1370" cy="20" r="16" fill="#fffde7"/>
+    <circle cx="1377" cy="14" r="13" fill="#071a0e"/>
+
+    <!-- Far hills -->
+    <path d="M0,100 C180,72 360,84 540,72 C720,60 900,78 1080,66 C1260,54 1380,70 1440,62 L1440,180 L0,180Z" fill="#0a2210"/>
+
+    <!-- Snow ground (back) -->
+    <path d="M0,116 C240,102 480,112 720,106 C960,100 1200,108 1440,103 L1440,180 L0,180Z" fill="#b8d8e2"/>
+    <!-- Snow ground (mid) -->
+    <path d="M0,134 C200,124 400,132 640,127 C880,122 1100,130 1340,125 C1400,123 1440,127 1440,127 L1440,180 L0,180Z" fill="#dceef5"/>
+    <!-- Snow ground (front) -->
+    <path d="M0,152 C300,143 600,150 900,145 C1200,140 1400,148 1440,146 L1440,180 L0,180Z" fill="#ecf6fa"/>
+
+    <!-- TREE 1: far left, small -->
+    <g transform="translate(68,122)">
+      <rect x="-3" y="4" width="6" height="9" fill="#5d4037"/>
+      <polygon points="0,-16 -17,4 17,4" fill="#2e7d32"/>
+      <polygon points="0,-28 -12,-6 12,-6" fill="#33691e"/>
+      <polygon points="0,-40 -7,-20 7,-20" fill="#1b5e20"/>
+      <polygon points="0,-40 -3,-33 3,-33" fill="#e3f2fd" opacity=".85"/>
+      <circle cx="-6" cy="-8" r="2" fill="#ef5350" opacity=".9"/>
+      <circle cx="5" cy="-20" r="2" fill="#fdd835" opacity=".9"/>
+    </g>
+
+    <!-- TREE 2: left, tallest with star -->
+    <g transform="translate(195,118)">
+      <rect x="-4" y="5" width="8" height="13" fill="#5d4037"/>
+      <polygon points="0,-22 -22,5 22,5" fill="#2e7d32"/>
+      <polygon points="0,-38 -16,-8 16,-8" fill="#33691e"/>
+      <polygon points="0,-54 -9,-24 9,-24" fill="#1b5e20"/>
+      <!-- Star top -->
+      <polygon points="0,-60 2,-54 8,-54 3,-50 5,-44 0,-48 -5,-44 -3,-50 -8,-54 -2,-54" fill="#fdd835"/>
+      <!-- Snow cap -->
+      <polygon points="0,-54 -3,-45 3,-45" fill="#e3f2fd" opacity=".8"/>
+      <!-- Lights -->
+      <circle cx="-9" cy="-11" r="2.5" fill="#ef5350"/>
+      <circle cx="8" cy="-26" r="2.5" fill="#fdd835"/>
+      <circle cx="-5" cy="-43" r="2" fill="#42a5f5"/>
+      <circle cx="11" cy="-6" r="2.5" fill="#66bb6a"/>
+      <circle cx="-12" cy="-32" r="2" fill="#ab47bc"/>
+    </g>
+
+    <!-- TREE 3: left-center -->
+    <g transform="translate(330,120)">
+      <rect x="-3.5" y="4" width="7" height="11" fill="#5d4037"/>
+      <polygon points="0,-18 -19,4 19,4" fill="#2e7d32"/>
+      <polygon points="0,-32 -13,-7 13,-7" fill="#33691e"/>
+      <polygon points="0,-46 -8,-22 8,-22" fill="#1b5e20"/>
+      <polygon points="0,-46 -3,-38 3,-38" fill="#fffde7" opacity=".9"/>
+      <circle cx="7" cy="-10" r="2" fill="#ef5350"/>
+      <circle cx="-7" cy="-25" r="2" fill="#fdd835"/>
+    </g>
+
+    <!-- CAROUSEL -->
+    <g transform="translate(500,118)">
+      <rect x="-2" y="-56" width="4" height="66" fill="#8d6e63"/>
+      <polygon points="0,-74 -30,-24 30,-24" fill="#c62828"/>
+      <polygon points="0,-74 -8,-52 0,-52" fill="#fff" opacity=".55"/>
+      <polygon points="0,-74 8,-52 0,-52" fill="#c62828" opacity=".8"/>
+      <polygon points="0,-74 -22,-38 -15,-38" fill="#fff" opacity=".45"/>
+      <polygon points="0,-74 22,-38 15,-38" fill="#fff" opacity=".45"/>
+      <ellipse cx="0" cy="-24" rx="30" ry="5.5" fill="#e53935"/>
+      <circle cx="0" cy="-78" r="5" fill="#fdd835"/>
+      <line x1="0" y1="-24" x2="-24" y2="-2" stroke="#6d4c41" stroke-width="1.2"/>
+      <line x1="0" y1="-24" x2="0" y2="0" stroke="#6d4c41" stroke-width="1.2"/>
+      <line x1="0" y1="-24" x2="24" y2="-2" stroke="#6d4c41" stroke-width="1.2"/>
+      <ellipse cx="-24" cy="2" rx="9" ry="5" fill="#1565c0"/>
+      <ellipse cx="0" cy="2" rx="9" ry="5" fill="#fdd835"/>
+      <ellipse cx="24" cy="2" rx="9" ry="5" fill="#e53935"/>
+      <ellipse cx="0" cy="10" rx="32" ry="6" fill="#6d4c41"/>
+    </g>
+
+    <!-- TREE 4: center, right of carousel -->
+    <g transform="translate(658,119)">
+      <rect x="-4" y="5" width="8" height="12" fill="#5d4037"/>
+      <polygon points="0,-20 -21,5 21,5" fill="#2e7d32"/>
+      <polygon points="0,-36 -15,-8 15,-8" fill="#33691e"/>
+      <polygon points="0,-50 -9,-24 9,-24" fill="#1b5e20"/>
+      <polygon points="0,-50 -3.5,-41 3.5,-41" fill="#fff9c4" opacity=".9"/>
+      <circle cx="-9" cy="-14" r="2.5" fill="#fdd835"/>
+      <circle cx="8" cy="-29" r="2.5" fill="#ef5350"/>
+      <circle cx="-4" cy="-43" r="2" fill="#42a5f5"/>
+    </g>
+
+    <!-- SANTA ON SLEIGH (flying) -->
+    <g transform="translate(820,52)">
+      <!-- Reindeer A (lead) -->
+      <g transform="translate(-95,0)">
+        <ellipse cx="0" cy="0" rx="12" ry="6" fill="#8d6e63"/>
+        <circle cx="11" cy="-7" r="6" fill="#a1887f"/>
+        <path d="M10,-12 L8,-18 M8,-18 L5,-14 M8,-18 L11,-14" stroke="#5d4037" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <path d="M14,-12 L17,-18 M17,-18 L20,-14 M17,-18 L14,-14" stroke="#5d4037" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <circle cx="15" cy="-6" r="1.5" fill="#1a1a2e"/>
+        <circle cx="17" cy="-4" r="2.5" fill="#e53935"/>
+        <rect x="-6" y="6" width="3" height="9" fill="#795548" rx="1" transform="rotate(-12,-5,6)"/>
+        <rect x="0" y="6" width="3" height="9" fill="#795548" rx="1" transform="rotate(12,0,6)"/>
+        <rect x="6" y="6" width="3" height="8" fill="#795548" rx="1" transform="rotate(-5,6,6)"/>
+      </g>
+      <!-- Reindeer B -->
+      <g transform="translate(-48,2)">
+        <ellipse cx="0" cy="0" rx="12" ry="6" fill="#8d6e63"/>
+        <circle cx="11" cy="-7" r="6" fill="#a1887f"/>
+        <path d="M10,-12 L8,-18 M8,-18 L5,-14 M8,-18 L11,-14" stroke="#5d4037" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <path d="M14,-12 L17,-18 M17,-18 L20,-14 M17,-18 L14,-14" stroke="#5d4037" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <circle cx="15" cy="-6" r="1.5" fill="#1a1a2e"/>
+        <circle cx="17" cy="-4" r="2.5" fill="#e53935"/>
+        <rect x="-6" y="6" width="3" height="9" fill="#795548" rx="1" transform="rotate(12,-5,6)"/>
+        <rect x="0" y="6" width="3" height="9" fill="#795548" rx="1" transform="rotate(-10,0,6)"/>
+        <rect x="6" y="6" width="3" height="8" fill="#795548" rx="1" transform="rotate(6,6,6)"/>
+      </g>
+      <!-- Harness lines -->
+      <line x1="-22" y1="4" x2="-38" y2="2" stroke="#5d4037" stroke-width="1" opacity=".8"/>
+      <line x1="-22" y1="4" x2="-83" y2="0" stroke="#5d4037" stroke-width="1" opacity=".8"/>
+      <!-- Sleigh body -->
+      <path d="M-20,8 Q-26,-4 -14,-6 L52,-6 Q66,-6 68,8 Q70,24 54,26 L-8,26 Q-22,26 -20,8Z" fill="#c62828"/>
+      <path d="M-16,8 Q-20,-2 -10,-2 L50,-2" fill="none" stroke="#fdd835" stroke-width="2.2"/>
+      <path d="M-16,8 Q-20,-2 -10,-2 L50,-2 Q62,-2 62,8" fill="#ef5350" opacity=".4"/>
+      <!-- Runner -->
+      <path d="M-22,26 Q8,34 56,30 Q68,27 66,24" fill="#795548"/>
+      <!-- Gift bag -->
+      <ellipse cx="-4" cy="-12" rx="13" ry="10" fill="#8d6e63"/>
+      <path d="M-10,-14 Q-4,-20 2,-14" fill="none" stroke="#5d4037" stroke-width="1.8" stroke-linecap="round"/>
+      <!-- Santa body -->
+      <rect x="18" y="-18" width="22" height="22" rx="4" fill="#c62828"/>
+      <rect x="16" y="-2" width="26" height="6" fill="#212121" rx="2"/>
+      <rect x="24" y="-3" width="10" height="4" fill="#fdd835" rx="1"/>
+      <!-- Santa head -->
+      <circle cx="30" cy="-26" r="10" fill="#ffcc80"/>
+      <!-- Hat -->
+      <path d="M20,-26 Q22,-34 30,-34 Q38,-34 40,-26 L36,-30 Q33,-42 30,-47 Q27,-42 24,-30Z" fill="#c62828"/>
+      <rect x="19" y="-30" width="22" height="5.5" fill="#fff" rx="2.5"/>
+      <circle cx="30" cy="-49" r="4" fill="#fff"/>
+      <!-- Beard -->
+      <ellipse cx="30" cy="-16" rx="10" ry="6" fill="#fff"/>
+      <!-- Eyes + smile -->
+      <circle cx="25" cy="-28" r="2" fill="#5d4037"/>
+      <circle cx="35" cy="-28" r="2" fill="#5d4037"/>
+      <path d="M25,-20 Q30,-16 35,-20" fill="none" stroke="#5d4037" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- Waving arm -->
+      <rect x="40" y="-20" width="16" height="6" fill="#c62828" rx="3" transform="rotate(-28,40,-17)"/>
+      <circle cx="54" cy="-28" r="7" fill="#ffcc80"/>
+    </g>
+
+    <!-- REINDEER on ground (right of sleigh) -->
+    <g transform="translate(952,112)">
+      <ellipse cx="0" cy="-10" rx="24" ry="11" fill="#8d6e63"/>
+      <circle cx="22" cy="-20" r="11" fill="#a1887f"/>
+      <path d="M25,-30 L22,-42 L18,-35 M22,-42 L27,-36" stroke="#5d4037" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <path d="M29,-30 L33,-41 L37,-34 M33,-41 L29,-35" stroke="#5d4037" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <ellipse cx="16" cy="-28" rx="4" ry="7" fill="#a1887f" transform="rotate(-15,16,-28)"/>
+      <ellipse cx="16" cy="-28" rx="2.5" ry="4.5" fill="#ef9a9a" transform="rotate(-15,16,-28)"/>
+      <circle cx="26" cy="-20" r="2.5" fill="#1a1a2e"/>
+      <circle cx="27" cy="-21" r="1" fill="#fff"/>
+      <circle cx="32" cy="-16" r="4" fill="#e53935"/>
+      <circle cx="31" cy="-17" r="1.5" fill="#ffcdd2" opacity=".6"/>
+      <rect x="-14" y="1" width="6" height="15" fill="#795548" rx="2.5"/>
+      <rect x="-5" y="1" width="6" height="15" fill="#795548" rx="2.5"/>
+      <rect x="4" y="1" width="6" height="15" fill="#795548" rx="2.5"/>
+      <rect x="13" y="1" width="6" height="13" fill="#795548" rx="2.5"/>
+      <ellipse cx="-24" cy="-8" rx="6" ry="4.5" fill="#efebe9"/>
+      <path d="M10,-10 Q18,-2 26,-10" fill="none" stroke="#fdd835" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="18" cy="-4" r="3" fill="#fdd835"/>
+    </g>
+
+    <!-- HOUSE (right side) -->
+    <g transform="translate(1062,118)">
+      <rect x="-24" y="-24" width="48" height="34" fill="#1a3d1e"/>
+      <polygon points="-28,-24 28,-24 0,-52" fill="#8b1a1a"/>
+      <polygon points="-28,-24 -19,-38 0,-52 19,-38 28,-24 23,-23 0,-48 -23,-23" fill="#e3f2fd" opacity=".7"/>
+      <rect x="-20" y="-18" width="11" height="9" rx="1" fill="#fdd835" opacity=".9"/>
+      <rect x="9" y="-18" width="11" height="9" rx="1" fill="#fdd835" opacity=".85"/>
+      <line x1="-14.5" y1="-18" x2="-14.5" y2="-9" stroke="#2d1b00" stroke-width=".8" opacity=".4"/>
+      <line x1="-20" y1="-13.5" x2="-9" y2="-13.5" stroke="#2d1b00" stroke-width=".8" opacity=".4"/>
+      <line x1="14.5" y1="-18" x2="14.5" y2="-9" stroke="#2d1b00" stroke-width=".8" opacity=".4"/>
+      <line x1="9" y1="-13.5" x2="20" y2="-13.5" stroke="#2d1b00" stroke-width=".8" opacity=".4"/>
+      <rect x="-7" y="-4" width="14" height="14" fill="#2d1b00" rx="1"/>
+      <circle cx="5" cy="4" r="1.5" fill="#fdd835"/>
+      <rect x="10" y="-58" width="9" height="22" fill="#5d4037"/>
+      <rect x="8" y="-58" width="13" height="4" fill="#4e342e"/>
+      <circle cx="14" cy="-62" r="5" fill="#90a4ae" opacity=".3"/>
+      <circle cx="12" cy="-70" r="4" fill="#90a4ae" opacity=".2"/>
+      <circle cx="0" cy="-1" r="5.5" fill="none" stroke="#2e7d32" stroke-width="3.5"/>
+      <circle cx="0" cy="-1" r="2" fill="#c62828"/>
+    </g>
+
+    <!-- TREE 5: right of house -->
+    <g transform="translate(1188,120)">
+      <rect x="-3.5" y="4" width="7" height="11" fill="#5d4037"/>
+      <polygon points="0,-18 -19,4 19,4" fill="#2e7d32"/>
+      <polygon points="0,-32 -14,-7 14,-7" fill="#33691e"/>
+      <polygon points="0,-48 -8,-22 8,-22" fill="#1b5e20"/>
+      <polygon points="0,-48 -3.5,-39 3.5,-39" fill="#fffde7" opacity=".9"/>
+      <circle cx="9" cy="-16" r="2.5" fill="#66bb6a"/>
+      <circle cx="-8" cy="-30" r="2.5" fill="#ef5350"/>
+      <circle cx="4" cy="-43" r="2" fill="#fdd835"/>
+    </g>
+
+    <!-- TREE 6: far right, small -->
+    <g transform="translate(1370,122)">
+      <rect x="-3" y="4" width="6" height="8" fill="#5d4037"/>
+      <polygon points="0,-14 -15,4 15,4" fill="#2e7d32"/>
+      <polygon points="0,-26 -11,-5 11,-5" fill="#33691e"/>
+      <polygon points="0,-38 -6,-18 6,-18" fill="#1b5e20"/>
+      <polygon points="0,-38 -3,-30 3,-30" fill="#e3f2fd" opacity=".9"/>
+      <circle cx="5" cy="-8" r="2" fill="#ef5350"/>
+    </g>
+
+    <!-- Snow sparkles -->
+    <circle cx="180" cy="120" r="1.5" fill="#fff" opacity=".55"/>
+    <circle cx="450" cy="126" r="1" fill="#fff" opacity=".5"/>
+    <circle cx="750" cy="118" r="1.5" fill="#fff" opacity=".6"/>
+    <circle cx="980" cy="124" r="1" fill="#fff" opacity=".55"/>
+    <circle cx="1280" cy="120" r="1.5" fill="#fff" opacity=".5"/>
   </svg>
 </div>
 <footer class="footer">
