@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Jingle Bells 2026 · Birla Alokya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Mountains+of+Christmas:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red:      #c0392b;
+  --red-dk:   #7f1d1d;
+  --red-lt:   #fecaca;
+  --grn:      #1b5e20;
+  --grn2:     #2e7d32;
+  --grn3:     #43a047;
+  --gold:     #f9a825;
+  --gold-lt:  #fef9c3;
+  --dark:     #071a0e;
+  --ink:      #111827;
+  --muted:    #6b7280;
+  --border:   #e5e7eb;
+}
+*  { box-sizing:border-box; margin:0; padding:0; }
+html { overflow-x:hidden; }
+body {
+  font-family:'Inter', -apple-system, sans-serif;
+  background:#071a0e;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* ── HERO ───────────────────────────────────────────────── */
+.hub-hero {
+  min-height:340px;
+  background:linear-gradient(140deg,#030d06 0%,#071a0e 55%,#0d2412 100%);
+  display:flex; align-items:center;
+  overflow:hidden; position:relative;
+  padding:60px 28px 72px;
+}
+.hero-stripe-t { position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,var(--red),var(--gold),var(--red)); }
+.hero-stripe-b { position:absolute; bottom:0; left:0; right:0; height:4px; background:linear-gradient(90deg,var(--grn2),var(--gold),var(--grn2)); }
+.snow-stage    { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
+.flk           { position:absolute; top:-20px; color:#fff; animation:fall linear infinite; user-select:none; }
+@keyframes fall { 0%{transform:translateY(0) rotate(0); opacity:.8} 100%{transform:translateY(115vh) rotate(360deg); opacity:0} }
+.hub-hero-inner {
+  position:relative; z-index:2;
+  width:min(960px,100%); margin:0 auto;
+  text-align:center;
+}
+.hub-eyebrow { font-size:11px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
+.hub-event-name {
+  font-family:'Mountains of Christmas', serif;
+  font-size:clamp(56px,11vw,100px);
+  font-weight:700; line-height:.92; letter-spacing:-1px;
+  color:#fff;
+  text-shadow:0 2px 32px rgba(0,0,0,.7);
+}
+.hub-yr {
+  display:block; font-family:'Inter',sans-serif; font-weight:900;
+  font-size:.42em; letter-spacing:.25em;
+  background:linear-gradient(90deg,var(--red-lt),var(--gold));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  margin-top:5px;
+}
+.hub-tagline { font-size:14px; color:rgba(255,255,255,.65); max-width:400px; line-height:1.65; margin:16px auto 24px; }
+.hub-pills { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:28px; }
+.hub-pill {
+  display:inline-flex; align-items:center; gap:5px;
+  background:rgba(255,255,255,.12); backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.22); border-radius:99px;
+  padding:5px 14px; font-size:12px; font-weight:600; color:#fff;
+  text-decoration:none;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.28),inset 0 -1px 0 rgba(0,0,0,.18),0 2px 0 rgba(0,0,0,.28),0 4px 14px rgba(0,0,0,.2);
+  transition:transform .15s, box-shadow .15s;
+}
+a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255,255,255,.28),inset 0 -1px 0 rgba(0,0,0,.18),0 2px 0 rgba(0,0,0,.28),0 8px 20px rgba(0,0,0,.28); }
+.hub-wonderland-link {
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(255,255,255,.12); backdrop-filter:blur(8px);
+  color:#fff; border:1.5px solid rgba(255,255,255,.35); border-radius:12px;
+  padding:12px 26px; font-size:14px; font-weight:800;
+  text-decoration:none;
+  transition:background .2s, transform .15s;
+}
+.hub-wonderland-link:hover { background:rgba(255,255,255,.22); transform:translateY(-2px); }
+.hub-star { font-size:40px; display:block; width:fit-content; margin:0 auto 14px; filter:drop-shadow(0 0 14px #f9a82566); animation:star-pulse 2.5s ease-in-out infinite; }
+@keyframes star-pulse { 0%,100%{transform:scale(1);filter:drop-shadow(0 0 14px #f9a82566)} 50%{transform:scale(1.14);filter:drop-shadow(0 0 28px #ffd54fcc)} }
+
+/* ── LIGHTS BAR ─────────────────────────────────────────── */
+.lights-bar { background:#0b1a0d; padding:10px 0; overflow:hidden; }
+.lights-row { display:flex; gap:24px; padding:0 12px; animation:lights-run 22s linear infinite; white-space:nowrap; }
+.bulb { width:13px; height:18px; border-radius:50% 50% 45% 45%; position:relative; flex-shrink:0; }
+.bulb::before { content:''; position:absolute; top:-5px; left:50%; transform:translateX(-50%); width:3px; height:6px; background:#444; border-radius:2px; }
+.br { background:#ef5350; box-shadow:0 0 8px #ef5350,0 0 18px rgba(239,83,80,.4); animation:gl 1.7s ease-in-out infinite alternate; }
+.bg { background:#43a047; box-shadow:0 0 8px #43a047,0 0 18px rgba(67,160,71,.4);  animation:gl 2.2s ease-in-out infinite alternate; }
+.by { background:#fdd835; box-shadow:0 0 8px #fdd835,0 0 18px rgba(253,216,53,.4); animation:gl 1.4s ease-in-out infinite alternate; }
+.bb { background:#42a5f5; box-shadow:0 0 8px #42a5f5,0 0 18px rgba(66,165,245,.4); animation:gl 2.6s ease-in-out infinite alternate; }
+@keyframes gl     { from{opacity:.4} to{opacity:1} }
+@keyframes lights-run { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+/* ── COUNTDOWN ──────────────────────────────────────────── */
+.countdown-strip { background:#0a1f0e; padding:14px 20px; }
+.countdown-inner {
+  width:min(960px,100%); margin:0 auto; padding:14px 24px;
+  display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap;
+  background:rgba(255,255,255,.04); border-radius:14px;
+  border:1px solid rgba(255,255,255,.08);
+}
+.cd-label { font-size:14px; font-weight:800; color:var(--gold); white-space:nowrap; }
+.cd-units  { display:flex; align-items:center; gap:5px; }
+.cd-unit   { text-align:center; min-width:46px; background:rgba(255,255,255,.08); border-radius:9px; padding:6px 8px; }
+.cd-n      { font-size:22px; font-weight:900; color:#fff; line-height:1; font-variant-numeric:tabular-nums; }
+.cd-l      { font-size:9px; color:rgba(255,255,255,.5); font-weight:700; text-transform:uppercase; letter-spacing:.06em; }
+.cd-sep    { font-size:18px; font-weight:900; color:var(--gold); padding-bottom:8px; }
+
+/* ── HUB SECTION ────────────────────────────────────────── */
+.hub-section { background:#0a1f0e; padding:52px 20px 68px; }
+.hub-inner   { max-width:1100px; margin:0 auto; }
+.hub-sec-label {
+  text-align:center; font-size:11px; font-weight:800; letter-spacing:.18em;
+  text-transform:uppercase; color:rgba(255,255,255,.38); margin-bottom:36px;
+}
+.hub-tiles { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+@media (max-width:900px) { .hub-tiles { grid-template-columns:1fr; gap:16px; } }
+@media (max-width:420px) { .hub-section { padding:36px 14px 52px; } }
+
+/* ── TILES ──────────────────────────────────────────────── */
+.hub-tile {
+  border-radius:24px; min-height:320px;
+  display:flex; flex-direction:column;
+  padding:30px 26px 26px;
+  position:relative; cursor:pointer; overflow:hidden;
+  text-decoration:none;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.18),
+    inset 0 -3px 0 rgba(0,0,0,.2),
+    0 4px 0 rgba(0,0,0,.35),
+    0 12px 36px rgba(0,0,0,.35);
+  transition:transform .22s cubic-bezier(.17,.67,.58,1.22), box-shadow .22s;
+}
+.hub-tile:hover {
+  transform:translateY(-8px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.22),
+    inset 0 -3px 0 rgba(0,0,0,.2),
+    0 4px 0 rgba(0,0,0,.35),
+    0 24px 60px rgba(0,0,0,.55);
+}
+.hub-tile::before {
+  content:''; position:absolute; inset:0; border-radius:inherit;
+  background:linear-gradient(135deg,rgba(255,255,255,.12) 0%,transparent 55%);
+  pointer-events:none;
+}
+.tile-santa  { background:linear-gradient(145deg,#1b5e20 0%,#2e7d32 55%,#33691e 100%); color:#fff; }
+.tile-hdc    { background:linear-gradient(145deg,#bf6000 0%,#f9a825 55%,#fbc02d 100%); color:#3e1d00; }
+.tile-dinner { background:linear-gradient(145deg,#7f1d1d 0%,#c62828 55%,#d32f2f 100%); color:#fff; }
+
+.hub-tile-badge {
+  display:inline-block; font-size:11px; font-weight:800; letter-spacing:.04em;
+  padding:4px 12px; border-radius:99px; margin-bottom:22px; align-self:flex-start;
+}
+.tile-santa  .hub-tile-badge { background:rgba(255,255,255,.2);  border:1px solid rgba(255,255,255,.3); color:rgba(255,255,255,.95); }
+.tile-hdc    .hub-tile-badge { background:rgba(0,0,0,.14);        border:1px solid rgba(0,0,0,.2);       color:rgba(0,0,0,.7); }
+.tile-dinner .hub-tile-badge { background:rgba(255,255,255,.2);  border:1px solid rgba(255,255,255,.3); color:rgba(255,255,255,.95); }
+
+.hub-tile-ico { font-size:72px; line-height:1; display:block; margin-bottom:16px; filter:drop-shadow(0 4px 14px rgba(0,0,0,.28)); }
+
+.hub-tile-title { font-size:21px; font-weight:900; line-height:1.2; margin-bottom:10px; letter-spacing:-.3px; }
+
+.hub-tile-desc { font-size:13.5px; line-height:1.7; opacity:.82; flex:1; }
+
+.hub-tile-cta {
+  margin-top:28px; align-self:flex-start;
+  display:flex; align-items:center; gap:7px;
+  font-size:13.5px; font-weight:800;
+  padding:12px 20px; border-radius:12px;
+  transition:gap .15s, background .15s;
+}
+.tile-santa  .hub-tile-cta { background:rgba(255,255,255,.18); color:#fff; }
+.tile-hdc    .hub-tile-cta { background:rgba(0,0,0,.14);        color:#3e1d00; }
+.tile-dinner .hub-tile-cta { background:rgba(255,255,255,.18); color:#fff; }
+.hub-tile:hover .hub-tile-cta { gap:12px; }
+@media (max-width:900px) {
+  .hub-tile { min-height:220px; padding:24px 22px 22px; }
+  .hub-tile-ico { font-size:52px; margin-bottom:12px; }
+  .hub-tile-title { font-size:19px; }
+}
+
+/* ── TOAST ───────────────────────────────────────────────── */
+#toast {
+  position:fixed; bottom:76px; left:50%; transform:translateX(-50%) translateY(16px);
+  background:rgba(17,24,39,.9); color:#fff; padding:10px 20px; border-radius:99px;
+  font-size:13px; font-weight:600; white-space:nowrap; opacity:0;
+  transition:opacity .3s, transform .3s; z-index:200; pointer-events:none;
+}
+#toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
+/* ── HDC MODAL ───────────────────────────────────────────── */
+#hdc-ov { position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:100; display:none; align-items:center; justify-content:center; padding:16px; }
+#hdc-ov.open { display:flex; }
+.hdc-modal { background:#fff; border-radius:20px; width:100%; max-width:480px; max-height:92vh; overflow-y:auto; }
+.hdc-hd { background:linear-gradient(135deg,var(--grn),var(--grn2)); padding:18px 20px; border-radius:20px 20px 0 0; display:flex; align-items:center; justify-content:space-between; color:#fff; }
+.hdc-hd h3 { font-size:16px; font-weight:800; margin:0; }
+.hdc-close { background:rgba(255,255,255,.2); border:none; color:#fff; font-size:20px; cursor:pointer; border-radius:50%; width:30px; height:30px; display:flex; align-items:center; justify-content:center; font-family:inherit; }
+.hdc-body { padding:22px 20px; }
+.hdc-steps-bar { display:flex; gap:6px; margin-bottom:22px; }
+.hdc-step-seg { flex:1; height:4px; border-radius:2px; background:#e0e7e0; transition:background .35s; }
+.hdc-step-seg.done { background:var(--grn2); }
+.hdc-step-seg.cur  { background:var(--gold); }
+.hdc-pane { display:none; }
+.hdc-tnc-box { max-height:310px; overflow-y:auto; background:#f8faf8; border:1.5px solid #c8e6c9; border-radius:12px; padding:16px 18px; font-size:12px; color:#374151; line-height:1.75; margin-bottom:16px; scroll-behavior:smooth; }
+.hdc-tnc-box h2 { font-size:13px; font-weight:900; color:var(--grn); text-align:center; margin:0 0 10px; line-height:1.4; }
+.hdc-tnc-box h4 { font-size:12px; font-weight:800; color:var(--grn); margin:14px 0 5px; }
+.hdc-tnc-box h4:first-of-type { margin-top:6px; }
+.hdc-tnc-box ul { padding-left:16px; margin:4px 0 8px; }
+.hdc-tnc-box li { margin-bottom:4px; }
+.hdc-tnc-box p  { margin:4px 0 8px; }
+.hdc-tnc-accept { display:flex; align-items:flex-start; gap:10px; font-size:13px; font-weight:600; color:#1f2937; margin:0 0 4px; cursor:pointer; user-select:none; }
+.hdc-tnc-accept input[type=checkbox] { width:18px; height:18px; flex-shrink:0; margin-top:1px; accent-color:var(--grn); cursor:pointer; }
+.hdc-pane.active { display:block; }
+.hdc-field { margin-bottom:16px; }
+.hdc-field-label { font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); display:block; margin-bottom:5px; }
+.hdc-input { width:100%; padding:12px 14px; border:1.5px solid var(--border); border-radius:10px; font-size:15px; font-family:inherit; outline:none; box-sizing:border-box; transition:border-color .2s; color:var(--ink); }
+.hdc-input:focus { border-color:var(--grn2); }
+.hdc-nav { display:flex; gap:10px; margin-top:20px; }
+.hdc-btn-back { flex:0 0 auto; background:#f3f4f6; border:none; color:#374151; font-family:inherit; font-size:14px; font-weight:800; padding:13px 20px; border-radius:10px; cursor:pointer; }
+.hdc-btn-next { flex:1; background:linear-gradient(135deg,var(--grn),var(--grn2)); border:none; color:#fff; font-family:inherit; font-size:15px; font-weight:800; padding:13px; border-radius:10px; cursor:pointer; transition:opacity .2s; }
+.hdc-btn-next:disabled { opacity:.5; cursor:not-allowed; }
+.hdc-success { text-align:center; padding:10px 0 4px; }
+.hdc-success-icon { font-size:52px; display:block; margin-bottom:10px; }
+.hdc-success h4 { font-size:18px; font-weight:900; color:var(--grn); margin:0 0 8px; }
+.hdc-success p { color:var(--muted); font-size:14px; line-height:1.6; margin:0; }
+
+/* ── SECRET SANTA MODAL ──────────────────────────────────── */
+#ss-ov { position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:100; display:none; align-items:center; justify-content:center; padding:16px; }
+#ss-ov.open { display:flex; }
+.ss-modal { background:#fff; border-radius:20px; width:100%; max-width:480px; max-height:92vh; overflow-y:auto; }
+.ss-hd { background:linear-gradient(135deg,#c62828,#e53935); padding:18px 20px; border-radius:20px 20px 0 0; display:flex; align-items:center; justify-content:space-between; color:#fff; }
+.ss-hd h3 { font-size:16px; font-weight:800; margin:0; }
+.ss-close { background:rgba(255,255,255,.2); border:none; color:#fff; font-size:20px; cursor:pointer; border-radius:50%; width:30px; height:30px; display:flex; align-items:center; justify-content:center; font-family:inherit; }
+.ss-body { padding:22px 20px; }
+.ss-steps-bar { display:flex; gap:6px; margin-bottom:22px; }
+.ss-step-seg { flex:1; height:4px; border-radius:2px; background:#e0e7e0; transition:background .35s; }
+.ss-step-seg.done { background:#c62828; }
+.ss-step-seg.cur  { background:var(--gold); }
+.ss-pane { display:none; }
+.ss-pane.active { display:block; }
+.ss-textarea { width:100%; padding:12px 14px; border:1.5px solid var(--border); border-radius:10px; font-size:14px; font-family:inherit; outline:none; resize:vertical; min-height:88px; transition:border-color .2s; color:var(--ink); }
+.ss-textarea:focus { border-color:#c62828; }
+.ss-nav { display:flex; gap:10px; margin-top:20px; }
+.ss-btn-back { flex:0 0 auto; background:#f3f4f6; border:none; color:#374151; font-family:inherit; font-size:14px; font-weight:800; padding:13px 20px; border-radius:10px; cursor:pointer; }
+.ss-btn-next { flex:1; background:linear-gradient(135deg,#c62828,#e53935); border:none; color:#fff; font-family:inherit; font-size:15px; font-weight:800; padding:13px; border-radius:10px; cursor:pointer; transition:opacity .2s; }
+.ss-btn-next:disabled { opacity:.5; cursor:not-allowed; }
+.ss-success { text-align:center; padding:10px 0 4px; }
+.ss-success-icon { font-size:52px; display:block; margin-bottom:10px; }
+.ss-success h4 { font-size:18px; font-weight:900; color:#c62828; margin:0 0 8px; }
+.ss-success p { color:var(--muted); font-size:14px; line-height:1.6; margin:0; }
+
+/* ── FOOTER ──────────────────────────────────────────────── */
+.footer-zone { position:relative; }
+.wave-wrap { display:block; line-height:0; }
+.wave-wrap svg { display:block; width:100%; height:180px; }
+.footer { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(to top,rgba(5,18,9,.98) 0%,rgba(5,18,9,.9) 38%,rgba(5,18,9,.5) 68%,transparent 100%); color:#fff; text-align:center; padding:38px 20px 22px; z-index:2; }
+.footer-icon { font-size:28px; margin-bottom:6px; }
+.footer-name { font-size:24px; font-weight:900; text-shadow:0 2px 8px rgba(0,0,0,.65); }
+.footer-tag  { font-size:12px; color:rgba(255,255,255,.75); margin-top:4px; line-height:1.6; text-shadow:0 1px 4px rgba(0,0,0,.55); }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ───────────────────────────────────────────────── -->
+<header class="hub-hero">
+  <div class="hero-stripe-t"></div>
+  <div class="snow-stage" id="snow-stage"></div>
+  <div class="hub-hero-inner">
+    <span class="hub-star">⭐</span>
+    <div class="hub-eyebrow">Birla Alokya Residents Present</div>
+    <h1 class="hub-event-name">Jingle Bells<span class="hub-yr">2026</span></h1>
+    <p class="hub-tagline">A Christmas celebration for all families of Birla Alokya — traditions, music, food, games and memories.</p>
+    <div class="hub-pills">
+      <span class="hub-pill">🎄 Sat &amp; Sun · 19–20 Dec 2026</span>
+      <span class="hub-pill">📍 Birla Alokya · Whitefield</span>
+      <a class="hub-pill" href="https://maps.app.goo.gl/U1HyHkS6fodXsV8X9" target="_blank">🗺 Maps</a>
+    </div>
+    <a class="hub-wonderland-link" href="wonderland.html">✨ Discover the Magic</a>
+  </div>
+  <div class="hero-stripe-b"></div>
+</header>
+
+<!-- ── LIGHTS BAR ──────────────────────────────────────────── -->
+<div class="lights-bar" aria-hidden="true"><div class="lights-row" id="lights-row"></div></div>
+
+<!-- ── COUNTDOWN ───────────────────────────────────────────── -->
+<div class="countdown-strip">
+  <div class="countdown-inner">
+    <div class="cd-label">🎅 Jingle Bells 2026 begins in</div>
+    <div class="cd-units">
+      <div class="cd-unit"><div class="cd-n" id="cd-days">--</div><div class="cd-l">Days</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><div class="cd-n" id="cd-hours">--</div><div class="cd-l">Hrs</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><div class="cd-n" id="cd-mins">--</div><div class="cd-l">Mins</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><div class="cd-n" id="cd-secs">--</div><div class="cd-l">Secs</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── HUB TILES ────────────────────────────────────────────── -->
+<section class="hub-section">
+  <div class="hub-inner">
+    <p class="hub-sec-label">Choose your Christmas experience</p>
+    <div class="hub-tiles">
+
+      <!-- TILE 1: Secret Santa Club -->
+      <div class="hub-tile tile-santa" onclick="openSanta()" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openSanta()">
+        <span class="hub-tile-badge">✨ New!</span>
+        <span class="hub-tile-ico">🎅</span>
+        <h2 class="hub-tile-title">Join Secret Santa Club</h2>
+        <p class="hub-tile-desc">Register your family, share your little ones' Christmas wishes, and be part of a magical gift exchange this season!</p>
+        <div class="hub-tile-cta">Join the Club <span>→</span></div>
+      </div>
+
+      <!-- TILE 2: Home Decor Contest -->
+      <div class="hub-tile tile-hdc" onclick="openHDC()" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openHDC()">
+        <span class="hub-tile-badge">🏆 Contest</span>
+        <span class="hub-tile-ico">🏡</span>
+        <h2 class="hub-tile-title">Home Decor Contest</h2>
+        <p class="hub-tile-desc">Deck your halls and win! Submit a video of your Christmas decorations — the most festive home in Birla Alokya wins!</p>
+        <div class="hub-tile-cta">Enter Contest <span>→</span></div>
+      </div>
+
+      <!-- TILE 3: Christmas Dinner -->
+      <a class="hub-tile tile-dinner" href="home.html">
+        <span class="hub-tile-badge">🎟️ Register</span>
+        <span class="hub-tile-ico">🍽️</span>
+        <h2 class="hub-tile-title">Christmas Dinner</h2>
+        <p class="hub-tile-desc">Secure your family's food coupon and join us for the festive feast at Jingle Bells 2026!</p>
+        <div class="hub-tile-cta">Register Your Family <span>→</span></div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- Toast notification -->
+<div id="toast"></div>
+
+<!-- ── SECRET SANTA MODAL ─────────────────────────────────── -->
+<div id="ss-ov" onclick="if(event.target===this)closeSanta()">
+  <div class="ss-modal">
+    <div class="ss-hd">
+      <h3>🎅 Secret Santa Club</h3>
+      <button class="ss-close" onclick="closeSanta()">✕</button>
+    </div>
+    <div class="ss-body">
+      <div class="ss-steps-bar">
+        <div class="ss-step-seg cur" id="ss-seg-1"></div>
+        <div class="ss-step-seg"     id="ss-seg-2"></div>
+      </div>
+
+      <!-- Pane 0: Personal details -->
+      <div class="ss-pane active" id="ss-pane-0">
+        <p style="font-size:13px;color:var(--muted);margin:0 0 18px;line-height:1.6">Tell us about your family — we'll match you with a Secret Santa! 🎁</p>
+        <div class="hdc-field">
+          <label class="hdc-field-label" for="ss-name">Full Name *</label>
+          <input class="hdc-input" id="ss-name" type="text" placeholder="e.g. Priya Sharma" autocomplete="name"/>
+        </div>
+        <div class="hdc-field">
+          <label class="hdc-field-label" for="ss-unit">Villament Unit # *</label>
+          <input class="hdc-input" id="ss-unit" type="text" placeholder="e.g. B01-01" autocomplete="off" oninput="this.value=this.value.toUpperCase()"/>
+        </div>
+        <div class="hdc-field">
+          <label class="hdc-field-label" for="ss-phone">Contact Number *</label>
+          <input class="hdc-input" id="ss-phone" type="tel" inputmode="numeric" placeholder="10-digit mobile number" maxlength="10" oninput="this.value=this.value.replace(/\D/g,'')"/>
+        </div>
+        <div class="ss-nav">
+          <button class="ss-btn-next" onclick="santaNext()">Continue → Kids' Wishes</button>
+        </div>
+      </div>
+
+      <!-- Pane 1: Kids' wishes -->
+      <div class="ss-pane" id="ss-pane-1">
+        <p style="font-size:13px;color:var(--muted);margin:0 0 18px;line-height:1.6">Share your little ones' Christmas wishes — a Secret Santa will make them come true! 🎁</p>
+        <div class="hdc-field">
+          <label class="hdc-field-label" for="ss-kidnames">Kids' Names &amp; Ages</label>
+          <textarea class="ss-textarea" id="ss-kidnames" placeholder="e.g. Arjun (age 8), Priya (age 5)" rows="3"></textarea>
+        </div>
+        <div class="hdc-field">
+          <label class="hdc-field-label" for="ss-wishes">Christmas Wish List *</label>
+          <textarea class="ss-textarea" id="ss-wishes" placeholder="What would your little ones love this Christmas? Books, toys, games, experiences…" rows="4"></textarea>
+        </div>
+        <div class="ss-nav">
+          <button class="ss-btn-back" onclick="santaBack()">← Back</button>
+          <button class="ss-btn-next" id="ss-submit-btn" onclick="santaSubmit()">🎁 Join the Club!</button>
+        </div>
+      </div>
+
+      <!-- Pane 2: Success -->
+      <div class="ss-pane" id="ss-pane-2">
+        <div class="ss-success">
+          <span class="ss-success-icon">🎄</span>
+          <h4>You're in the Club!</h4>
+          <p>Wonderful! Your family has been registered for the Secret Santa Club.<br>We'll be in touch with more details soon. Ho ho ho! 🎅</p>
+        </div>
+        <div class="ss-nav" style="margin-top:28px">
+          <button class="ss-btn-next" onclick="closeSanta()">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ── HOME DECOR CONTEST MODAL ───────────────────────────── -->
+<div id="hdc-ov" onclick="if(event.target===this)closeHDC()">
+  <div class="hdc-modal">
+    <div class="hdc-hd">
+      <h3>🏠 Home Decor Contest</h3>
+      <button class="hdc-close" onclick="closeHDC()">✕</button>
+    </div>
+    <div class="hdc-body">
+      <div class="hdc-steps-bar">
+        <div class="hdc-step-seg cur" id="hdc-seg-1"></div>
+        <div class="hdc-step-seg"     id="hdc-seg-2"></div>
+      </div>
+
+      <!-- Pane 0: Terms & Conditions -->
+      <div class="hdc-pane active" id="hdc-pane-0">
+        <div class="hdc-tnc-box" id="hdc-tnc-scroll">
+          <h2>🎄 JINGLE BELLS 2026<br>HOME DECOR CONTEST 🎄</h2>
+          <p>✨ Let your home sparkle with the magic of Christmas! Get creative, decorate your spaces and showcase your Christmas spirit!</p>
+
+          <h4>🏡 How to Participate?</h4>
+          <p><strong>Round 1 – Video Submission</strong></p>
+          <ul>
+            <li>Record a video (maximum 2 minutes) showcasing your Christmas decorations.</li>
+            <li>Highlight your decorated entrance, balcony, windows, living spaces or other festive corners.</li>
+            <li>Keep the video simple, clear and focused on your decorations.</li>
+            <li>Submit your video before the announced deadline.</li>
+            <li>One entry per household.</li>
+          </ul>
+
+          <h4>🏆 Round 2 – Final Judging</h4>
+          <ul>
+            <li>The top 5 entries will be shortlisted.</li>
+            <li>Our judging panel will visit the 5 shortlisted homes.</li>
+            <li>The final winner will be selected based on the judges' evaluation during the home visits.</li>
+          </ul>
+
+          <h4>✨ What Will Be Judged?</h4>
+          <ul>
+            <li>Creativity &amp; Originality</li>
+            <li>Christmas Theme &amp; Festive Spirit</li>
+            <li>Overall Presentation</li>
+            <li>Lighting &amp; Decoration</li>
+            <li>DIY &amp; Sustainable Ideas</li>
+            <li>Attention to Detail</li>
+          </ul>
+
+          <h4>📌 A Few Things to Remember</h4>
+          <ul>
+            <li>Creativity matters more than the budget!</li>
+            <li>Keep decorations safe and avoid obstructing common areas.</li>
+            <li>Judges' decisions will be final.</li>
+          </ul>
+
+          <p style="text-align:center;font-weight:800;color:var(--grn);margin-top:10px">🎅 Decorate. Capture. Submit. Celebrate!<br>Let's make Birla Alokya shine bright this Christmas! 🌟</p>
+        </div>
+        <label class="hdc-tnc-accept">
+          <input type="checkbox" id="hdc-tnc-check" onchange="document.getElementById('hdc-tnc-btn').disabled=!this.checked"/>
+          I have read and accept the contest terms &amp; conditions
+        </label>
+        <div class="hdc-nav">
+          <button class="hdc-btn-next" id="hdc-tnc-btn" onclick="hdcGoTo(1)" disabled>I Accept &amp; Continue →</button>
+        </div>
+      </div>
+
+      <!-- Pane 1: Personal details -->
+      <div class="hdc-pane" id="hdc-pane-1">
+        <p style="font-size:13px;color:var(--muted);margin:0 0 18px;line-height:1.6">Tell us about yourself — we'll reach out if your entry is shortlisted 🎉</p>
+        <div class="hdc-field">
+          <label class="hdc-field-label" for="hdc-name">Full Name *</label>
+          <input class="hdc-input" id="hdc-name" type="text" placeholder="e.g. Priya Sharma" autocomplete="name"/>
+        </div>
+        <div class="hdc-field">
+          <label class="hdc-field-label" for="hdc-unit">Villament Unit # *</label>
+          <input class="hdc-input" id="hdc-unit" type="text" placeholder="e.g. B01-01" autocomplete="off" oninput="this.value=this.value.toUpperCase()"/>
+        </div>
+        <div class="hdc-field">
+          <label class="hdc-field-label" for="hdc-phone">Contact Number *</label>
+          <input class="hdc-input" id="hdc-phone" type="tel" inputmode="numeric" placeholder="10-digit mobile number" maxlength="10" oninput="this.value=this.value.replace(/\D/g,'')"/>
+        </div>
+        <div class="hdc-nav">
+          <button class="hdc-btn-next" onclick="hdcNext()">Continue → Upload Video</button>
+        </div>
+      </div>
+
+      <!-- Pane 2: Video link -->
+      <div class="hdc-pane" id="hdc-pane-2">
+        <p style="font-size:13px;color:var(--muted);margin:0 0 14px;line-height:1.6">Upload your video to Google Drive, YouTube, or Instagram Reels, then paste the share link below. 🎬</p>
+        <div style="background:#f0faf0;border:1.5px solid #a7d7a8;border-radius:12px;padding:14px 16px;margin-bottom:18px;font-size:12px;color:#1b5e20;line-height:1.8">
+          <strong>Google Drive tip:</strong> Open Drive → upload video → right-click → <em>Share</em> → set to "Anyone with link" → <em>Copy link</em> → paste below.
+        </div>
+        <div class="hdc-field">
+          <label class="hdc-field-label" for="hdc-link">Video Share Link *</label>
+          <input class="hdc-input" id="hdc-link" type="url" placeholder="https://drive.google.com/file/d/…"/>
+        </div>
+        <div class="hdc-nav">
+          <button class="hdc-btn-back" onclick="hdcBack()">← Back</button>
+          <button class="hdc-btn-next" id="hdc-submit-btn" onclick="hdcSubmit()">🏆 Submit Entry</button>
+        </div>
+      </div>
+
+      <!-- Pane 3: Success -->
+      <div class="hdc-pane" id="hdc-pane-3">
+        <div class="hdc-success">
+          <span class="hdc-success-icon">🎉</span>
+          <h4>Entry Submitted!</h4>
+          <p>Thanks! Your Home Decor Contest entry has been received.<br>Winners will be announced at the event. Fingers crossed! 🤞</p>
+        </div>
+        <div class="hdc-nav" style="margin-top:28px">
+          <button class="hdc-btn-next" onclick="closeHDC()">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ─────────────────────────────────────────────── -->
+<div class="footer-zone">
+<div class="wave-wrap" aria-hidden="true">
+  <svg viewBox="0 0 1440 180" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="ftsky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#050c06"/>
+        <stop offset="60%" stop-color="#071a0e"/>
+        <stop offset="100%" stop-color="#051209"/>
+      </linearGradient>
+    </defs>
+
+    <!-- Sky background -->
+    <rect width="1440" height="180" fill="url(#ftsky)"/>
+
+    <!-- Stars (y≥55 to clear wave-seam zone) -->
+    <circle cx="52"   cy="62" r="1.2" fill="#fff"     opacity=".7"/>
+    <circle cx="145"  cy="56" r="1"   fill="#fdd835"  opacity=".8"/>
+    <circle cx="290"  cy="72" r="1.3" fill="#fff"     opacity=".65"/>
+    <circle cx="450"  cy="60" r="1"   fill="#fff"     opacity=".7"/>
+    <circle cx="640"  cy="64" r="1.4" fill="#fdd835"  opacity=".75"/>
+    <circle cx="750"  cy="76" r="1"   fill="#fff"     opacity=".55"/>
+    <circle cx="1000" cy="60" r="1.2" fill="#fff"     opacity=".7"/>
+    <circle cx="1150" cy="55" r="1.4" fill="#fdd835"  opacity=".7"/>
+    <circle cx="1280" cy="68" r="1"   fill="#fff"     opacity=".6"/>
+
+    <!-- Moon (crescent) -->
+    <circle cx="1370" cy="52" r="16" fill="#fffde7"/>
+    <circle cx="1377" cy="46" r="13" fill="#071a0e"/>
+
+    <!-- Far hills -->
+    <path d="M0,100 C180,72 360,84 540,72 C720,60 900,78 1080,66 C1260,54 1380,70 1440,62 L1440,180 L0,180Z" fill="#0a2210"/>
+
+    <!-- Snow ground (back) -->
+    <path d="M0,116 C240,102 480,112 720,106 C960,100 1200,108 1440,103 L1440,180 L0,180Z" fill="#b8d8e2"/>
+    <!-- Snow ground (mid) -->
+    <path d="M0,134 C200,124 400,132 640,127 C880,122 1100,130 1340,125 C1400,123 1440,127 1440,127 L1440,180 L0,180Z" fill="#dceef5"/>
+    <!-- Snow ground (front) -->
+    <path d="M0,152 C300,143 600,150 900,145 C1200,140 1400,148 1440,146 L1440,180 L0,180Z" fill="#ecf6fa"/>
+
+    <!-- TREE 1: far left, small -->
+    <g transform="translate(68,122)">
+      <rect x="-3" y="4" width="6" height="9" fill="#5d4037"/>
+      <polygon points="0,-16 -17,4 17,4" fill="#2e7d32"/>
+      <polygon points="0,-28 -12,-6 12,-6" fill="#33691e"/>
+      <polygon points="0,-40 -7,-20 7,-20" fill="#1b5e20"/>
+      <polygon points="0,-40 -3,-33 3,-33" fill="#e3f2fd" opacity=".85"/>
+      <circle cx="-6" cy="-8" r="2" fill="#ef5350" opacity=".9"/>
+      <circle cx="5" cy="-20" r="2" fill="#fdd835" opacity=".9"/>
+    </g>
+
+    <!-- TREE 2: left, tallest with star -->
+    <g transform="translate(195,118)">
+      <rect x="-4" y="5" width="8" height="13" fill="#5d4037"/>
+      <polygon points="0,-22 -22,5 22,5" fill="#2e7d32"/>
+      <polygon points="0,-38 -16,-8 16,-8" fill="#33691e"/>
+      <polygon points="0,-54 -9,-24 9,-24" fill="#1b5e20"/>
+      <polygon points="0,-60 2,-54 8,-54 3,-50 5,-44 0,-48 -5,-44 -3,-50 -8,-54 -2,-54" fill="#fdd835"/>
+      <polygon points="0,-54 -3,-45 3,-45" fill="#e3f2fd" opacity=".8"/>
+      <circle cx="-9" cy="-11" r="2.5" fill="#ef5350"/>
+      <circle cx="8" cy="-26" r="2.5" fill="#fdd835"/>
+      <circle cx="-5" cy="-43" r="2" fill="#42a5f5"/>
+      <circle cx="11" cy="-6" r="2.5" fill="#66bb6a"/>
+      <circle cx="-12" cy="-32" r="2" fill="#ab47bc"/>
+    </g>
+
+    <!-- TREE 3: left-center -->
+    <g transform="translate(330,120)">
+      <rect x="-3.5" y="4" width="7" height="11" fill="#5d4037"/>
+      <polygon points="0,-18 -19,4 19,4" fill="#2e7d32"/>
+      <polygon points="0,-32 -13,-7 13,-7" fill="#33691e"/>
+      <polygon points="0,-46 -8,-22 8,-22" fill="#1b5e20"/>
+      <polygon points="0,-46 -3,-38 3,-38" fill="#fffde7" opacity=".9"/>
+      <circle cx="7" cy="-10" r="2" fill="#ef5350"/>
+      <circle cx="-7" cy="-25" r="2" fill="#fdd835"/>
+    </g>
+
+    <!-- CAROUSEL -->
+    <g transform="translate(500,118)">
+      <rect x="-2" y="-56" width="4" height="66" fill="#8d6e63"/>
+      <polygon points="0,-74 -30,-24 30,-24" fill="#c62828"/>
+      <polygon points="0,-74 -8,-52 0,-52" fill="#fff" opacity=".55"/>
+      <polygon points="0,-74 8,-52 0,-52" fill="#c62828" opacity=".8"/>
+      <polygon points="0,-74 -22,-38 -15,-38" fill="#fff" opacity=".45"/>
+      <polygon points="0,-74 22,-38 15,-38" fill="#fff" opacity=".45"/>
+      <ellipse cx="0" cy="-24" rx="30" ry="5.5" fill="#e53935"/>
+      <circle cx="0" cy="-78" r="5" fill="#fdd835"/>
+      <line x1="0" y1="-24" x2="-24" y2="-2" stroke="#6d4c41" stroke-width="1.2"/>
+      <line x1="0" y1="-24" x2="0" y2="0" stroke="#6d4c41" stroke-width="1.2"/>
+      <line x1="0" y1="-24" x2="24" y2="-2" stroke="#6d4c41" stroke-width="1.2"/>
+      <ellipse cx="-24" cy="2" rx="9" ry="5" fill="#1565c0"/>
+      <ellipse cx="0" cy="2" rx="9" ry="5" fill="#fdd835"/>
+      <ellipse cx="24" cy="2" rx="9" ry="5" fill="#e53935"/>
+      <ellipse cx="0" cy="10" rx="32" ry="6" fill="#6d4c41"/>
+    </g>
+
+    <!-- TREE 4: center -->
+    <g transform="translate(658,119)">
+      <rect x="-4" y="5" width="8" height="12" fill="#5d4037"/>
+      <polygon points="0,-20 -21,5 21,5" fill="#2e7d32"/>
+      <polygon points="0,-36 -15,-8 15,-8" fill="#33691e"/>
+      <polygon points="0,-50 -9,-24 9,-24" fill="#1b5e20"/>
+      <polygon points="0,-50 -3.5,-41 3.5,-41" fill="#fff9c4" opacity=".9"/>
+      <circle cx="-9" cy="-14" r="2.5" fill="#fdd835"/>
+      <circle cx="8" cy="-29" r="2.5" fill="#ef5350"/>
+      <circle cx="-4" cy="-43" r="2" fill="#42a5f5"/>
+    </g>
+
+    <!-- SANTA ON SLEIGH (flying, below wave seam) -->
+    <g transform="translate(820,78)">
+      <!-- Reindeer A (lead) -->
+      <g transform="translate(-95,0)">
+        <ellipse cx="0" cy="0" rx="12" ry="6" fill="#8d6e63"/>
+        <circle cx="11" cy="-7" r="6" fill="#a1887f"/>
+        <path d="M10,-12 L8,-18 M8,-18 L5,-14 M8,-18 L11,-14" stroke="#5d4037" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <path d="M14,-12 L17,-18 M17,-18 L20,-14 M17,-18 L14,-14" stroke="#5d4037" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <circle cx="15" cy="-6" r="1.5" fill="#1a1a2e"/>
+        <circle cx="17" cy="-4" r="2.5" fill="#e53935"/>
+        <rect x="-6" y="6" width="3" height="9" fill="#795548" rx="1" transform="rotate(-12,-5,6)"/>
+        <rect x="0" y="6" width="3" height="9" fill="#795548" rx="1" transform="rotate(12,0,6)"/>
+        <rect x="6" y="6" width="3" height="8" fill="#795548" rx="1" transform="rotate(-5,6,6)"/>
+      </g>
+      <!-- Reindeer B -->
+      <g transform="translate(-48,2)">
+        <ellipse cx="0" cy="0" rx="12" ry="6" fill="#8d6e63"/>
+        <circle cx="11" cy="-7" r="6" fill="#a1887f"/>
+        <path d="M10,-12 L8,-18 M8,-18 L5,-14 M8,-18 L11,-14" stroke="#5d4037" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <path d="M14,-12 L17,-18 M17,-18 L20,-14 M17,-18 L14,-14" stroke="#5d4037" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <circle cx="15" cy="-6" r="1.5" fill="#1a1a2e"/>
+        <circle cx="17" cy="-4" r="2.5" fill="#e53935"/>
+        <rect x="-6" y="6" width="3" height="9" fill="#795548" rx="1" transform="rotate(12,-5,6)"/>
+        <rect x="0" y="6" width="3" height="9" fill="#795548" rx="1" transform="rotate(-10,0,6)"/>
+        <rect x="6" y="6" width="3" height="8" fill="#795548" rx="1" transform="rotate(6,6,6)"/>
+      </g>
+      <!-- Harness lines -->
+      <line x1="-22" y1="4" x2="-38" y2="2" stroke="#5d4037" stroke-width="1" opacity=".8"/>
+      <line x1="-22" y1="4" x2="-83" y2="0" stroke="#5d4037" stroke-width="1" opacity=".8"/>
+      <!-- Sleigh body -->
+      <path d="M-20,8 Q-26,-4 -14,-6 L52,-6 Q66,-6 68,8 Q70,24 54,26 L-8,26 Q-22,26 -20,8Z" fill="#c62828"/>
+      <path d="M-16,8 Q-20,-2 -10,-2 L50,-2" fill="none" stroke="#fdd835" stroke-width="2.2"/>
+      <path d="M-16,8 Q-20,-2 -10,-2 L50,-2 Q62,-2 62,8" fill="#ef5350" opacity=".4"/>
+      <!-- Runner -->
+      <path d="M-22,26 Q8,34 56,30 Q68,27 66,24" fill="#795548"/>
+      <!-- Gift bag -->
+      <ellipse cx="-4" cy="-12" rx="13" ry="10" fill="#8d6e63"/>
+      <path d="M-10,-14 Q-4,-20 2,-14" fill="none" stroke="#5d4037" stroke-width="1.8" stroke-linecap="round"/>
+      <!-- Santa body -->
+      <rect x="18" y="-18" width="22" height="22" rx="4" fill="#c62828"/>
+      <rect x="16" y="-2" width="26" height="6" fill="#212121" rx="2"/>
+      <rect x="24" y="-3" width="10" height="4" fill="#fdd835" rx="1"/>
+      <!-- Santa head -->
+      <circle cx="30" cy="-26" r="10" fill="#ffcc80"/>
+      <!-- Hat -->
+      <path d="M20,-26 Q22,-34 30,-34 Q38,-34 40,-26 L36,-30 Q33,-42 30,-47 Q27,-42 24,-30Z" fill="#c62828"/>
+      <rect x="19" y="-30" width="22" height="5.5" fill="#fff" rx="2.5"/>
+      <circle cx="30" cy="-49" r="4" fill="#fff"/>
+      <!-- Beard -->
+      <ellipse cx="30" cy="-16" rx="10" ry="6" fill="#fff"/>
+      <!-- Eyes + smile -->
+      <circle cx="25" cy="-28" r="2" fill="#5d4037"/>
+      <circle cx="35" cy="-28" r="2" fill="#5d4037"/>
+      <path d="M25,-20 Q30,-16 35,-20" fill="none" stroke="#5d4037" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- Waving arm -->
+      <rect x="40" y="-20" width="16" height="6" fill="#c62828" rx="3" transform="rotate(-28,40,-17)"/>
+      <circle cx="54" cy="-28" r="7" fill="#ffcc80"/>
+    </g>
+
+    <!-- REINDEER on ground -->
+    <g transform="translate(952,112)">
+      <ellipse cx="0" cy="-10" rx="24" ry="11" fill="#8d6e63"/>
+      <circle cx="22" cy="-20" r="11" fill="#a1887f"/>
+      <path d="M25,-30 L22,-42 L18,-35 M22,-42 L27,-36" stroke="#5d4037" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <path d="M29,-30 L33,-41 L37,-34 M33,-41 L29,-35" stroke="#5d4037" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <ellipse cx="16" cy="-28" rx="4" ry="7" fill="#a1887f" transform="rotate(-15,16,-28)"/>
+      <ellipse cx="16" cy="-28" rx="2.5" ry="4.5" fill="#ef9a9a" transform="rotate(-15,16,-28)"/>
+      <circle cx="26" cy="-20" r="2.5" fill="#1a1a2e"/>
+      <circle cx="27" cy="-21" r="1" fill="#fff"/>
+      <circle cx="32" cy="-16" r="4" fill="#e53935"/>
+      <circle cx="31" cy="-17" r="1.5" fill="#ffcdd2" opacity=".6"/>
+      <rect x="-14" y="1" width="6" height="15" fill="#795548" rx="2.5"/>
+      <rect x="-5" y="1" width="6" height="15" fill="#795548" rx="2.5"/>
+      <rect x="4" y="1" width="6" height="15" fill="#795548" rx="2.5"/>
+      <rect x="13" y="1" width="6" height="13" fill="#795548" rx="2.5"/>
+      <ellipse cx="-24" cy="-8" rx="6" ry="4.5" fill="#efebe9"/>
+      <path d="M10,-10 Q18,-2 26,-10" fill="none" stroke="#fdd835" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="18" cy="-4" r="3" fill="#fdd835"/>
+    </g>
+
+    <!-- HOUSE (right side) -->
+    <g transform="translate(1062,118)">
+      <rect x="-24" y="-24" width="48" height="34" fill="#1a3d1e"/>
+      <polygon points="-28,-24 28,-24 0,-52" fill="#8b1a1a"/>
+      <polygon points="-28,-24 -19,-38 0,-52 19,-38 28,-24 23,-23 0,-48 -23,-23" fill="#e3f2fd" opacity=".7"/>
+      <rect x="-20" y="-18" width="11" height="9" rx="1" fill="#fdd835" opacity=".9"/>
+      <rect x="9" y="-18" width="11" height="9" rx="1" fill="#fdd835" opacity=".85"/>
+      <line x1="-14.5" y1="-18" x2="-14.5" y2="-9" stroke="#2d1b00" stroke-width=".8" opacity=".4"/>
+      <line x1="-20" y1="-13.5" x2="-9" y2="-13.5" stroke="#2d1b00" stroke-width=".8" opacity=".4"/>
+      <line x1="14.5" y1="-18" x2="14.5" y2="-9" stroke="#2d1b00" stroke-width=".8" opacity=".4"/>
+      <line x1="9" y1="-13.5" x2="20" y2="-13.5" stroke="#2d1b00" stroke-width=".8" opacity=".4"/>
+      <rect x="-7" y="-4" width="14" height="14" fill="#2d1b00" rx="1"/>
+      <circle cx="5" cy="4" r="1.5" fill="#fdd835"/>
+      <rect x="10" y="-58" width="9" height="22" fill="#5d4037"/>
+      <rect x="8" y="-58" width="13" height="4" fill="#4e342e"/>
+      <circle cx="14" cy="-62" r="5" fill="#90a4ae" opacity=".3"/>
+      <circle cx="12" cy="-70" r="4" fill="#90a4ae" opacity=".2"/>
+      <circle cx="0" cy="-1" r="5.5" fill="none" stroke="#2e7d32" stroke-width="3.5"/>
+      <circle cx="0" cy="-1" r="2" fill="#c62828"/>
+    </g>
+
+    <!-- TREE 5: right of house -->
+    <g transform="translate(1188,120)">
+      <rect x="-3.5" y="4" width="7" height="11" fill="#5d4037"/>
+      <polygon points="0,-18 -19,4 19,4" fill="#2e7d32"/>
+      <polygon points="0,-32 -14,-7 14,-7" fill="#33691e"/>
+      <polygon points="0,-48 -8,-22 8,-22" fill="#1b5e20"/>
+      <polygon points="0,-48 -3.5,-39 3.5,-39" fill="#fffde7" opacity=".9"/>
+      <circle cx="9" cy="-16" r="2.5" fill="#66bb6a"/>
+      <circle cx="-8" cy="-30" r="2.5" fill="#ef5350"/>
+      <circle cx="4" cy="-43" r="2" fill="#fdd835"/>
+    </g>
+
+    <!-- TREE 6: far right, small -->
+    <g transform="translate(1370,122)">
+      <rect x="-3" y="4" width="6" height="8" fill="#5d4037"/>
+      <polygon points="0,-14 -15,4 15,4" fill="#2e7d32"/>
+      <polygon points="0,-26 -11,-5 11,-5" fill="#33691e"/>
+      <polygon points="0,-38 -6,-18 6,-18" fill="#1b5e20"/>
+      <polygon points="0,-38 -3,-30 3,-30" fill="#e3f2fd" opacity=".9"/>
+      <circle cx="5" cy="-8" r="2" fill="#ef5350"/>
+    </g>
+
+    <!-- Snow sparkles -->
+    <circle cx="180"  cy="120" r="1.5" fill="#fff" opacity=".55"/>
+    <circle cx="450"  cy="126" r="1"   fill="#fff" opacity=".5"/>
+    <circle cx="750"  cy="118" r="1.5" fill="#fff" opacity=".6"/>
+    <circle cx="980"  cy="124" r="1"   fill="#fff" opacity=".55"/>
+    <circle cx="1280" cy="120" r="1.5" fill="#fff" opacity=".5"/>
+
+    <!-- Wave seam: fills hub-section background (#0a1f0e) above the wave curve -->
+    <path d="M0,0 L1440,0 L1440,24 C1380,10 1260,36 1080,24 C720,0 360,48 0,24 Z" fill="#0a1f0e"/>
+  </svg>
+</div>
+<footer class="footer">
+  <div class="footer-icon">🎄</div>
+  <div class="footer-name">Jingle Bells 2026</div>
+  <p class="footer-tag">Birla Alokya Residents · Celebrating the season together!</p>
+</footer>
+</div>
+
+<script>
+const API_URL = "https://script.google.com/macros/s/AKfycbw_Z81c3Zzn56sjKb6rneqxtdcGbina__--02VErGsvtJhfFzG6Q3yZSexVn8jFBqs/exec";
+
+addEventListener("DOMContentLoaded", () => {
+  buildLights();
+  buildSnow();
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+});
+
+// ── Snow ──────────────────────────────────────────────────
+function buildSnow() {
+  const stage = document.getElementById("snow-stage");
+  if (!stage) return;
+  const chars = ["❄","❅","❆","·","✦","∗"];
+  for (let i = 0; i < 42; i++) {
+    const el = document.createElement("div");
+    el.className = "flk";
+    el.textContent = chars[i % chars.length];
+    el.style.left              = (Math.random() * 100) + "vw";
+    el.style.fontSize          = (8 + Math.random() * 14) + "px";
+    el.style.opacity           = (0.25 + Math.random() * 0.6);
+    el.style.animationDuration = (5 + Math.random() * 10) + "s";
+    el.style.animationDelay    = (Math.random() * 9) + "s";
+    stage.appendChild(el);
+  }
+}
+
+// ── Christmas lights ──────────────────────────────────────
+function buildLights() {
+  const row = document.getElementById("lights-row");
+  if (!row) return;
+  const types = ["br","bg","by","bb"];
+  let html = "";
+  for (let i = 0; i < 64; i++) html += `<div class="bulb ${types[i % 4]}"></div>`;
+  row.innerHTML = html + html;
+}
+
+// ── Countdown ─────────────────────────────────────────────
+function updateCountdown() {
+  const diff = new Date("2026-12-19T09:00:00+05:30") - new Date();
+  if (diff <= 0) {
+    const wrap = document.querySelector(".countdown-strip");
+    if (wrap) wrap.innerHTML = '<div style="padding:14px 28px;text-align:center;font-weight:800;font-size:18px;color:#fdd835">🎄 Jingle Bells 2026 is Here! 🎄</div>';
+    return;
+  }
+  const pad = n => String(n).padStart(2, "0");
+  document.getElementById("cd-days").textContent  = Math.floor(diff / 86400000);
+  document.getElementById("cd-hours").textContent = pad(Math.floor((diff % 86400000) / 3600000));
+  document.getElementById("cd-mins").textContent  = pad(Math.floor((diff % 3600000) / 60000));
+  document.getElementById("cd-secs").textContent  = pad(Math.floor((diff % 60000) / 1000));
+}
+
+// ── Toast ─────────────────────────────────────────────────
+function toast(msg) {
+  const el = document.getElementById("toast");
+  el.textContent = msg; el.classList.add("show");
+  setTimeout(() => el.classList.remove("show"), 3200);
+}
+
+// ── JSONP ─────────────────────────────────────────────────
+function jsonp(params, {silent=false}={}) {
+  return new Promise(resolve => {
+    if (!API_URL || API_URL === "YOUR_XMAS_WEB_APP_URL_HERE") { if (!silent) toast("API URL not configured"); resolve(null); return; }
+    const cb = "_cb" + Date.now() + Math.floor(Math.random() * 1000);
+    const s  = document.createElement("script");
+    const t  = setTimeout(() => { delete window[cb]; s.remove(); if (!silent) toast("Request timed out"); resolve(null); }, 30000);
+    window[cb] = d => { clearTimeout(t); delete window[cb]; s.remove(); resolve(d); };
+    params.callback = cb;
+    s.src = API_URL + "?" + new URLSearchParams(params);
+    s.onerror = () => { clearTimeout(t); delete window[cb]; s.remove(); if (!silent) toast("Network error"); resolve(null); };
+    document.head.appendChild(s);
+  });
+}
+
+// ── HOME DECOR CONTEST ────────────────────────────────────
+function openHDC() {
+  hdcGoTo(0);
+  document.getElementById("hdc-tnc-check").checked = false;
+  document.getElementById("hdc-tnc-btn").disabled = true;
+  document.getElementById("hdc-ov").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+function closeHDC() {
+  document.getElementById("hdc-ov").classList.remove("open");
+  document.body.style.overflow = "";
+}
+function hdcGoTo(step) {
+  [0,1,2,3].forEach(n => {
+    document.getElementById(`hdc-pane-${n}`).classList.toggle("active", n === step);
+  });
+  const bar = document.querySelector(".hdc-steps-bar");
+  bar.style.display = step === 0 ? "none" : "";
+  document.getElementById("hdc-seg-1").className = "hdc-step-seg" + (step > 1 ? " done" : step === 1 ? " cur" : "");
+  document.getElementById("hdc-seg-2").className = "hdc-step-seg" + (step > 2 ? " done" : step === 2 ? " cur" : "");
+}
+function hdcNext() {
+  const name  = document.getElementById("hdc-name").value.trim();
+  const unit  = document.getElementById("hdc-unit").value.trim();
+  const phone = document.getElementById("hdc-phone").value.trim();
+  if (!name)               { hdcShake("hdc-name");  return; }
+  if (!unit)               { hdcShake("hdc-unit");  return; }
+  if (phone.length !== 10) { hdcShake("hdc-phone"); return; }
+  hdcGoTo(2);
+}
+function hdcBack() { hdcGoTo(1); }
+async function hdcSubmit() {
+  const link = document.getElementById("hdc-link").value.trim();
+  if (!link || !link.startsWith("http")) { hdcShake("hdc-link"); return; }
+  const btn = document.getElementById("hdc-submit-btn");
+  btn.disabled = true; btn.textContent = "Submitting…";
+  const data = await jsonp({
+    action: "hdcsubmit",
+    name:   document.getElementById("hdc-name").value.trim(),
+    unit:   document.getElementById("hdc-unit").value.trim(),
+    phone:  document.getElementById("hdc-phone").value.trim(),
+    link
+  });
+  if (data && data.ok) {
+    hdcGoTo(3);
+  } else {
+    toast((data && data.message) || "Submission failed — please try again");
+    btn.disabled = false; btn.textContent = "🏆 Submit Entry";
+  }
+}
+function hdcShake(id) {
+  const el = document.getElementById(id);
+  el.style.borderColor = "var(--red)"; el.focus();
+  setTimeout(() => { el.style.borderColor = ""; }, 1500);
+}
+
+// ── SECRET SANTA ──────────────────────────────────────────
+function openSanta() {
+  santaGoTo(0);
+  document.getElementById("ss-ov").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+function closeSanta() {
+  document.getElementById("ss-ov").classList.remove("open");
+  document.body.style.overflow = "";
+}
+function santaGoTo(step) {
+  [0,1,2].forEach(n => {
+    document.getElementById(`ss-pane-${n}`).classList.toggle("active", n === step);
+  });
+  const bar = document.querySelector(".ss-steps-bar");
+  if (step === 2) { bar.style.display = "none"; return; }
+  bar.style.display = "";
+  document.getElementById("ss-seg-1").className = "ss-step-seg" + (step > 0 ? " done" : " cur");
+  document.getElementById("ss-seg-2").className = "ss-step-seg" + (step > 1 ? " done" : step === 1 ? " cur" : "");
+}
+function santaNext() {
+  const name  = document.getElementById("ss-name").value.trim();
+  const unit  = document.getElementById("ss-unit").value.trim();
+  const phone = document.getElementById("ss-phone").value.trim();
+  if (!name)               { ssShake("ss-name");  return; }
+  if (!unit)               { ssShake("ss-unit");  return; }
+  if (phone.length !== 10) { ssShake("ss-phone"); return; }
+  santaGoTo(1);
+}
+function santaBack() { santaGoTo(0); }
+async function santaSubmit() {
+  const wishes = document.getElementById("ss-wishes").value.trim();
+  if (!wishes) { ssShake("ss-wishes"); return; }
+  const btn = document.getElementById("ss-submit-btn");
+  btn.disabled = true; btn.textContent = "Registering…";
+  const data = await jsonp({
+    action:   "santaregister",
+    name:     document.getElementById("ss-name").value.trim(),
+    unit:     document.getElementById("ss-unit").value.trim(),
+    phone:    document.getElementById("ss-phone").value.trim(),
+    kidnames: document.getElementById("ss-kidnames").value.trim(),
+    wishes
+  });
+  if (data && data.ok) {
+    santaGoTo(2);
+  } else {
+    toast((data && data.message) || "Registration failed — please try again");
+    btn.disabled = false; btn.textContent = "🎁 Join the Club!";
+  }
+}
+function ssShake(id) {
+  const el = document.getElementById(id);
+  const isTextarea = el.tagName === "TEXTAREA";
+  el.style.borderColor = "#c62828"; el.focus();
+  setTimeout(() => { el.style.borderColor = ""; }, 1500);
+}
+</script>
+</body>
+</html>
