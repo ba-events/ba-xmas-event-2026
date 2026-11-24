@@ -50,21 +50,19 @@ body {
   text-align:center;
 }
 .hub-eyebrow { font-size:11px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
-.hub-event-name {
-  font-family:'Mountains of Christmas', serif;
-  font-size:clamp(56px,11vw,100px);
-  font-weight:700; line-height:.92; letter-spacing:-1px;
-  color:#fff;
-  text-shadow:0 2px 32px rgba(0,0,0,.7);
+.hub-logo {
+  width:100%; max-width:560px; height:auto;
+  display:block; margin:0 auto 2px;
+  filter:drop-shadow(0 6px 28px rgba(0,0,0,.55));
 }
-.hub-yr {
-  display:block; font-family:'Inter',sans-serif; font-weight:900;
-  font-size:.42em; letter-spacing:.25em;
+.hub-yr-badge {
+  font-family:'Inter',sans-serif; font-weight:900;
+  font-size:clamp(22px,4vw,36px); letter-spacing:.28em;
   background:linear-gradient(90deg,var(--red-lt),var(--gold));
   -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-  margin-top:5px;
+  margin-bottom:4px;
 }
-.hub-tagline { font-size:14px; color:rgba(255,255,255,.65); max-width:400px; line-height:1.65; margin:16px auto 24px; }
+.hub-tagline { font-size:14px; color:rgba(255,255,255,.65); max-width:400px; line-height:1.65; margin:14px auto 24px; }
 .hub-pills { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:28px; }
 .hub-pill {
   display:inline-flex; align-items:center; gap:5px;
@@ -85,11 +83,7 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
   transition:background .2s, transform .15s;
 }
 .hub-wonderland-link:hover { background:rgba(255,255,255,.22); transform:translateY(-2px); }
-.hub-star { font-size:40px; display:block; width:fit-content; margin:0 auto 14px; filter:drop-shadow(0 0 14px #f9a82566); animation:star-pulse 2.5s ease-in-out infinite; }
-@keyframes star-pulse { 0%,100%{transform:scale(1);filter:drop-shadow(0 0 14px #f9a82566)} 50%{transform:scale(1.14);filter:drop-shadow(0 0 28px #ffd54fcc)} }
-
-/* ── LIGHTS BAR ─────────────────────────────────────────── */
-.lights-bar { background:#0b1a0d; padding:10px 0; overflow:hidden; }
+.hub-wonderland-link {
 .lights-row { display:flex; gap:24px; padding:0 12px; animation:lights-run 22s linear infinite; white-space:nowrap; }
 .bulb { width:13px; height:18px; border-radius:50% 50% 45% 45%; position:relative; flex-shrink:0; }
 .bulb::before { content:''; position:absolute; top:-5px; left:50%; transform:translateX(-50%); width:3px; height:6px; background:#444; border-radius:2px; }
