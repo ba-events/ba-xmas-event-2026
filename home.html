@@ -398,6 +398,11 @@ a.hero-pill:hover {
 .mt-result { display:none; }
 .mt-result.show { display:block; }
 
+/* ── PAGE NAV ────────────────────────────────────────── */
+.page-nav { background:#071a0e; padding:14px 20px 12px; border-bottom:1px solid rgba(255,255,255,.08); }
+.page-nav-back { color:rgba(255,255,255,.8); font-size:14px; font-weight:700; text-decoration:none; display:inline-flex; align-items:center; gap:6px; transition:color .15s; }
+.page-nav-back:hover { color:#fdd835; }
+
 /* ── TOAST ───────────────────────────────────────────── */
 #toast {
   position:fixed; bottom:76px; left:50%; transform:translateX(-50%) translateY(16px);
@@ -516,94 +521,10 @@ a.hero-pill:hover {
 </head>
 <body>
 
-<!-- ── HERO ─────────────────────────────────────────── -->
-<header class="hero">
-  <div class="hero-stripe-t"></div>
-  <div class="snow-stage" id="snow-stage"></div>
-  <div class="hero-inner">
-    <span class="hero-star">⭐</span>
-    <div class="hero-eyebrow">Birla Alokya Residents Present</div>
-    <h1>Jingle Bells<span class="yr">2026</span></h1>
-    <p class="hero-desc">A two-day community celebration for all families of Birla Alokya — traditions, music, food, games and memories.</p>
-    <div class="hero-pills">
-      <span class="hero-pill">🎄 Sat & Sun · 19–20 Dec 2026</span>
-      <span class="hero-pill">📍 Birla Alokya · Whitefield</span>
-      <a class="hero-pill" href="https://maps.app.goo.gl/U1HyHkS6fodXsV8X9" target="_blank">🗺 Maps</a>
-    </div>
-    <div class="hero-ctas">
-      <a class="hero-cta" href="#reg">🎁 Register Your Family <span class="arr">→</span></a>
-      <a class="hero-magic" href="wonderland.html">✨ Discover the Magic</a>
-    </div>
-  </div>
-  <div class="hero-stripe-b"></div>
+<!-- ── PAGE NAV ─────────────────────────────────────── -->
+<header class="page-nav">
+  <a href="index.html" class="page-nav-back">← Jingle Bells 2026</a>
 </header>
-
-<!-- ── LIGHTS BAR ────────────────────────────────────── -->
-<div class="lights-bar" aria-hidden="true"><div class="lights-row" id="lights-row"></div></div>
-
-<!-- ── COUNTDOWN ─────────────────────────────────────── -->
-<div class="countdown-wrap">
-  <div class="countdown-inner">
-    <div class="cd-label">🎅 Jingle Bells 2026 begins in</div>
-    <div class="cd-units">
-      <div class="cd-unit"><div class="cd-n" id="cd-days">--</div><div class="cd-l">Days</div></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-unit"><div class="cd-n" id="cd-hours">--</div><div class="cd-l">Hrs</div></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-unit"><div class="cd-n" id="cd-mins">--</div><div class="cd-l">Mins</div></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-unit"><div class="cd-n" id="cd-secs">--</div><div class="cd-l">Secs</div></div>
-    </div>
-  </div>
-</div>
-
-<!-- ── PROGRAMME DETAILS ──────────────────────────────── -->
-<section class="prog-section">
-  <div class="prog-inner">
-    <div class="prog-head">
-      <h2>Programme Details</h2>
-      <p>Join us for a joyful Christmas celebration — two days packed with festive cheer for the whole family.</p>
-    </div>
-    <div class="day-cards">
-        <div class="day-card">
-          <span class="day-tag">Day 1</span>
-          <h3 class="day-title">🎪 Christmas Carnival</h3>
-          <p class="day-date">Saturday, December 19, 2026</p>
-          <div class="act-tiles">
-            <div class="act-tile"><span class="act-tile-ico">🍔</span>Food Trucks</div>
-            <div class="act-tile"><span class="act-tile-ico">🛍️</span>Flea Markets</div>
-            <div class="act-tile"><span class="act-tile-ico">💡</span>Lighting &amp; Illumination</div>
-            <div class="act-tile"><span class="act-tile-ico">🤝</span>Residents Engagement</div>
-            <div class="act-tile"><span class="act-tile-ico">🏪</span>Stalls &amp; More</div>
-          </div>
-        </div>
-        <div class="day-card">
-          <span class="day-tag">Day 2</span>
-          <h3 class="day-title">🎉 Christmas Fiesta</h3>
-          <p class="day-date">Sunday, December 20, 2026</p>
-          <div class="act-tiles">
-            <div class="act-tile"><span class="act-tile-ico">🎭</span>Cultural Programs</div>
-            <div class="act-tile"><span class="act-tile-ico">🎵</span>Christmas Carols</div>
-            <div class="act-tile"><span class="act-tile-ico">🎅</span>Santa Claus</div>
-            <div class="act-tile"><span class="act-tile-ico">🎮</span>Games &amp; Fun</div>
-            <div class="act-tile"><span class="act-tile-ico">🍽️</span>Grand Dinner</div>
-          </div>
-        </div>
-        <div class="feat-card contest" onclick="openHDC()" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openHDC()" style="grid-column:1/-1">
-          <div class="hdc-tile-inner">
-            <div class="hdc-tile-ico">🏠</div>
-            <div>
-              <span class="contest-badge">🏆 Enter &amp; Win</span>
-              <h3>Home Decor Contest</h3>
-              <p>Deck your Villament in Christmas spirit! Submit a short video of your festive decor to enter.</p>
-              <span class="contest-enter">Submit your entry <span class="contest-enter-arr">→</span></span>
-            </div>
-          </div>
-        </div>
-    </div>
-  </div>
-</section>
-
 <!-- ── SECTION BRIDGE ────────────────────────────────── -->
 <div class="reg-bridge">
   <span class="reg-bridge-icon">🎟️</span>
