@@ -901,6 +901,7 @@ function openHDC() {
   hdcGoTo(0);
   document.getElementById("hdc-tnc-check").checked = false;
   document.getElementById("hdc-tnc-btn").disabled = true;
+  hdcSetSubmitType("link");
   document.getElementById("hdc-ov").classList.add("open");
   document.body.style.overflow = "hidden";
 }
@@ -928,8 +929,14 @@ function hdcNext() {
 }
 function hdcBack() { hdcGoTo(1); }
 async function hdcSubmit() {
-  const link = document.getElementById("hdc-link").value.trim();
-  if (!link || !link.startsWith("http")) { hdcShake("hdc-link"); return; }
+  const isEmail = document.getElementById("hdc-tog-email").classList.contains("active");
+  let link;
+  if (isEmail) {
+    link = "via-email";
+  } else {
+    link = document.getElementById("hdc-link").value.trim();
+    if (!link || !link.startsWith("http")) { hdcShake("hdc-link"); return; }
+  }
   const btn = document.getElementById("hdc-submit-btn");
   btn.disabled = true; btn.textContent = "Submitting…";
   const data = await jsonp({
@@ -945,6 +952,12 @@ async function hdcSubmit() {
     toast((data && data.message) || "Submission failed — please try again");
     btn.disabled = false; btn.textContent = "🏆 Submit Entry";
   }
+}
+function hdcSetSubmitType(type) {
+  document.getElementById("hdc-tog-link").classList.toggle("active", type === "link");
+  document.getElementById("hdc-tog-email").classList.toggle("active", type === "email");
+  document.getElementById("hdc-link-sect").style.display  = type === "link"  ? "" : "none";
+  document.getElementById("hdc-email-sect").style.display = type === "email" ? "" : "none";
 }
 function hdcShake(id) {
   const el = document.getElementById(id);
@@ -983,23 +996,33 @@ function santaNext() {
 }
 function santaBack() { santaGoTo(0); }
 async function santaSubmit() {
-  const wishes = document.getElementById("ss-wishes").value.trim();
-  if (!wishes) { ssShake("ss-wishes"); return; }
+  const kidname     = document.getElementById("ss-kidname").value.trim();
+  const kidage      = document.getElementById("ss-kidage").value.trim();
+  const wish        = document.getElementById("ss-wish").value.trim();
+  const description = document.getElementById("ss-description").value.trim();
+  if (!kidname) { ssShake("ss-kidname"); return; }
+  if (!kidage)  { ssShake("ss-kidage");  return; }
+  if (!wish)    { ssShake("ss-wish");    return; }
   const btn = document.getElementById("ss-submit-btn");
   btn.disabled = true; btn.textContent = "Registering…";
   const data = await jsonp({
-    action:   "santaregister",
-    name:     document.getElementById("ss-name").value.trim(),
-    unit:     document.getElementById("ss-unit").value.trim(),
-    phone:    document.getElementById("ss-phone").value.trim(),
-    kidnames: document.getElementById("ss-kidnames").value.trim(),
-    wishes
+    action:      "santaregister",
+    parentname:  document.getElementById("ss-name").value.trim(),
+    unit:        document.getElementById("ss-unit").value.trim(),
+    phone:       document.getElementById("ss-phone").value.trim(),
+    kidname,
+    kidage,
+    wish,
+    description
   });
   if (data && data.ok) {
+    document.getElementById("ss-success-msg").innerHTML =
+      `<strong>${kidname}</strong>'s wish has been registered! 🎁<br>Have more children? Tap "Register Another Child"!`;
     santaGoTo(2);
+    ["ss-kidname","ss-kidage","ss-wish","ss-description"].forEach(id => { document.getElementById(id).value = ""; });
   } else {
     toast((data && data.message) || "Registration failed — please try again");
-    btn.disabled = false; btn.textContent = "🎁 Join the Club!";
+    btn.disabled = false; btn.textContent = "🎁 Register this Child";
   }
 }
 function ssShake(id) {
