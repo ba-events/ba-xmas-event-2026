@@ -49,7 +49,7 @@ body {
   width:min(960px,100%); margin:0 auto;
   text-align:center;
 }
-.hub-eyebrow { font-size:11px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
+.hub-eyebrow { font-size:15px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
 .hub-logo {
   width:100%; max-width:560px; height:auto;
   display:block; margin:0 auto 2px;
@@ -65,10 +65,11 @@ body {
 .hub-tagline { font-size:14px; color:rgba(255,255,255,.65); max-width:400px; line-height:1.65; margin:14px auto 24px; }
 .hub-pills { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:28px; }
 .hub-pill {
-  display:inline-flex; align-items:center; gap:5px;
+  display:inline-flex; align-items:center; justify-content:center; gap:5px;
+  height:34px; min-width:160px;
   background:rgba(255,255,255,.12); backdrop-filter:blur(8px);
   border:1px solid rgba(255,255,255,.22); border-radius:99px;
-  padding:5px 14px; font-size:12px; font-weight:600; color:#fff;
+  padding:0 16px; font-size:12px; font-weight:600; color:#fff;
   text-decoration:none;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.28),inset 0 -1px 0 rgba(0,0,0,.18),0 2px 0 rgba(0,0,0,.28),0 4px 14px rgba(0,0,0,.2);
   transition:transform .15s, box-shadow .15s;
@@ -103,7 +104,7 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
   background:rgba(255,255,255,.04); border-radius:14px;
   border:1px solid rgba(255,255,255,.08);
 }
-.cd-label { font-size:28px; font-weight:900; color:var(--gold); line-height:1.2; }
+.cd-label { font-size:20px; font-weight:900; color:var(--gold); line-height:1.2; }
 .cd-units  { display:flex; align-items:center; gap:5px; }
 .cd-unit   { text-align:center; min-width:46px; background:rgba(255,255,255,.08); border-radius:9px; padding:6px 8px; }
 .cd-n      { font-size:22px; font-weight:900; color:#fff; line-height:1; font-variant-numeric:tabular-nums; }
@@ -148,14 +149,14 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
   background:linear-gradient(135deg,rgba(255,255,255,.12) 0%,transparent 55%);
   pointer-events:none;
 }
-.tile-santa  { background:linear-gradient(145deg,#7a5200 0%,#c8980a 50%,#f5c220 100%); color:#1a0d00; }
-.tile-hdc    { background:linear-gradient(145deg,#5c3a00 0%,#a87800 50%,#dba000 100%); color:#1a0d00; }
-.tile-dinner { background:linear-gradient(145deg,#6b4600 0%,#b88a00 50%,#e0a820 100%); color:#1a0d00; }
+.tile-santa  { background:linear-gradient(145deg,#1b5e20 0%,#2e7d32 55%,#43a047 100%); color:#fff; }
+.tile-hdc    { background:linear-gradient(145deg,#004d20 0%,#006b2a 55%,#1a7a3a 100%); color:#fff; }
+.tile-dinner { background:linear-gradient(145deg,#145a32 0%,#1e8449 55%,#27ae60 100%); color:#fff; }
 
 .hub-tile-badge {
   display:inline-block; font-size:11px; font-weight:800; letter-spacing:.04em;
   padding:4px 12px; border-radius:99px; margin-bottom:22px; align-self:flex-start;
-  background:rgba(0,0,0,.18); border:1px solid rgba(0,0,0,.22); color:rgba(0,0,0,.72);
+  background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.28); color:rgba(255,255,255,.95);
 }
 
 .hub-tile-ico { font-size:72px; line-height:1; display:block; margin-bottom:16px; filter:drop-shadow(0 4px 14px rgba(0,0,0,.28)); }
@@ -171,9 +172,9 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
   padding:12px 20px; border-radius:12px;
   transition:gap .15s, background .15s;
 }
-.tile-santa  .hub-tile-cta { background:rgba(0,0,0,.18); color:#1a0d00; }
-.tile-hdc    .hub-tile-cta { background:rgba(0,0,0,.18); color:#1a0d00; }
-.tile-dinner .hub-tile-cta { background:rgba(0,0,0,.18); color:#1a0d00; }
+.tile-santa  .hub-tile-cta { background:rgba(0,0,0,.22); color:#fff; }
+.tile-hdc    .hub-tile-cta { background:rgba(0,0,0,.22); color:#fff; }
+.tile-dinner .hub-tile-cta { background:rgba(0,0,0,.22); color:#fff; }
 .hub-tile:hover .hub-tile-cta { gap:12px; }
 @media (max-width:900px) {
   .hub-tile { min-height:220px; padding:24px 22px 22px; }
@@ -290,9 +291,9 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
     <div class="hub-pills">
       <span class="hub-pill">🎄 Sat &amp; Sun · 19–20 Dec 2026</span>
       <span class="hub-pill">📍 Birla Alokya · Whitefield</span>
-      <a class="hub-pill" href="https://maps.app.goo.gl/U1HyHkS6fodXsV8X9" target="_blank">🗺 Maps</a>
+      <a class="hub-pill" href="https://maps.app.goo.gl/U1HyHkS6fodXsV8X9" target="_blank">📌 Location</a>
     </div>
-    <a class="hub-wonderland-link" href="wonderland.html">✨ Discover the Magic</a>
+    </div>
   </div>
   <div class="hero-stripe-b"></div>
 </header>
