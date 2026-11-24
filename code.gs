@@ -55,6 +55,7 @@ function doGet(e) {
   else if (action === "experiences") result = getExperienceList();
   else if (action === "getticket")      result = getTicket(e.parameter.phone, e.parameter.flat);
   else if (action === "hdcsubmit")      result = submitHomeDecorEntry(e.parameter);
+  else if (action === "santaregister")  result = submitSantaRegistration(e.parameter);
   else if (pin !== CFG.SCANNER_PIN) result = { ok: false, message: "Invalid PIN" };
   else if (action === "lookup")  result = checkinTicket(e.parameter.ticket, null);
   else if (action === "checkin") result = checkinTicket(e.parameter.ticket, e.parameter.count);
@@ -579,6 +580,39 @@ function submitHomeDecorEntry(p) {
     sheet.appendRow([new Date(), name, unit, phone, link]);
   } catch(e) {
     Logger.log("submitHomeDecorEntry error: " + e.message);
+    return { ok: false, message: "Server error — please try again" };
+  }
+
+  return { ok: true };
+}
+
+
+function submitSantaRegistration(p) {
+  const parentname  = clean(p.parentname  || "");
+  const unit        = normalizeFlat(p.unit || "");
+  const phone       = clean(p.phone       || "").replace(/\D/g, "");
+  const kidname     = clean(p.kidname     || "");
+  const kidage      = clean(p.kidage      || "");
+  const wish        = clean(p.wish        || "");
+  const description = clean(p.description || "");
+
+  if (!parentname)       return { ok: false, message: "Parent name is required" };
+  if (!unit)             return { ok: false, message: "Villament unit is required" };
+  if (phone.length !== 10) return { ok: false, message: "Valid 10-digit phone required" };
+  if (!kidname)          return { ok: false, message: "Child's name is required" };
+  if (!kidage)           return { ok: false, message: "Child's age is required" };
+  if (!wish)             return { ok: false, message: "Wish is required" };
+
+  try {
+    const ss    = SpreadsheetApp.getActiveSpreadsheet();
+    const sheet = getOrCreateSheet(ss, "SantaWishes");
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow(["Timestamp", "Parent Name", "Unit #", "Phone", "Child Name", "Age", "Wish", "Details"]);
+      sheet.setFrozenRows(1);
+    }
+    sheet.appendRow([new Date(), parentname, unit, phone, kidname, kidage, wish, description]);
+  } catch(e) {
+    Logger.log("submitSantaRegistration error: " + e.message);
     return { ok: false, message: "Server error — please try again" };
   }
 
