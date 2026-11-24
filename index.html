@@ -385,24 +385,35 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
           <input class="hdc-input" id="ss-phone" type="tel" inputmode="numeric" placeholder="10-digit mobile number" maxlength="10" oninput="this.value=this.value.replace(/\D/g,'')"/>
         </div>
         <div class="ss-nav">
-          <button class="ss-btn-next" onclick="santaNext()">Continue → Kids' Wishes</button>
+          <button class="ss-btn-next" onclick="santaNext()">Continue → Child's Wish</button>
+        </div>
+        <div class="modal-dinner-link">
+          <a href="home.html">🍽️ Also register for <strong>Christmas Dinner</strong> →</a>
         </div>
       </div>
 
-      <!-- Pane 1: Kids' wishes -->
+      <!-- Pane 1: Per-kid details -->
       <div class="ss-pane" id="ss-pane-1">
-        <p style="font-size:13px;color:var(--muted);margin:0 0 18px;line-height:1.6">Share your little ones' Christmas wishes — a Secret Santa will make them come true! 🎁</p>
+        <p style="font-size:13px;color:var(--muted);margin:0 0 18px;line-height:1.6">Fill in one child's details — submit again for each additional child. 🎄</p>
         <div class="hdc-field">
-          <label class="hdc-field-label" for="ss-kidnames">Kids' Names &amp; Ages</label>
-          <textarea class="ss-textarea" id="ss-kidnames" placeholder="e.g. Arjun (age 8), Priya (age 5)" rows="3"></textarea>
+          <label class="hdc-field-label" for="ss-kidname">Child's Name *</label>
+          <input class="hdc-input" id="ss-kidname" type="text" placeholder="e.g. Arjun"/>
         </div>
         <div class="hdc-field">
-          <label class="hdc-field-label" for="ss-wishes">Christmas Wish List *</label>
-          <textarea class="ss-textarea" id="ss-wishes" placeholder="What would your little ones love this Christmas? Books, toys, games, experiences…" rows="4"></textarea>
+          <label class="hdc-field-label" for="ss-kidage">Child's Age *</label>
+          <input class="hdc-input" id="ss-kidage" type="number" min="1" max="18" inputmode="numeric" placeholder="e.g. 8"/>
+        </div>
+        <div class="hdc-field">
+          <label class="hdc-field-label" for="ss-wish">Christmas Wish *</label>
+          <input class="hdc-input" id="ss-wish" type="text" placeholder="e.g. LEGO Technic set, art supplies…"/>
+        </div>
+        <div class="hdc-field">
+          <label class="hdc-field-label" for="ss-description">More Details</label>
+          <textarea class="ss-textarea" id="ss-description" rows="3" placeholder="Brand, colour, size, alternatives — any details to help the Secret Santa!"></textarea>
         </div>
         <div class="ss-nav">
           <button class="ss-btn-back" onclick="santaBack()">← Back</button>
-          <button class="ss-btn-next" id="ss-submit-btn" onclick="santaSubmit()">🎁 Join the Club!</button>
+          <button class="ss-btn-next" id="ss-submit-btn" onclick="santaSubmit()">🎁 Register this Child</button>
         </div>
       </div>
 
@@ -410,11 +421,12 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
       <div class="ss-pane" id="ss-pane-2">
         <div class="ss-success">
           <span class="ss-success-icon">🎄</span>
-          <h4>You're in the Club!</h4>
-          <p>Wonderful! Your family has been registered for the Secret Santa Club.<br>We'll be in touch with more details soon. Ho ho ho! 🎅</p>
+          <h4>Child Registered!</h4>
+          <p id="ss-success-msg">Wonderful! We've received this wish. Ho ho ho! 🎅</p>
         </div>
         <div class="ss-nav" style="margin-top:28px">
-          <button class="ss-btn-next" onclick="closeSanta()">Close</button>
+          <button class="ss-btn-back" onclick="santaGoTo(1)">+ Register Another Child</button>
+          <button class="ss-btn-next" onclick="closeSanta()">Done</button>
         </div>
       </div>
 
@@ -484,6 +496,9 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
         <div class="hdc-nav">
           <button class="hdc-btn-next" id="hdc-tnc-btn" onclick="hdcGoTo(1)" disabled>I Accept &amp; Continue →</button>
         </div>
+        <div class="modal-dinner-link">
+          <a href="home.html">🍽️ Also register for <strong>Christmas Dinner</strong> →</a>
+        </div>
       </div>
 
       <!-- Pane 1: Personal details -->
@@ -506,16 +521,35 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
         </div>
       </div>
 
-      <!-- Pane 2: Video link -->
+      <!-- Pane 2: Video submission -->
       <div class="hdc-pane" id="hdc-pane-2">
-        <p style="font-size:13px;color:var(--muted);margin:0 0 14px;line-height:1.6">Upload your video to Google Drive, YouTube, or Instagram Reels, then paste the share link below. 🎬</p>
-        <div style="background:#f0faf0;border:1.5px solid #a7d7a8;border-radius:12px;padding:14px 16px;margin-bottom:18px;font-size:12px;color:#1b5e20;line-height:1.8">
-          <strong>Google Drive tip:</strong> Open Drive → upload video → right-click → <em>Share</em> → set to "Anyone with link" → <em>Copy link</em> → paste below.
+        <p style="font-size:13px;color:var(--muted);margin:0 0 14px;line-height:1.6">How would you like to submit your video? Choose an option below. 🎬</p>
+        <div class="hdc-submit-toggle">
+          <button class="hdc-stog-btn active" id="hdc-tog-link" onclick="hdcSetSubmitType('link')">📎 Share a Link</button>
+          <button class="hdc-stog-btn" id="hdc-tog-email" onclick="hdcSetSubmitType('email')">📧 Send via Email</button>
         </div>
-        <div class="hdc-field">
-          <label class="hdc-field-label" for="hdc-link">Video Share Link *</label>
-          <input class="hdc-input" id="hdc-link" type="url" placeholder="https://drive.google.com/file/d/…"/>
+
+        <!-- Link section -->
+        <div id="hdc-link-sect">
+          <div style="background:#f0faf0;border:1.5px solid #a7d7a8;border-radius:12px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#1b5e20;line-height:1.8">
+            <strong>Google Drive tip:</strong> Upload video → right-click → <em>Share</em> → "Anyone with link" → Copy → paste below.
+          </div>
+          <div class="hdc-field">
+            <label class="hdc-field-label" for="hdc-link">Video Share Link *</label>
+            <input class="hdc-input" id="hdc-link" type="url" placeholder="https://drive.google.com/file/d/…"/>
+          </div>
         </div>
+
+        <!-- Email section -->
+        <div id="hdc-email-sect" style="display:none">
+          <div class="hdc-email-info">
+            <p>Send your video directly to our committee:</p>
+            <a class="hdc-email-addr" href="mailto:birlaalokyaxmascommittee@gmail.com">📧 birlaalokyaxmascommittee@gmail.com</a>
+            <div class="hdc-email-subj">Subject: <strong>HDC Entry – [Your Unit #]</strong></div>
+            <p>Once sent, click <strong>Submit Entry</strong> below to record your registration.</p>
+          </div>
+        </div>
+
         <div class="hdc-nav">
           <button class="hdc-btn-back" onclick="hdcBack()">← Back</button>
           <button class="hdc-btn-next" id="hdc-submit-btn" onclick="hdcSubmit()">🏆 Submit Entry</button>
