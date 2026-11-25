@@ -412,24 +412,12 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
       <div class="ss-steps-bar">
         <div class="ss-step-seg cur" id="ss-seg-1"></div>
         <div class="ss-step-seg"     id="ss-seg-2"></div>
+        <div class="ss-step-seg"     id="ss-seg-3"></div>
       </div>
 
-      <!-- Pane 0: Personal details -->
+      <!-- Pane 0: How it works + T&C -->
       <div class="ss-pane active" id="ss-pane-0">
-        <p style="font-size:13px;color:var(--muted);margin:0 0 14px;line-height:1.6">Tell us about your family — we'll match your children with Secret Friends! 🎁</p>
-        <div class="hdc-field">
-          <label class="hdc-field-label" for="ss-name">Full Name *</label>
-          <input class="hdc-input" id="ss-name" type="text" placeholder="e.g. Priya Sharma" autocomplete="name"/>
-        </div>
-        <div class="hdc-field">
-          <label class="hdc-field-label" for="ss-unit">Villament Unit # *</label>
-          <input class="hdc-input" id="ss-unit" type="text" placeholder="e.g. B01-01" autocomplete="off" oninput="this.value=this.value.toUpperCase()"/>
-        </div>
-        <div class="hdc-field">
-          <label class="hdc-field-label" for="ss-phone">Contact Number *</label>
-          <input class="hdc-input" id="ss-phone" type="tel" inputmode="numeric" placeholder="10-digit mobile number" maxlength="10" oninput="this.value=this.value.replace(/\D/g,'')"/>
-        </div>
-        <div class="hdc-tnc-box" style="max-height:155px;margin:4px 0 12px;">
+        <div class="hdc-tnc-box" style="max-height:300px;margin:0 0 14px;">
           <h2>🎅 How Secret Santa Works</h2>
           <h4>1. Register</h4>
           <p>Register each child with their Christmas wish and a unique <strong>Secret Name (Code Name)</strong> they choose themselves.</p>
@@ -454,15 +442,36 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
           I have read and understood how Secret Santa works, and I agree to participate in the gift exchange.
         </label>
         <div class="ss-nav">
-          <button class="ss-btn-next" id="ss-tnc-btn" onclick="santaNext()" disabled>Continue → Child's Details</button>
+          <button class="ss-btn-next" id="ss-tnc-btn" onclick="santaGoTo(1)" disabled>I Understand — Let's Register! →</button>
+        </div>
+      </div>
+
+      <!-- Pane 1: Parent / family details -->
+      <div class="ss-pane" id="ss-pane-1">
+        <p style="font-size:13px;color:var(--muted);margin:0 0 14px;line-height:1.6">Tell us about your family — we'll use this to coordinate your Secret Santa. 🎁</p>
+        <div class="hdc-field">
+          <label class="hdc-field-label" for="ss-name">Full Name *</label>
+          <input class="hdc-input" id="ss-name" type="text" placeholder="e.g. Priya Sharma" autocomplete="name"/>
+        </div>
+        <div class="hdc-field">
+          <label class="hdc-field-label" for="ss-unit">Villament Unit # *</label>
+          <input class="hdc-input" id="ss-unit" type="text" placeholder="e.g. B01-01" autocomplete="off" oninput="this.value=this.value.toUpperCase()"/>
+        </div>
+        <div class="hdc-field">
+          <label class="hdc-field-label" for="ss-phone">Contact Number *</label>
+          <input class="hdc-input" id="ss-phone" type="tel" inputmode="numeric" placeholder="10-digit mobile number" maxlength="10" oninput="this.value=this.value.replace(/\D/g,'')"/>
+        </div>
+        <div class="ss-nav">
+          <button class="ss-btn-back" onclick="santaGoTo(0)">← Back</button>
+          <button class="ss-btn-next" onclick="santaNext()">Continue → Child's Details</button>
         </div>
         <div class="modal-dinner-link">
           <a href="home.html">🍽️ Also register for <strong>Christmas Dinner</strong> →</a>
         </div>
       </div>
 
-      <!-- Pane 1: Per-kid details -->
-      <div class="ss-pane" id="ss-pane-1">
+      <!-- Pane 2: Per-kid details -->
+      <div class="ss-pane" id="ss-pane-2">
         <p style="font-size:13px;color:var(--muted);margin:0 0 14px;line-height:1.6">Fill in one child's details — submit again for each additional child. 🎄</p>
         <div class="hdc-field">
           <label class="hdc-field-label" for="ss-kidname">Child's Name *</label>
@@ -491,15 +500,15 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
         </div>
       </div>
 
-      <!-- Pane 2: Success -->
-      <div class="ss-pane" id="ss-pane-2">
+      <!-- Pane 3: Success -->
+      <div class="ss-pane" id="ss-pane-3">
         <div class="ss-success">
           <span class="ss-success-icon">🎄</span>
           <h4>Child Registered!</h4>
           <p id="ss-success-msg">Wonderful! We've received this wish. Ho ho ho! 🎅</p>
         </div>
         <div class="ss-nav" style="margin-top:28px">
-          <button class="ss-btn-back" onclick="santaGoTo(1)">+ Register Another Child</button>
+          <button class="ss-btn-back" onclick="santaGoTo(2)">+ Register Another Child</button>
           <button class="ss-btn-next" onclick="closeSanta()">Done</button>
         </div>
       </div>
