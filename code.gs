@@ -588,8 +588,19 @@ function submitHomeDecorEntry(p) {
 }
 
 
+function getSantaCount() {
+  try {
+    const ss    = SpreadsheetApp.getActiveSpreadsheet();
+    const sheet = ss.getSheetByName("SantaWishes");
+    if (!sheet || sheet.getLastRow() < 2) return { ok: true, count: 0 };
+    return { ok: true, count: sheet.getLastRow() - 1 };
+  } catch(e) {
+    return { ok: true, count: 0 };
+  }
+}
+
+
 function submitSantaRegistration(p) {
-  const parentname  = clean(p.parentname  || "");
   const unit        = normalizeFlat(p.unit || "");
   const phone       = clean(p.phone       || "").replace(/\D/g, "");
   const kidname     = clean(p.kidname     || "");
