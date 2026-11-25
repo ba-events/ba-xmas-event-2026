@@ -57,6 +57,8 @@ function doGet(e) {
   else if (action === "hdcsubmit")      result = submitHomeDecorEntry(e.parameter);
   else if (action === "santaregister")  result = submitSantaRegistration(e.parameter);
   else if (action === "santacount")     result = getSantaCount();
+  else if (action === "hdccount")       result = getHDCCount();
+  else if (action === "dinnercount")    result = getDinnerCount();
   else if (pin !== CFG.SCANNER_PIN) result = { ok: false, message: "Invalid PIN" };
   else if (action === "lookup")  result = checkinTicket(e.parameter.ticket, null);
   else if (action === "checkin") result = checkinTicket(e.parameter.ticket, e.parameter.count);
@@ -594,6 +596,33 @@ function getSantaCount() {
     const sheet = ss.getSheetByName("SantaWishes");
     if (!sheet || sheet.getLastRow() < 2) return { ok: true, count: 0 };
     return { ok: true, count: sheet.getLastRow() - 1 };
+  } catch(e) {
+    return { ok: true, count: 0 };
+  }
+}
+
+function getHDCCount() {
+  try {
+    const ss    = SpreadsheetApp.getActiveSpreadsheet();
+    const sheet = ss.getSheetByName("HomeDecorEntries");
+    if (!sheet || sheet.getLastRow() < 2) return { ok: true, count: 0 };
+    return { ok: true, count: sheet.getLastRow() - 1 };
+  } catch(e) {
+    return { ok: true, count: 0 };
+  }
+}
+
+function getDinnerCount() {
+  try {
+    const ss    = SpreadsheetApp.getActiveSpreadsheet();
+    const sheet = ss.getSheetByName(CFG.SHEET_REG);
+    if (!sheet || sheet.getLastRow() < 2) return { ok: true, count: 0 };
+    const data  = sheet.getDataRange().getValues().slice(1);
+    const count = data.filter(r => {
+      const status = String(r[CFG.C_STATUS - 1]).trim();
+      return status && status !== "REJECTED";
+    }).length;
+    return { ok: true, count };
   } catch(e) {
     return { ok: true, count: 0 };
   }

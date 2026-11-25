@@ -1163,6 +1163,24 @@ function loadSantaCount() {
   });
 }
 
+function loadHDCCount() {
+  jsonp({ action: "hdccount" }, { silent: true }).then(data => {
+    if (data && data.ok && data.count > 0) {
+      document.getElementById("hdc-count-num").textContent = data.count;
+      document.getElementById("hdc-count-badge").style.display = "inline-flex";
+    }
+  });
+}
+
+function loadDinnerCount() {
+  jsonp({ action: "dinnercount" }, { silent: true }).then(data => {
+    if (data && data.ok && data.count > 0) {
+      document.getElementById("dinner-count-num").textContent = data.count;
+      document.getElementById("dinner-count-badge").style.display = "inline-flex";
+    }
+  });
+}
+
 // ── HOME DECOR CONTEST ────────────────────────────────────
 function openProg() {
   document.getElementById("prog-ov").classList.add("open");
