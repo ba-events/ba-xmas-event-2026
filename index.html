@@ -267,6 +267,13 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
   background:linear-gradient(to bottom, rgba(27,94,32,.05) 20%, #2e7d32 92%);
 }
 .santa-content { padding:14px 26px 26px; display:flex; flex-direction:column; flex:1; }
+.santa-count-badge {
+  display:inline-flex; align-items:center; gap:6px;
+  background:rgba(249,168,37,.18); border:1px solid rgba(249,168,37,.38);
+  border-radius:99px; padding:5px 13px;
+  font-size:12px; font-weight:700; color:rgba(255,255,255,.95);
+  margin-top:10px; align-self:flex-start;
+}
 
 /* Generic top-image pattern shared by HDC and Dinner tiles */
 .tile-img-wrap {
@@ -466,6 +473,7 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
         <div class="santa-content">
           <h2 class="hub-tile-title">Join Secret Santa Club</h2>
           <p class="hub-tile-desc">Register your family, share your little ones' Christmas wishes, and be part of a magical gift exchange this season!</p>
+          <div class="santa-count-badge" id="santa-count-badge" style="display:none">🎁 <strong id="santa-count-num">0</strong>&nbsp;Secret Friends already joined!</div>
           <div class="hub-tile-cta">Join the Club <span>→</span></div>
         </div>
       </div>
@@ -1074,6 +1082,7 @@ addEventListener("DOMContentLoaded", () => {
   buildSnow();
   updateCountdown();
   setInterval(updateCountdown, 1000);
+  loadSantaCount();
 });
 
 // ── Snow ──────────────────────────────────────────────────
@@ -1138,6 +1147,15 @@ function jsonp(params, {silent=false}={}) {
     s.src = API_URL + "?" + new URLSearchParams(params);
     s.onerror = () => { clearTimeout(t); delete window[cb]; s.remove(); if (!silent) toast("Network error"); resolve(null); };
     document.head.appendChild(s);
+  });
+}
+
+function loadSantaCount() {
+  jsonp({ action: "santacount" }, { silent: true }).then(data => {
+    if (data && data.ok && data.count > 0) {
+      document.getElementById("santa-count-num").textContent = data.count;
+      document.getElementById("santa-count-badge").style.display = "inline-flex";
+    }
   });
 }
 

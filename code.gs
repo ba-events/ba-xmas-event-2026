@@ -56,6 +56,7 @@ function doGet(e) {
   else if (action === "getticket")      result = getTicket(e.parameter.phone, e.parameter.flat);
   else if (action === "hdcsubmit")      result = submitHomeDecorEntry(e.parameter);
   else if (action === "santaregister")  result = submitSantaRegistration(e.parameter);
+  else if (action === "santacount")     result = getSantaCount();
   else if (pin !== CFG.SCANNER_PIN) result = { ok: false, message: "Invalid PIN" };
   else if (action === "lookup")  result = checkinTicket(e.parameter.ticket, null);
   else if (action === "checkin") result = checkinTicket(e.parameter.ticket, e.parameter.count);
