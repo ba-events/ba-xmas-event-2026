@@ -151,8 +151,8 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
   pointer-events:none;
 }
 .tile-santa  { background:linear-gradient(145deg,#1b5e20 0%,#2e7d32 55%,#43a047 100%); color:#fff; padding:0; }
-.tile-hdc    { background:linear-gradient(145deg,#004d20 0%,#006b2a 55%,#1a7a3a 100%); color:#fff; }
-.tile-dinner { background:linear-gradient(145deg,#145a32 0%,#1e8449 55%,#27ae60 100%); color:#fff; }
+.tile-hdc    { background:linear-gradient(145deg,#004d20 0%,#006b2a 55%,#1a7a3a 100%); color:#fff; padding:0; }
+.tile-dinner { background:linear-gradient(145deg,#145a32 0%,#1e8449 55%,#27ae60 100%); color:#fff; padding:0; }
 
 /* Santa tile image */
 .santa-img-wrap {
@@ -166,6 +166,23 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
   background:linear-gradient(to bottom, rgba(27,94,32,.05) 20%, #2e7d32 92%);
 }
 .santa-content { padding:14px 26px 26px; display:flex; flex-direction:column; flex:1; }
+
+/* Generic top-image pattern shared by HDC and Dinner tiles */
+.tile-img-wrap {
+  position:relative; width:100%; height:210px; flex-shrink:0; overflow:hidden;
+}
+.tile-img-wrap img {
+  width:100%; height:100%; object-fit:cover; object-position:center 20%; display:block;
+}
+.tile-hdc    .tile-img-wrap::after {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(to bottom, rgba(0,77,32,.05) 20%, #006b2a 92%);
+}
+.tile-dinner .tile-img-wrap::after {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(to bottom, rgba(20,90,50,.05) 20%, #1e8449 92%);
+}
+.tile-content { padding:14px 26px 26px; display:flex; flex-direction:column; flex:1; }
 
 .hub-tile-badge {
   display:inline-block; font-size:11px; font-weight:800; letter-spacing:.04em;
@@ -353,20 +370,28 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
 
       <!-- TILE 2: Home Decor Contest -->
       <div class="hub-tile tile-hdc" onclick="openHDC()" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openHDC()">
-        <span class="hub-tile-badge">🏆 Contest</span>
-        <span class="hub-tile-ico">🏡</span>
-        <h2 class="hub-tile-title">Home Decor Contest</h2>
-        <p class="hub-tile-desc">Deck your halls and win! Submit a video of your Christmas decorations — the most festive home in Birla Alokya wins!</p>
-        <div class="hub-tile-cta">Enter Contest <span>→</span></div>
+        <div class="tile-img-wrap">
+          <img src="hdc-tile.png" alt="Home Decor Contest"/>
+        </div>
+        <div class="tile-content">
+          <span class="hub-tile-badge">🏆 Contest</span>
+          <h2 class="hub-tile-title">Home Decor Contest</h2>
+          <p class="hub-tile-desc">Deck your halls and win! Submit a video of your Christmas decorations — the most festive home in Birla Alokya wins!</p>
+          <div class="hub-tile-cta">Enter Contest <span>→</span></div>
+        </div>
       </div>
 
       <!-- TILE 3: Christmas Dinner -->
       <a class="hub-tile tile-dinner" href="home.html">
-        <span class="hub-tile-badge">🎟️ Register</span>
-        <span class="hub-tile-ico">🍽️</span>
-        <h2 class="hub-tile-title">Christmas Dinner</h2>
-        <p class="hub-tile-desc">Secure your family's food coupon and join us for the festive feast at Jingle Bells 2026!</p>
-        <div class="hub-tile-cta">Register Your Family <span>→</span></div>
+        <div class="tile-img-wrap">
+          <img src="dinner-tile.png" alt="Christmas Dinner"/>
+        </div>
+        <div class="tile-content">
+          <span class="hub-tile-badge">🎟️ Register</span>
+          <h2 class="hub-tile-title">Christmas Dinner</h2>
+          <p class="hub-tile-desc">Secure your family's food coupon and join us for the festive feast at Jingle Bells 2026!</p>
+          <div class="hub-tile-cta">Register Your Family <span>→</span></div>
+        </div>
       </a>
 
     </div>
