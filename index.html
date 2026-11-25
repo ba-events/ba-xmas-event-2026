@@ -1042,6 +1042,8 @@ function hdcShake(id) {
 // ── SECRET SANTA ──────────────────────────────────────────
 function openSanta() {
   santaGoTo(0);
+  document.getElementById("ss-tnc-check").checked = false;
+  document.getElementById("ss-tnc-btn").disabled = true;
   document.getElementById("ss-ov").classList.add("open");
   document.body.style.overflow = "hidden";
 }
@@ -1071,12 +1073,14 @@ function santaNext() {
 function santaBack() { santaGoTo(0); }
 async function santaSubmit() {
   const kidname     = document.getElementById("ss-kidname").value.trim();
+  const codename    = document.getElementById("ss-codename").value.trim();
   const kidage      = document.getElementById("ss-kidage").value.trim();
   const wish        = document.getElementById("ss-wish").value.trim();
   const description = document.getElementById("ss-description").value.trim();
-  if (!kidname) { ssShake("ss-kidname"); return; }
-  if (!kidage)  { ssShake("ss-kidage");  return; }
-  if (!wish)    { ssShake("ss-wish");    return; }
+  if (!kidname)  { ssShake("ss-kidname");  return; }
+  if (!codename) { ssShake("ss-codename"); return; }
+  if (!kidage)   { ssShake("ss-kidage");   return; }
+  if (!wish)     { ssShake("ss-wish");     return; }
   const btn = document.getElementById("ss-submit-btn");
   btn.disabled = true; btn.textContent = "Registering…";
   const data = await jsonp({
@@ -1085,16 +1089,17 @@ async function santaSubmit() {
     unit:        document.getElementById("ss-unit").value.trim(),
     phone:       document.getElementById("ss-phone").value.trim(),
     kidname,
+    codename,
     kidage,
     wish,
     description
   });
   if (data && data.ok) {
     document.getElementById("ss-success-msg").innerHTML =
-      `<strong>${kidname}</strong>'s wish has been registered! 🎁<br>Have more children? Tap "Register Another Child"!`;
+      `<strong>${kidname}</strong> (Secret Name: <em>${codename}</em>) is registered! 🎁<br>Have more children? Tap "Register Another Child"!`;
     btn.disabled = false; btn.textContent = "🎁 Register this Child";
     santaGoTo(2);
-    ["ss-kidname","ss-kidage","ss-wish","ss-description"].forEach(id => { document.getElementById(id).value = ""; });
+    ["ss-kidname","ss-codename","ss-kidage","ss-wish","ss-description"].forEach(id => { document.getElementById(id).value = ""; });
   } else {
     toast((data && data.message) || "Registration failed — please try again");
     btn.disabled = false; btn.textContent = "🎁 Register this Child";

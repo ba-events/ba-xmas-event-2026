@@ -592,25 +592,27 @@ function submitSantaRegistration(p) {
   const unit        = normalizeFlat(p.unit || "");
   const phone       = clean(p.phone       || "").replace(/\D/g, "");
   const kidname     = clean(p.kidname     || "");
+  const codename    = clean(p.codename    || "");
   const kidage      = clean(p.kidage      || "");
   const wish        = clean(p.wish        || "");
   const description = clean(p.description || "");
 
-  if (!parentname)       return { ok: false, message: "Parent name is required" };
-  if (!unit)             return { ok: false, message: "Villament unit is required" };
+  if (!parentname)         return { ok: false, message: "Parent name is required" };
+  if (!unit)               return { ok: false, message: "Villament unit is required" };
   if (phone.length !== 10) return { ok: false, message: "Valid 10-digit phone required" };
-  if (!kidname)          return { ok: false, message: "Child's name is required" };
-  if (!kidage)           return { ok: false, message: "Child's age is required" };
-  if (!wish)             return { ok: false, message: "Wish is required" };
+  if (!kidname)            return { ok: false, message: "Child's name is required" };
+  if (!codename)           return { ok: false, message: "Secret Name (Code Name) is required" };
+  if (!kidage)             return { ok: false, message: "Child's age is required" };
+  if (!wish)               return { ok: false, message: "Wish is required" };
 
   try {
     const ss    = SpreadsheetApp.getActiveSpreadsheet();
     const sheet = getOrCreateSheet(ss, "SantaWishes");
     if (sheet.getLastRow() === 0) {
-      sheet.appendRow(["Timestamp", "Parent Name", "Unit #", "Phone", "Child Name", "Age", "Wish", "Details"]);
+      sheet.appendRow(["Timestamp", "Parent Name", "Unit #", "Phone", "Child Name", "Secret Name", "Age", "Wish", "Details"]);
       sheet.setFrozenRows(1);
     }
-    sheet.appendRow([new Date(), parentname, unit, phone, kidname, kidage, wish, description]);
+    sheet.appendRow([new Date(), parentname, unit, phone, kidname, codename, kidage, wish, description]);
   } catch(e) {
     Logger.log("submitSantaRegistration error: " + e.message);
     return { ok: false, message: "Server error — please try again" };
