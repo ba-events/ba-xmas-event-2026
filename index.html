@@ -459,6 +459,45 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
 <!-- Toast notification -->
 <div id="toast"></div>
 
+<!-- ── PROGRAMME MODAL ────────────────────────────────────── -->
+<div id="prog-ov" onclick="if(event.target===this)closeProg()">
+  <div class="prog-modal">
+    <div class="prog-hd">
+      <h3>🎄 Jingle Bells 2026 — Event Schedule</h3>
+      <button class="prog-close" onclick="closeProg()">✕</button>
+    </div>
+    <div class="prog-body">
+      <p class="prog-loc">📍 Birla Alokya, Whitefield, Bangalore &nbsp;·&nbsp; 📅 Sat &amp; Sun, 19–20 Dec 2026</p>
+      <div class="prog-days">
+        <div class="prog-day">
+          <div class="prog-day-tag">Day 1</div>
+          <div class="prog-day-title">🎪 Christmas Carnival</div>
+          <div class="prog-day-date">Saturday, 19 December 2026</div>
+          <ul>
+            <li>Food Trucks</li>
+            <li>Flea Markets</li>
+            <li>Lighting &amp; Illumination</li>
+            <li>Residents Engagement</li>
+            <li>Stalls &amp; More</li>
+          </ul>
+        </div>
+        <div class="prog-day">
+          <div class="prog-day-tag">Day 2</div>
+          <div class="prog-day-title">🎉 Christmas Fiesta</div>
+          <div class="prog-day-date">Sunday, 20 December 2026</div>
+          <ul>
+            <li>Residents' Cultural Programs</li>
+            <li>Christmas Carols</li>
+            <li>Santa Claus</li>
+            <li>Games &amp; Fun Activities</li>
+            <li>Grand Christmas Dinner</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ── SECRET SANTA MODAL ─────────────────────────────────── -->
 <div id="ss-ov" onclick="if(event.target===this)closeSanta()">
   <div class="ss-modal">
@@ -1038,6 +1077,14 @@ function jsonp(params, {silent=false}={}) {
 }
 
 // ── HOME DECOR CONTEST ────────────────────────────────────
+function openProg() {
+  document.getElementById("prog-ov").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+function closeProg() {
+  document.getElementById("prog-ov").classList.remove("open");
+  document.body.style.overflow = "";
+}
 function openHDC() {
   hdcGoTo(0);
   document.getElementById("hdc-tnc-check").checked = false;
