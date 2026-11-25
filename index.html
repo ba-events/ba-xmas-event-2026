@@ -1061,14 +1061,15 @@ function closeSanta() {
   document.body.style.overflow = "";
 }
 function santaGoTo(step) {
-  [0,1,2].forEach(n => {
+  [0,1,2,3].forEach(n => {
     document.getElementById(`ss-pane-${n}`).classList.toggle("active", n === step);
   });
   const bar = document.querySelector(".ss-steps-bar");
-  if (step === 2) { bar.style.display = "none"; return; }
+  if (step === 3) { bar.style.display = "none"; return; }
   bar.style.display = "";
   document.getElementById("ss-seg-1").className = "ss-step-seg" + (step > 0 ? " done" : " cur");
   document.getElementById("ss-seg-2").className = "ss-step-seg" + (step > 1 ? " done" : step === 1 ? " cur" : "");
+  document.getElementById("ss-seg-3").className = "ss-step-seg" + (step > 2 ? " done" : step === 2 ? " cur" : "");
 }
 function santaNext() {
   const name  = document.getElementById("ss-name").value.trim();
@@ -1077,9 +1078,9 @@ function santaNext() {
   if (!name)               { ssShake("ss-name");  return; }
   if (!unit)               { ssShake("ss-unit");  return; }
   if (phone.length !== 10) { ssShake("ss-phone"); return; }
-  santaGoTo(1);
+  santaGoTo(2);
 }
-function santaBack() { santaGoTo(0); }
+function santaBack() { santaGoTo(1); }
 async function santaSubmit() {
   const kidname     = document.getElementById("ss-kidname").value.trim();
   const codename    = document.getElementById("ss-codename").value.trim();
@@ -1107,7 +1108,7 @@ async function santaSubmit() {
     document.getElementById("ss-success-msg").innerHTML =
       `<strong>${kidname}</strong> (Secret Name: <em>${codename}</em>) is registered! 🎁<br>Have more children? Tap "Register Another Child"!`;
     btn.disabled = false; btn.textContent = "🎁 Register this Child";
-    santaGoTo(2);
+    santaGoTo(3);
     ["ss-kidname","ss-codename","ss-kidage","ss-wish","ss-description"].forEach(id => { document.getElementById(id).value = ""; });
   } else {
     toast((data && data.message) || "Registration failed — please try again");
