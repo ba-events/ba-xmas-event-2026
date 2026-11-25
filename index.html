@@ -120,8 +120,15 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
   text-transform:uppercase; color:rgba(255,255,255,.75); margin-bottom:36px;
 }
 .hub-tiles { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
-@media (max-width:900px) { .hub-tiles { grid-template-columns:1fr; gap:18px; } .hub-section { padding:36px 12px 52px; } }
-@media (max-width:420px) { .hub-section { padding:28px 8px 44px; } }
+@media (max-width:900px) {
+  .hub-tiles    { grid-template-columns:1fr; gap:20px; }
+  .hub-section  { padding:28px 6px 44px; }
+  .hub-tile     { border-radius:18px; border-left:none; border-right:none; border-width:1px; }
+}
+@media (max-width:420px) {
+  .hub-section  { padding:20px 4px 36px; }
+  .hub-tile     { border-radius:14px; }
+}
 
 /* ── TILES ──────────────────────────────────────────────── */
 .hub-tile {
@@ -378,15 +385,15 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
         </div>
       </div>
 
-      <!-- TILE 2: Home Decor Contest -->
+      <!-- TILE 2: Deck The Homes -->
       <div class="hub-tile tile-hdc" onclick="openHDC()" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openHDC()">
         <div class="tile-img-wrap">
-          <img src="hdc-tile.png" alt="Home Decor Contest"/>
+          <img src="hdc-tile.png" alt="Deck The Homes"/>
         </div>
         <div class="tile-content">
           <span class="hub-tile-badge">🏆 Contest</span>
-          <h2 class="hub-tile-title">Home Decor Contest</h2>
-          <p class="hub-tile-desc">Deck your halls and win! Submit a video of your Christmas decorations — the most festive home in Birla Alokya wins!</p>
+          <h2 class="hub-tile-title">Deck The Homes</h2>
+          <p class="hub-tile-desc">The Christmas Home Décor Challenge. Let every home tell its own Christmas story!</p>
           <div class="hub-tile-cta">Enter Contest <span>→</span></div>
         </div>
       </div>
@@ -531,7 +538,7 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
 <div id="hdc-ov" onclick="if(event.target===this)closeHDC()">
   <div class="hdc-modal">
     <div class="hdc-hd">
-      <h3>🏠 Home Decor Contest</h3>
+      <h3>🏠 Deck The Homes</h3>
       <button class="hdc-close" onclick="closeHDC()">✕</button>
     </div>
     <div class="hdc-body">
@@ -654,7 +661,7 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
         <div class="hdc-success">
           <span class="hdc-success-icon">🎉</span>
           <h4>Entry Submitted!</h4>
-          <p>Thanks! Your Home Decor Contest entry has been received.<br>Winners will be announced at the event. Fingers crossed! 🤞</p>
+          <p>Thanks! Your Deck The Homes entry has been received.<br>Winners will be announced at the event. Fingers crossed! 🤞</p>
         </div>
         <div class="hdc-nav" style="margin-top:28px">
           <button class="hdc-btn-next" onclick="closeHDC()">Close</button>
