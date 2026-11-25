@@ -487,6 +487,7 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
           <span class="hub-tile-badge">🏆 Contest</span>
           <h2 class="hub-tile-title">Deck The Homes</h2>
           <p class="hub-tile-desc">The Christmas Home Décor Challenge. Let every home tell its own Christmas story!</p>
+          <div class="santa-count-badge" id="hdc-count-badge" style="display:none">🏡 <strong id="hdc-count-num">0</strong>&nbsp;homes entered!</div>
           <div class="hub-tile-cta">Enter Contest <span>→</span></div>
         </div>
       </div>
@@ -500,6 +501,7 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
           <span class="hub-tile-badge">🎟️ Register</span>
           <h2 class="hub-tile-title">Christmas Dinner</h2>
           <p class="hub-tile-desc">Secure your family's food coupon and join us for the festive feast at Jingle Bells 2026!</p>
+          <div class="santa-count-badge" id="dinner-count-badge" style="display:none">🍽️ <strong id="dinner-count-num">0</strong>&nbsp;families registered!</div>
           <div class="hub-tile-cta">Register Your Family <span>→</span></div>
         </div>
       </a>
@@ -1083,6 +1085,8 @@ addEventListener("DOMContentLoaded", () => {
   updateCountdown();
   setInterval(updateCountdown, 1000);
   loadSantaCount();
+  loadHDCCount();
+  loadDinnerCount();
 });
 
 // ── Snow ──────────────────────────────────────────────────
