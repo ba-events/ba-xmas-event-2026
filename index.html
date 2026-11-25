@@ -416,7 +416,7 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
 
       <!-- Pane 0: Personal details -->
       <div class="ss-pane active" id="ss-pane-0">
-        <p style="font-size:13px;color:var(--muted);margin:0 0 18px;line-height:1.6">Tell us about your family — we'll match you with a Secret Santa! 🎁</p>
+        <p style="font-size:13px;color:var(--muted);margin:0 0 14px;line-height:1.6">Tell us about your family — we'll match your children with Secret Friends! 🎁</p>
         <div class="hdc-field">
           <label class="hdc-field-label" for="ss-name">Full Name *</label>
           <input class="hdc-input" id="ss-name" type="text" placeholder="e.g. Priya Sharma" autocomplete="name"/>
@@ -429,8 +429,32 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
           <label class="hdc-field-label" for="ss-phone">Contact Number *</label>
           <input class="hdc-input" id="ss-phone" type="tel" inputmode="numeric" placeholder="10-digit mobile number" maxlength="10" oninput="this.value=this.value.replace(/\D/g,'')"/>
         </div>
+        <div class="hdc-tnc-box" style="max-height:155px;margin:4px 0 12px;">
+          <h2>🎅 How Secret Santa Works</h2>
+          <h4>1. Register</h4>
+          <p>Register each child with their Christmas wish and a unique <strong>Secret Name (Code Name)</strong> they choose themselves.</p>
+          <h4>2. Santa's Magical Draw</h4>
+          <p>Once registration closes, Santa randomly assigns a <strong>Secret Friend</strong> to every participant.</p>
+          <h4>3. Your Secret Mission</h4>
+          <p>You receive a confidential message with your Secret Friend's wish — their identity remains a mystery until gift exchange day!</p>
+          <h4>4. Prepare the Gift</h4>
+          <p>Buy a gift based on the wish and wrap it beautifully. Keep your identity as Secret Santa a secret!</p>
+          <h4>5. Receive the Secret Code</h4>
+          <p>You receive your Secret Friend's <strong>Secret Name (Code Name)</strong> to label your gift.</p>
+          <h4>6. The Grand Gift Exchange</h4>
+          <p>Bring your wrapped gift to the Christmas Fiesta with the Secret Name clearly attached. Gifts are distributed by Secret Name.</p>
+          <h4>7. The Big Reveal</h4>
+          <p>Every child reveals their own Secret Name — everyone discovers who their Secret Friend was!</p>
+          <h4>8. Guess Your Santa</h4>
+          <p>After receiving gifts, children guess who their Secret Santa was — making it even more exciting!</p>
+          <p style="margin-top:10px;padding-top:8px;border-top:1px solid #c8e6c9;color:var(--grn);font-weight:700;">🎄 You know your Secret Friend's wish and Secret Name, but not who they are. Keep your identity secret until the big reveal!</p>
+        </div>
+        <label class="hdc-tnc-accept">
+          <input type="checkbox" id="ss-tnc-check" onchange="document.getElementById('ss-tnc-btn').disabled=!this.checked"/>
+          I have read and understood how Secret Santa works, and I agree to participate in the gift exchange.
+        </label>
         <div class="ss-nav">
-          <button class="ss-btn-next" onclick="santaNext()">Continue → Child's Wish</button>
+          <button class="ss-btn-next" id="ss-tnc-btn" onclick="santaNext()" disabled>Continue → Child's Details</button>
         </div>
         <div class="modal-dinner-link">
           <a href="home.html">🍽️ Also register for <strong>Christmas Dinner</strong> →</a>
@@ -439,10 +463,15 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
 
       <!-- Pane 1: Per-kid details -->
       <div class="ss-pane" id="ss-pane-1">
-        <p style="font-size:13px;color:var(--muted);margin:0 0 18px;line-height:1.6">Fill in one child's details — submit again for each additional child. 🎄</p>
+        <p style="font-size:13px;color:var(--muted);margin:0 0 14px;line-height:1.6">Fill in one child's details — submit again for each additional child. 🎄</p>
         <div class="hdc-field">
           <label class="hdc-field-label" for="ss-kidname">Child's Name *</label>
           <input class="hdc-input" id="ss-kidname" type="text" placeholder="e.g. Arjun"/>
+        </div>
+        <div class="hdc-field">
+          <label class="hdc-field-label" for="ss-codename">Secret Name (Code Name) *</label>
+          <input class="hdc-input" id="ss-codename" type="text" placeholder="e.g. SnowFlake, StarDust, Comet…"/>
+          <small style="color:var(--muted);font-size:11px;margin-top:4px;display:block;">A fun nickname your child picks — used to label their gift on exchange day.</small>
         </div>
         <div class="hdc-field">
           <label class="hdc-field-label" for="ss-kidage">Child's Age *</label>
