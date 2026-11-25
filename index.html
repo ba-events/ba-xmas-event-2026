@@ -205,14 +205,21 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
 .hub-inner   { max-width:1100px; margin:0 auto; }
 .hub-sec-label {
   text-align:center; font-size:15px; font-weight:800; letter-spacing:.18em;
-  text-transform:uppercase; color:rgba(255,255,255,.75); margin-bottom:20px;
+  text-transform:uppercase; color:rgba(255,255,255,.75); margin-bottom:4px;
 }
+.hub-sec-tip {
+  text-align:center; font-size:12px; color:rgba(255,255,255,.4);
+  margin-bottom:20px; letter-spacing:.03em;
+}
+.hub-sec-tip .tip-arr { display:inline-block; animation:tip-bounce 1.5s ease-in-out infinite; }
+@keyframes tip-bounce { 0%,100%{transform:translateY(0)} 55%{transform:translateY(4px)} }
 .hub-tiles { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
 @media (max-width:900px) {
   .hub-tiles   { grid-template-columns:1fr; gap:16px; }
   .hub-section { padding:24px 0 40px; }
   .hub-inner   { padding:0; }
   .hub-sec-label { padding:0 16px; }
+  .hub-sec-tip   { padding:0 16px; }
   .hub-tile    { border-radius:0; }
 }
 
@@ -463,6 +470,7 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
 <section class="hub-section">
   <div class="hub-inner">
     <p class="hub-sec-label">Choose your Christmas experience</p>
+    <p class="hub-sec-tip"><span class="tip-arr">👇</span> Tap on a tile to get started</p>
     <div class="hub-tiles">
 
       <!-- TILE 1: Secret Santa Club -->
