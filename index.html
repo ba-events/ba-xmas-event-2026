@@ -303,10 +303,11 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
 .santa-content { padding:14px 26px 26px; display:flex; flex-direction:column; flex:1; }
 .santa-count-badge {
   display:inline-flex; align-items:center; gap:6px;
-  background:rgba(249,168,37,.18); border:1px solid rgba(249,168,37,.38);
+  background:rgba(249,168,37,.24); border:1px solid rgba(249,168,37,.55);
   border-radius:99px; padding:5px 13px;
-  font-size:12px; font-weight:700; color:rgba(255,255,255,.95);
+  font-size:12px; font-weight:700; color:#fff;
   margin-top:10px; align-self:flex-start;
+  box-shadow:0 0 14px rgba(249,168,37,.28), inset 0 1px 0 rgba(255,255,255,.18);
 }
 
 /* Generic top-image pattern shared by HDC and Dinner tiles */
@@ -349,6 +350,8 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
 .tile-hdc    .hub-tile-cta { background:rgba(0,0,0,.22); color:#fff; }
 .tile-dinner .hub-tile-cta { background:rgba(0,0,0,.22); color:#fff; }
 .hub-tile:hover .hub-tile-cta { gap:12px; }
+.hub-tile-cta span { display:inline-block; transition:transform .2s; }
+.hub-tile:hover .hub-tile-cta span { transform:translateX(6px); }
 /* ── TOAST ───────────────────────────────────────────────── */
 #toast {
   position:fixed; bottom:76px; left:50%; transform:translateX(-50%) translateY(16px);
@@ -452,11 +455,15 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
   <div class="snow-stage" id="snow-stage"></div>
   <div class="hub-hero-inner">
     <div class="hub-eyebrow">Birla Alokya Residents Present</div>
-    <img class="hub-logo" src="jinglebells-logo.png" alt="Jingle Bells"/>
+    <div class="hub-logo-wrap">
+      <img class="hub-logo" src="jinglebells-logo.png" alt="Jingle Bells"/>
+      <span class="hub-sparkle" style="top:5%;right:8%;font-size:22px">✨</span>
+      <span class="hub-sparkle" style="top:16%;left:5%;font-size:16px;animation-delay:.9s">🌟</span>
+    </div>
     <div class="hub-yr-badge">2026</div>
     <p class="hub-tagline">A Christmas celebration for all families of Birla Alokya — traditions, music, food, games and memories.</p>
     <div class="hub-pills">
-      <span class="hub-pill">🎄 Sat &amp; Sun · 19–20 Dec 2026</span>
+      <span class="hub-pill hub-pill-feat">🎄 Sat &amp; Sun · 19–20 Dec 2026</span>
       <span class="hub-pill">📍 Birla Alokya · Whitefield</span>
       <a class="hub-pill" href="https://maps.app.goo.gl/U1HyHkS6fodXsV8X9" target="_blank">📌 Location</a>
     </div>
