@@ -235,7 +235,7 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
   box-shadow:0 0 60px rgba(249,168,37,.07),inset 0 0 50px rgba(249,168,37,.03);
 }
 @media (max-width:900px) {
-  .hub-tiles     { grid-template-columns:1fr; gap:14px; }
+  .hub-tiles     { grid-template-columns:1fr; gap:12px; border-radius:20px; padding:12px; }
   .hub-section   { padding:24px 20px 40px; }
   .hub-inner     { padding:0; }
   .hub-sec-label { padding:0; }
@@ -255,7 +255,8 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
   box-shadow:
     inset 0 1px 0 rgba(255,235,160,.35),
     inset 0 -4px 0 rgba(0,0,0,.35),
-    0 0 0 1.5px rgba(249,168,37,.14),
+    0 0 0 1.5px var(--tile-rim,rgba(249,168,37,.18)),
+    0 0 28px var(--tile-glow,rgba(0,0,0,0)),
     0 6px 0 rgba(0,0,0,.45),
     0 8px 0 rgba(0,0,0,.2),
     0 10px 0 rgba(0,0,0,.08),
@@ -268,7 +269,8 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
   box-shadow:
     inset 0 1px 0 rgba(255,235,160,.4),
     inset 0 -4px 0 rgba(0,0,0,.35),
-    0 0 0 1px rgba(249,168,37,.14),
+    0 0 0 2px var(--tile-rim,rgba(249,168,37,.35)),
+    0 0 48px var(--tile-glow,rgba(0,0,0,0)),
     0 6px 0 rgba(0,0,0,.45),
     0 8px 0 rgba(0,0,0,.2),
     0 10px 0 rgba(0,0,0,.08),
@@ -280,9 +282,12 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
   background:linear-gradient(135deg,rgba(255,235,160,.22) 0%,rgba(255,255,255,.07) 40%,transparent 65%);
   pointer-events:none;
 }
-.tile-santa  { background:linear-gradient(145deg,#1b5e20 0%,#2e7d32 55%,#43a047 100%); color:#fff; padding:0; }
-.tile-hdc    { background:linear-gradient(145deg,#004d20 0%,#006b2a 55%,#1a7a3a 100%); color:#fff; padding:0; }
-.tile-dinner { background:linear-gradient(145deg,#145a32 0%,#1e8449 55%,#27ae60 100%); color:#fff; padding:0; }
+.tile-santa  { background:linear-gradient(145deg,#1b5e20 0%,#2e7d32 55%,#43a047 100%); color:#fff; padding:0; --tile-rim:rgba(220,38,38,.5);  --tile-glow:rgba(220,38,38,.12); }
+.tile-hdc    { background:linear-gradient(145deg,#004d20 0%,#006b2a 55%,#1a7a3a 100%); color:#fff; padding:0; --tile-rim:rgba(249,168,37,.55); --tile-glow:rgba(249,168,37,.18); }
+.tile-dinner { background:linear-gradient(145deg,#145a32 0%,#1e8449 55%,#27ae60 100%); color:#fff; padding:0; --tile-rim:rgba(0,188,212,.4);  --tile-glow:rgba(0,188,212,.1);  }
+.tile-santa::before  { background:linear-gradient(135deg,rgba(220,38,38,.14)  0%,rgba(255,255,255,.07) 40%,transparent 65%); }
+.tile-hdc::before    { background:linear-gradient(135deg,rgba(249,168,37,.16) 0%,rgba(255,255,255,.07) 40%,transparent 65%); }
+.tile-dinner::before { background:linear-gradient(135deg,rgba(0,188,212,.12)  0%,rgba(255,255,255,.07) 40%,transparent 65%); }
 
 /* Santa tile image */
 .santa-img-wrap {
