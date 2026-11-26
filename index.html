@@ -1154,6 +1154,17 @@ function buildLights() {
 }
 
 // ── Countdown ─────────────────────────────────────────────
+function cdSet(id, val) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const str = String(val);
+  if (el.textContent !== str) {
+    el.textContent = str;
+    el.classList.remove("flash");
+    void el.offsetWidth;
+    el.classList.add("flash");
+  }
+}
 function updateCountdown() {
   const diff = new Date("2026-12-19T09:00:00+05:30") - new Date();
   if (diff <= 0) {
@@ -1162,10 +1173,10 @@ function updateCountdown() {
     return;
   }
   const pad = n => String(n).padStart(2, "0");
-  document.getElementById("cd-days").textContent  = Math.floor(diff / 86400000);
-  document.getElementById("cd-hours").textContent = pad(Math.floor((diff % 86400000) / 3600000));
-  document.getElementById("cd-mins").textContent  = pad(Math.floor((diff % 3600000) / 60000));
-  document.getElementById("cd-secs").textContent  = pad(Math.floor((diff % 60000) / 1000));
+  cdSet("cd-days",  Math.floor(diff / 86400000));
+  cdSet("cd-hours", pad(Math.floor((diff % 86400000) / 3600000)));
+  cdSet("cd-mins",  pad(Math.floor((diff % 3600000) / 60000)));
+  cdSet("cd-secs",  pad(Math.floor((diff % 60000) / 1000)));
 }
 
 // ── Toast ─────────────────────────────────────────────────
