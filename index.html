@@ -530,7 +530,7 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
     <div class="hub-tiles">
 
       <!-- TILE 1: Secret Santa Club -->
-      <div class="hub-tile tile-santa" onclick="openSanta()" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openSanta()">
+      <div class="hub-tile tile-santa" id="tile-santa" onclick="tileClick('santa')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')tileClick('santa')">
         <div class="santa-img-wrap">
           <img src="santa-tile.png" alt="Secret Santa"/>
         </div>
@@ -543,7 +543,7 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
       </div>
 
       <!-- TILE 2: Deck The Homes -->
-      <div class="hub-tile tile-hdc" onclick="openHDC()" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openHDC()">
+      <div class="hub-tile tile-hdc" id="tile-hdc" onclick="tileClick('hdc')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')tileClick('hdc')">
         <div class="tile-img-wrap">
           <img src="hdc-tile.png" alt="Deck The Homes"/>
         </div>
@@ -557,7 +557,7 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
       </div>
 
       <!-- TILE 3: Christmas Dinner -->
-      <a class="hub-tile tile-dinner" href="home.html">
+      <a class="hub-tile tile-dinner" id="tile-dinner" href="home.html" onclick="return tileClickLink('dinner',event)">
         <div class="tile-img-wrap">
           <img src="dinner-tile.png" alt="Christmas Dinner"/>
         </div>
@@ -576,6 +576,16 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
 
 <!-- Toast notification -->
 <div id="toast"></div>
+
+<!-- Coming Soon popup -->
+<div id="cs-popup" onclick="if(event.target===this)closeCS()">
+  <div class="cs-card">
+    <div class="cs-icon">🔔</div>
+    <p class="cs-title">Coming Soon!</p>
+    <p class="cs-msg">Sorry, the registrations will be open soon.<br>Stay tuned for the announcement to the residents.</p>
+    <button class="cs-btn" onclick="closeCS()">Got it!</button>
+  </div>
+</div>
 
 <!-- ── PROGRAMME MODAL ────────────────────────────────────── -->
 <div id="prog-ov" onclick="if(event.target===this)closeProg()">
