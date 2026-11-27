@@ -110,82 +110,98 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
 .hub-prog-btn:hover { filter:brightness(1.1); transform:translateY(-2px); }
 
 /* ── PROGRAMME MODAL ────────────────────────────────────── */
-#prog-ov { position:fixed; inset:0; background:rgba(0,0,0,.65); z-index:100; display:none; align-items:center; justify-content:center; padding:16px; }
+#prog-ov { position:fixed; inset:0; background:rgba(0,0,0,.72); z-index:100; display:none; align-items:center; justify-content:center; padding:16px; backdrop-filter:blur(3px); }
 #prog-ov.open { display:flex; }
 .prog-modal {
-  background:#fdf8f0; border-radius:20px;
-  width:100%; max-width:600px; max-height:92vh; overflow-y:auto;
-  box-shadow:0 24px 64px rgba(0,0,0,.5);
+  background:#fffef9; border-radius:26px;
+  width:100%; max-width:620px; max-height:92vh; overflow-y:auto;
+  box-shadow:0 32px 80px rgba(0,0,0,.55), 0 0 0 1.5px rgba(249,168,37,.22);
 }
 .prog-hd {
-  background:linear-gradient(135deg,#1b5e20 0%,#2e7d32 60%,#43a047 100%);
-  padding:20px 22px; border-radius:20px 20px 0 0;
+  background:linear-gradient(140deg,#0d3b17 0%,#1b5e20 45%,#2e7d32 80%,#388e3c 100%);
+  padding:22px 24px 18px; border-radius:26px 26px 0 0;
   display:flex; align-items:center; justify-content:space-between; color:#fff;
   position:relative; overflow:hidden;
 }
 .prog-hd::before {
-  content:'🎄 🌟 🎄 🌟 🎄 🌟 🎄 🌟 🎄 🌟 🎄 🌟';
-  position:absolute; bottom:-2px; left:0; right:0;
-  font-size:13px; opacity:.2; white-space:nowrap; overflow:hidden; letter-spacing:4px;
+  content:'🎄 🌟 🎄 🌟 🎄 🌟 🎄 🌟 🎄 🌟 🎄 🌟 🎄 🌟 🎄';
+  position:absolute; bottom:0; left:0; right:0;
+  font-size:12px; opacity:.18; white-space:nowrap; overflow:hidden; letter-spacing:6px;
 }
-.prog-hd h3 { font-size:17px; font-weight:800; margin:0; }
+.prog-hd h3 {
+  font-family:'Mountains of Christmas',serif;
+  font-size:21px; font-weight:700; margin:0; letter-spacing:.01em;
+  text-shadow:0 2px 8px rgba(0,0,0,.35);
+}
 .prog-close {
-  background:rgba(255,255,255,.2); border:none; color:#fff;
-  font-size:20px; cursor:pointer; border-radius:50%;
-  width:32px; height:32px; display:flex; align-items:center; justify-content:center;
-  font-family:inherit; flex-shrink:0;
+  background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.25);
+  color:#fff; font-size:18px; cursor:pointer; border-radius:50%;
+  width:34px; height:34px; display:flex; align-items:center; justify-content:center;
+  font-family:inherit; flex-shrink:0; transition:background .15s;
 }
-.prog-body { padding:22px 20px 24px; background:#fdf8f0; border-radius:0 0 20px 20px; }
-/* Script heading with decorative lines */
-.prog-join-wrap { display:flex; align-items:center; gap:10px; margin-bottom:18px; }
+.prog-close:hover { background:rgba(255,255,255,.32); }
+.prog-body { padding:24px 22px 26px; background:#fffef9; border-radius:0 0 26px 26px; }
+/* Script heading */
+.prog-join-wrap { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
 .prog-join-line { flex:1; height:1.5px; background:linear-gradient(90deg,transparent,#c0392b 40%,transparent); }
 .prog-join-text {
   font-family:'Mountains of Christmas',serif;
-  font-size:17px; color:#c0392b; white-space:nowrap; font-weight:700;
+  font-size:18px; color:#c0392b; white-space:nowrap; font-weight:700;
   text-shadow:0 1px 2px rgba(0,0,0,.08);
 }
 /* Activity icons strip */
 .prog-acts {
-  display:flex; justify-content:center; flex-wrap:wrap; gap:0;
-  background:#fff; border-radius:14px; border:1.5px solid #f0e0b8;
-  padding:14px 8px 10px; margin-bottom:18px;
+  display:grid; grid-template-columns:repeat(5,1fr); gap:0;
+  background:#fff; border-radius:16px;
+  border:1.5px solid #f0ddb8;
+  padding:14px 4px 12px; margin-bottom:20px;
+  box-shadow:0 2px 10px rgba(0,0,0,.05);
 }
 .prog-act {
-  display:flex; flex-direction:column; align-items:center; gap:5px;
-  padding:4px 10px 8px; text-align:center;
-  border-right:1.5px solid #edd9a3; min-width:66px;
+  display:flex; flex-direction:column; align-items:center; gap:6px;
+  padding:4px 6px 6px; text-align:center;
+  border-right:1px solid #edd9a3;
 }
-.prog-act:last-child { border-right:none; }
-.prog-act-ico { font-size:26px; line-height:1; }
-.prog-act-lbl { font-size:9px; font-weight:800; color:#374151; line-height:1.3; max-width:64px; text-transform:uppercase; letter-spacing:.04em; }
-/* Day cards — festive parchment style */
+.prog-act:nth-child(5n) { border-right:none; }
+.prog-act:last-child    { border-right:none; }
+.prog-act-ico { font-size:28px; line-height:1; }
+.prog-act-lbl {
+  font-size:9.5px; font-weight:800; color:#374151; line-height:1.3;
+  max-width:68px; text-transform:uppercase; letter-spacing:.04em;
+  font-family:inherit;
+}
+/* Day cards */
 .prog-days { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
 @media (max-width:480px) { .prog-days { grid-template-columns:1fr; } }
 .prog-day {
-  border:2px solid var(--gold); border-radius:18px; padding:0;
+  border:2px solid var(--gold); border-radius:20px; padding:0;
   background:#fffdf5; overflow:hidden;
-  box-shadow:0 4px 16px rgba(0,0,0,.08);
+  box-shadow:0 6px 20px rgba(0,0,0,.09);
 }
 .prog-day-badge {
   display:flex; align-items:center; gap:5px;
-  padding:8px 14px;
+  padding:9px 16px;
   background:linear-gradient(135deg,#c0392b 0%,#e53935 100%);
-  color:#fff; font-size:11px; font-weight:900; letter-spacing:.08em;
+  color:#fff; font-size:11px; font-weight:900; letter-spacing:.1em;
   text-transform:uppercase;
-  border-radius:0 0 12px 0; width:fit-content;
+  border-radius:0 0 14px 0; width:fit-content;
+  box-shadow:0 2px 6px rgba(0,0,0,.18);
 }
 .prog-day-2 .prog-day-badge { background:linear-gradient(135deg,#1b5e20 0%,#2e7d32 100%); }
-.prog-day-inner { padding:12px 16px 16px; }
+.prog-day-inner { padding:14px 18px 18px; }
 .prog-day-title {
   font-family:'Mountains of Christmas',serif;
-  font-size:30px; font-weight:700; line-height:1.1; color:#c0392b; margin:0 0 2px;
+  font-size:32px; font-weight:700; line-height:1.1; color:#c0392b; margin:0 0 2px;
 }
 .prog-day-2 .prog-day-title { color:#1b5e20; }
-.prog-day-date { font-size:11px; color:#9ca3af; margin:0 0 12px; }
-.prog-day ul { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px; }
-.prog-day li { font-size:12px; color:#374151; display:flex; align-items:flex-start; gap:7px; line-height:1.3; }
-.prog-day li::before { content:'✦'; color:var(--gold); font-size:9px; flex-shrink:0; margin-top:2px; }
-.prog-loc { font-size:12px; color:#9ca3af; text-align:center; margin:16px 0 0; }
+.prog-day-date { font-size:11px; color:#9ca3af; margin:0 0 12px; font-style:italic; }
+.prog-day ul { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:7px; }
+.prog-day li { font-size:12.5px; color:#374151; display:flex; align-items:flex-start; gap:7px; line-height:1.35; }
+.prog-day li::before { content:'✦'; color:var(--gold); font-size:9px; flex-shrink:0; margin-top:3px; }
+.prog-loc {
+  font-size:12px; color:#9ca3af; text-align:center; margin:18px 0 0;
+  padding-top:14px; border-top:1px solid #f0e0c8; letter-spacing:.01em;
+}
 /* ── LIGHTS BAR ─────────────────────────────────────────── */
 .lights-bar { background:#0b1a0d; padding:10px 0; overflow:hidden; }
 .lights-row { display:flex; gap:24px; padding:0 12px; animation:lights-run 22s linear infinite; white-space:nowrap; }
@@ -604,11 +620,11 @@ a.hub-pill:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255
       <!-- Activity icons strip -->
       <div class="prog-acts">
         <div class="prog-act"><div class="prog-act-ico">🎪</div><div class="prog-act-lbl">Christmas Carnival</div></div>
-        <div class="prog-act"><div class="prog-act-ico">🎭</div><div class="prog-act-lbl">Cultural Performances</div></div>
+        <div class="prog-act"><div class="prog-act-ico">🎭</div><div class="prog-act-lbl">Cultural Acts</div></div>
         <div class="prog-act"><div class="prog-act-ico">🎵</div><div class="prog-act-lbl">Carols &amp; Live Music</div></div>
         <div class="prog-act"><div class="prog-act-ico">🎅</div><div class="prog-act-lbl">Meet Santa Claus</div></div>
         <div class="prog-act"><div class="prog-act-ico">⭐</div><div class="prog-act-lbl">Star Making &amp; Hosting</div></div>
-        <div class="prog-act"><div class="prog-act-ico">🎮</div><div class="prog-act-lbl">Games &amp; Family Fun</div></div>
+        <div class="prog-act"><div class="prog-act-ico">👨‍👩‍👧‍👦</div><div class="prog-act-lbl">Family Fun</div></div>
         <div class="prog-act"><div class="prog-act-ico">🚚</div><div class="prog-act-lbl">Food Trucks &amp; Flea Market</div></div>
         <div class="prog-act"><div class="prog-act-ico">🎨</div><div class="prog-act-lbl">Kids DIY (Dec 13)</div></div>
         <div class="prog-act"><div class="prog-act-ico">💡</div><div class="prog-act-lbl">BA Teenpreneurs (Dec 13)</div></div>
